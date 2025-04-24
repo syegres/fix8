@@ -25,7 +25,6 @@ doc/Makefile.in
 doc/doxyfile.stamp
 doc/fix8.tag
 doc/html/
-include/f8config.h
 include/f8config.h.in
 include/stamp-h1
 install-sh
@@ -98,7 +97,6 @@ utests/.libs
 /utests/message_test
 /utests/session_test
 /utests/utest_classes.cpp
-/include/fix8/f8config.h
 /include/fix8/stamp-h1
 /stocklib/FIX40_classes.cpp
 /stocklib/FIX40_classes.hpp
