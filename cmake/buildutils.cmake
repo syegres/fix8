@@ -101,9 +101,9 @@ endfunction()
 # ----------------------------------------------------------------------------------------
 macro(fix8_gen_library shared name xml extra_fields)
 	if ("${extra_fields}" STREQUAL "_")
-		set(args ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${ARGV11} ${CMAKE_SOURCE_DIR}/${xml})
+		set(args ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${CMAKE_SOURCE_DIR}/${xml})
 	else()
-		set(args ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${ARGV11} ${CMAKE_SOURCE_DIR}/${xml} -F ${extra_fields})
+		set(args ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${CMAKE_SOURCE_DIR}/${xml} -F ${extra_fields})
 	endif()
 	set(prefix ${CMAKE_BINARY_DIR}/generated/${name})
 	file(MAKE_DIRECTORY ${prefix})
@@ -151,10 +151,10 @@ endmacro()
 
 # ----------------------------------------------------------------------------------------
 macro(fix8_gen_shared_library name xml)
-	fix8_gen_library(shared ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${ARGV11})
+	fix8_gen_library(shared ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10})
 endmacro()
 
 # ----------------------------------------------------------------------------------------
 macro(add_gen_static_library name xml)
-	fix8_gen_library(static ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${ARGV11})
+	fix8_gen_library(static ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10})
 endmacro()
