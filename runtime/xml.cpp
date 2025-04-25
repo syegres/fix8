@@ -584,6 +584,7 @@ int XmlElement::ParseAttrs(const string& attlst)
 				tmptag += c;
 				state = tag;
 			}
+			[[fallthrough]];
 		case tag:
 			if (isspace(c))
 				state = es;

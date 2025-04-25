@@ -115,13 +115,13 @@ TEST(filelogger, create_logfile)
     f8String curPath = Poco::Path::current();
     log_fixture fixture(curPath);
 
-    ebitset<Logger::Flags> flags;
+    ebitset<Logger::Flags> flags(0);
     flags.set(Logger::timestamp, true);
     flags.set(Logger::sequence, true);
     flags.set(Logger::thread, true);
     flags.set(Logger::direction, true);
 
-    ebitset<Logger::Level> levels;
+    ebitset<Logger::Level> levels(0);
     levels.set(Logger::Info, true);
     levels.set(Logger::Debug, true);
     levels.set(Logger::Warn, true);
@@ -167,13 +167,13 @@ TEST(filelogger, rotate)
     f8String curPath = Poco::Path::current();
     log_fixture fixture(curPath);
 
-    ebitset<Logger::Flags> flag;
+    ebitset<Logger::Flags> flag(0);
     flag.set(Logger::timestamp, true);
     flag.set(Logger::sequence, true);
     flag.set(Logger::thread, true);
     flag.set(Logger::direction, true);
 
-    ebitset<Logger::Level> levels;
+    ebitset<Logger::Level> levels(0);
     levels.set(Logger::Info, true);
     levels.set(Logger::Debug, true);
     levels.set(Logger::Warn, true);

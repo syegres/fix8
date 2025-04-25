@@ -109,8 +109,7 @@ struct FieldTrait
 	FieldTrait() = default;
 
 	/// Copy Ctor
-	FieldTrait(const FieldTrait& from) : _fnum(from._fnum), _ftype(from._ftype), _pos(from._pos),
-		_component(from._component), _field_traits(from._field_traits) {}
+	FieldTrait(const FieldTrait& from) = default;
 
 	/*! Ctor.
 	  \param fnum field num (tag number)
@@ -190,6 +189,7 @@ struct FieldTrait
 	    \return stream */
 	friend F8API std::ostream& operator<<(std::ostream& os, const FieldTrait& what);
 };
+static_assert(std::is_trivial_v<FieldTrait>);
 
 F8API std::ostream& operator<<(std::ostream& os, const FieldTrait& what);
 

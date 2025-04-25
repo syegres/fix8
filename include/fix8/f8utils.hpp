@@ -459,7 +459,7 @@ public:
          target = source.substr(offset + match.SubPos(num), match.SubSize(num));
 #endif
       else
-         target.empty();
+         target.clear();
       return target;
 	}
 
@@ -843,32 +843,18 @@ class ebitset
 {
 	using integral_type = B;
 	integral_type a_;
-	
+
 public:
 	/// Ctor.
-	ebitset() : a_() {}
-
-	/*! Ctor.
-	    \param from ebitset_r to copy */
-	ebitset(const ebitset<T, B>& from) : a_(from.a_) {}
+	ebitset() = default;
 
 	/*! Ctor.
 	    \param a integral type to construct from */
-	explicit ebitset(const integral_type a) : a_(a) {}
+	explicit ebitset(const integral_type a) : a_(a) { static_assert(std::is_trivial_v<ebitset>); }
 
 	/*! Ctor.
 	    \param sbit enum to construct from */
 	explicit ebitset(const T sbit) : a_((1 << sbit) - 1) {}
-
-	/*! Assignment operator.
-	    \param that ebitset_r to assign from
-	    \return  this */
-	ebitset<T, B>& operator=(const ebitset<T, B>& that)
-	{
-		if (this != &that)
-			a_ = that.a_;
-		return *this;
-	}
 
 	/*! Check if an enum is in the set.
 	    \param sbit enum to check
@@ -945,29 +931,15 @@ class ebitset_r
 
 public:
 	/// Ctor.
-	ebitset_r() { a_ = 0; }
-
-	/*! Ctor.
-	    \param from ebitset_r to copy */
-	ebitset_r(const ebitset_r<T, B>& from) { a_ = from.a_; }
+	ebitset_r() = default;
 
 	/*! Ctor.
 	    \param a integral type to construct from */
-	explicit ebitset_r(const integral_type a) { a_ = a; }
+	explicit ebitset_r(const integral_type a) { a_ = a; static_assert(std::is_trivial_v<ebitset_r>); }
 
 	/*! Ctor.
 	    \param sbit enum to construct from */
 	explicit ebitset_r(const T sbit) { a_ = (1 << sbit) - 1; }
-
-	/*! Assignment operator.
-	    \param that ebitset_r to assign from
-	    \return  this */
-	ebitset_r<T, B>& operator=(const ebitset_r<T, B>& that)
-	{
-		if (this != &that)
-			a_ = that.a_;
-		return *this;
-	}
 
 	/*! Check if an enum is in the set.
 	    \param sbit enum to check

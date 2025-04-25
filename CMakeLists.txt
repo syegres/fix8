@@ -50,12 +50,25 @@ fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 
 # ----------------------------------------------------------------------------------------
+# c++ settings
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if (UNIX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+	add_compile_options(-Wno-unused-parameter)
+	set(CMAKE_CXX_FLAGS "-fPIC -pthread -Wno-overloaded-virtual")
+	set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+	set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+	set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O1")
+endif()
+
+# ----------------------------------------------------------------------------------------
 # deps
 find_package(ZLIB REQUIRED)
 fix8_fetch(tcmalloc google/tcmalloc master)
-fix8_fetch(poco pocoproject/poco poco-1.14.1-release)
+fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
 fix8_fetch(googletest google/googletest main)
-
+#fix8_fetch(ff fastflow/fastflow master) [ss] doesn't work due to invalid ff CMakeLists.txt
+#fix8_fetch(oneTBB uxlfoundation/oneTBB v2022.1.0)
 # ----------------------------------------------------------------------------------------
 # runtime
 set(F8LIB fix8)

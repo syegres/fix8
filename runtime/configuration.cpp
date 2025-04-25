@@ -351,7 +351,7 @@ template<typename T>
 T Configuration::get_logflags(const string& tag, const vector<string>& names,
 	const XmlElement *from, Logger::LogPositions *positions) const
 {
-	T flags;
+	T flags(0);
 	string flags_str;
 	if (from && from->GetAttr(tag, flags_str))
 	{

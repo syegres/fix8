@@ -61,7 +61,7 @@ enum { START_TIME=0, STOP_TIME=1, GET_TIME=2 };
 /*!!!----Mehdi-- required for DSRIMANAGER NODE----!!*/
 static inline void waitCall(double milisec, double sec){
   if(milisec!=0.0 || sec!=0.0){
-    struct timespec req = {0};
+    struct timespec req = {0, 0};
     req.tv_sec = sec;
     req.tv_nsec = milisec * 1000000L;
     nanosleep(&req, (struct timespec *)NULL);

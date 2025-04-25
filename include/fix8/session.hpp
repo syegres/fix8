@@ -51,7 +51,7 @@ class SessionID
 	sender_comp_id _senderCompID;
 	target_comp_id _targetCompID;
 
-	f8String _id, _rid;
+	f8String _id;
 
 public:
 	/*! Ctor.
@@ -70,14 +70,9 @@ public:
 
 	/*! Ctor.
 	    \param from SessionID string */
-	SessionID(const f8String& from) { from_string(from); }
+	explicit SessionID(const f8String& from) { from_string(from); }
 
-	/*! Ctor.
-	    \param from SessionID field */
-	SessionID(const SessionID& from) : _beginString(from._beginString), _senderCompID(from._senderCompID),
-		_targetCompID(from._targetCompID), _id(from._id) {}
-
-	SessionID() {}
+	SessionID() = default;
 
 	/// Dtor.
 	virtual ~SessionID() {}

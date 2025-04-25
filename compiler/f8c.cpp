@@ -153,39 +153,39 @@ int main(int argc, char **argv)
 #ifdef FIX8_HAVE_GETOPT_LONG
 	option long_options[]
 	{
-		{ "help",			0,	0,	'h' },
-		{ "version",		0,	0,	'v' },
-		{ "verbose",		0,	0,	'V' },
-		{ "nounique",		0,	0,	'N' },
-		{ "norealm",		0,	0,	'R' },
-		{ "incpath",		0,	0,	'P' },
-		{ "nowarn",		   0,	0,	'W' },
-		{ "odir",			1,	0,	'o' },
-		{ "dump",			0,	0,	'd' },
-		{ "extension",		0,	0,	'e' },
-		{ "ignore",			0,	0,	'i' },
-		{ "nocheck",		0,	0,	'C' },
-		{ "noconst",		0,	0,	'U' },
-		{ "info",		   0,	0,	'I' },
-		{ "unused",		   0,	0,	'u' },
-		{ "fields",			0,	0,	'f' },
-		{ "xfields",		1,	0,	'F' },
-		{ "keep",			0,	0,	'k' },
-		{ "retain",			0,	0,	'r' },
-		{ "binary",			0,	0,	'b' },
-		{ "classes",		1,	0,	'c' },
-		{ "pch",		      1,	0,	'H' },
-		{ "second",			0,	0,	's' },
-		{ "defaulted",		0,	0,	'D' },
-		{ "noshared",		0,	0,	'S' },
-		{ "prefix",			1,	0,	'p' },
-		{ "namespace",		1,	0,	'n' },
-		{ "tabsize",		1,	0,	't' },
-		{ "fixt",			1,	0,	'x' },
-		{ 0 },
+		{ "help",			0,	nullptr,	'h' },
+		{ "version",		0,	nullptr,	'v' },
+		{ "verbose",		0,	nullptr,	'V' },
+		{ "nounique",		0,	nullptr,	'N' },
+		{ "norealm",		0,	nullptr,	'R' },
+		{ "incpath",		0,	nullptr,	'P' },
+		{ "nowarn",		   0,	nullptr,	'W' },
+		{ "odir",			1,	nullptr,	'o' },
+		{ "dump",			0,	nullptr,	'd' },
+		{ "extension",		0,	nullptr,	'e' },
+		{ "ignore",			0,	nullptr,	'i' },
+		{ "nocheck",		0,	nullptr,	'C' },
+		{ "noconst",		0,	nullptr,	'U' },
+		{ "info",		   0,	nullptr,	'I' },
+		{ "unused",		   0,	nullptr,	'u' },
+		{ "fields",			0,	nullptr,	'f' },
+		{ "xfields",		1,	nullptr,	'F' },
+		{ "keep",			0,	nullptr,	'k' },
+		{ "retain",			0,	nullptr,	'r' },
+		{ "binary",			0,	nullptr,	'b' },
+		{ "classes",		1,	nullptr,	'c' },
+		{ "pch",		      1,	nullptr,	'H' },
+		{ "second",			0,	nullptr,	's' },
+		{ "defaulted",		0,	nullptr,	'D' },
+		{ "noshared",		0,	nullptr,	'S' },
+		{ "prefix",			1,	nullptr,	'p' },
+		{ "namespace",		1,	nullptr,	'n' },
+		{ "tabsize",		1,	nullptr,	't' },
+		{ "fixt",			1,	nullptr,	'x' },
+		{ nullptr, 0, nullptr, 0 }
 	};
 
-	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, 0)) != -1)
+	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
 #else
 	while ((val = getopt (argc, argv, GETARGLIST.c_str())) != -1)
 #endif
@@ -342,7 +342,7 @@ int main(int argc, char **argv)
 		ctxt._out[ii].first.first = ctxt._out[ii].first.second + ".p2";
 		remove(ctxt._out[ii].first.first.c_str());
 		string target;
-		if ((ctxt._out[ii].second = open_ofile(odir, ctxt._out[ii].first.first, target)) == 0)
+		if ((ctxt._out[ii].second = open_ofile(odir, ctxt._out[ii].first.first, target)) == nullptr)
 			return 1;
 	}
 

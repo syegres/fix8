@@ -193,21 +193,21 @@ int main(int argc, char **argv)
 #ifdef FIX8_HAVE_GETOPT_LONG
 	option long_options[]
 	{
-		{ "help",		0,	0,	'h' },
-		{ "version",	0,	0,	'v' },
-		{ "log",			1,	0,	'l' },
-		{ "config",		1,	0,	'c' },
-		{ "replay",		1,	0,	'p' },
-		{ "server",		0,	0,	's' },
-		{ "send",		1,	0,	'S' },
-		{ "receive",	1,	0,	'R' },
-		{ "lines",		1,	0,	'L' },
-		{ "quiet",		0,	0,	'q' },
-		{ "reliable",	0,	0,	'r' },
-		{ 0 },
+		{ "help",		0,	nullptr,	'h' },
+		{ "version",	0,	nullptr,	'v' },
+		{ "log",			1,	nullptr,	'l' },
+		{ "config",		1,	nullptr,	'c' },
+		{ "replay",		1,	nullptr,	'p' },
+		{ "server",		0,	nullptr,	's' },
+		{ "send",		1,	nullptr,	'S' },
+		{ "receive",	1,	nullptr,	'R' },
+		{ "lines",		1,	nullptr,	'L' },
+		{ "quiet",		0,	nullptr,	'q' },
+		{ "reliable",	0,	nullptr,	'r' },
+		{ nullptr, 0, nullptr, 0 },
 	};
 
-	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, 0)) != -1)
+	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
 #else
 	while ((val = getopt (argc, argv, GETARGLIST.c_str())) != -1)
 #endif
@@ -582,7 +582,7 @@ bool MyMenu::read_msgs()
    if (system("dir *.playback"));
 #else
 	_ostr << getcwd(cwd, sizeof(cwd)) << endl;
-   if (system("ls -l *.playback"));
+   if (system("ls -l *.playback")){}
 #endif
    _ostr << endl;
 	_ostr << "Enter filename: " << flush;

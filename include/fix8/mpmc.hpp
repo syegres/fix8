@@ -52,7 +52,14 @@ template<typename T> using f8_concurrent_queue = tbb::concurrent_bounded_queue<T
 
 # include <fix8/ff/allocator.hpp>
 # include <fix8/ff/buffer.hpp>
+#if __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+#endif
 # include <fix8/ff/mpmc/MPMCqueues.hpp>
+#if __GNUC__
+#pragma GCC diagnostic pop
+#endif
 # include <sched.h>
 
 // std wrappers for ff

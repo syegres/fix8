@@ -81,7 +81,7 @@ endmacro()
 
 # ----------------------------------------------------------------------------------------
 function(comp_opts targ)
-	target_compile_features(${targ} PRIVATE cxx_std_17)
+	#target_compile_features(${targ} PRIVATE cxx_std_17)
 	if(BUILD_ALL_WARNINGS)
 		target_compile_options(${targ} PRIVATE
 		$<$<CXX_COMPILER_ID:MSVC>:/W4>
