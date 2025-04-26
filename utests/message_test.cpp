@@ -45,11 +45,6 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 using namespace FIX8;
 using namespace FIX8::UTEST;
 
-#if __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wmissing-field-initializers"
-#endif
-
 /*!message unknown field
     \param message test suit name
     \param unknown_field test case name*/
@@ -531,7 +526,3 @@ TEST(message, nestedGroup_encode)
     delete nol;
     nol = 0;
 }
-
-#if __GNUC__
-#pragma GCC diagnostic pop
-#endif
