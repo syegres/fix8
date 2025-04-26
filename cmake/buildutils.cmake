@@ -80,12 +80,23 @@ macro(fix8_fetch modname parturl tag)
 endmacro()
 
 # ----------------------------------------------------------------------------------------
-function(comp_opts targ)
-	#target_compile_features(${targ} PRIVATE cxx_std_17)
-	if(BUILD_ALL_WARNINGS)
-		target_compile_options(${targ} PRIVATE
-		$<$<CXX_COMPILER_ID:MSVC>:/W4>
-		$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic>)
+function(cpp_opts)
+	if (NOT MSVC)
+		if(BUILD_ALL_WARNINGS)
+			set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic")
+		endif()
+		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -pthread -Wno-overloaded-virtual -Wno-unused-parameter -Wno-missing-field-initializers")
+		set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+		set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+		set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O1")
+	else()
+		if(BUILD_ALL_WARNINGS)
+			add_compile_options(/W4)
+		endif()
+		#set(CMAKE_CXX_FLAGS "-fPIC")
+		set(CMAKE_CXX_FLAGS_DEBUG "/g /O0")
+		set(CMAKE_CXX_FLAGS_RELEASE "/O3")
+		set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/g /O1")
 	endif()
 endfunction()
 
@@ -95,7 +106,6 @@ function(build_test loc x)
 	target_link_libraries(${x} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
 	target_include_directories(${x} PRIVATE ${loc} include ${CMAKE_BINARY_DIR}/generated/FIX42UTEST)
 	gtest_discover_tests(${x})
-	comp_opts(${x})
 endfunction()
 
 # ----------------------------------------------------------------------------------------

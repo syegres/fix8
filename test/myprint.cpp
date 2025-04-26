@@ -127,7 +127,7 @@ int main(int argc, char **argv)
 		{ "version",		0,	nullptr,	'v' },
 		{ "summary",		0,	nullptr,	's' },
 		{ "context",		0,	nullptr,	'c' },
-		{ nullptr, 0, nullptr, 0 },
+		{ },
 	};
 
 	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)

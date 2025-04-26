@@ -201,7 +201,7 @@ int main(int argc, char **argv)
 		{ "quiet",		0,	nullptr,	'q' },
 		{ "reliable",	0,	nullptr,	'r' },
 		{ "dump",		0,	nullptr,	'd' },
-		{ nullptr, 0, nullptr, 0 },
+		{ },
 	};
 
 	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, 0)) != -1)

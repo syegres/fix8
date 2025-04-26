@@ -281,7 +281,7 @@ int main(int argc, char **argv)
 		{ "reliable",	0,	nullptr,	'r' },
 		{ "preload",	1,	nullptr,	'p' },
 		{ "update",		1,	nullptr,	'u' },
-		{ nullptr, 0, nullptr, 0 },
+		{ },
 	};
 
 	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)

@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 		{ "namespace",		1,	nullptr,	'n' },
 		{ "tabsize",		1,	nullptr,	't' },
 		{ "fixt",			1,	nullptr,	'x' },
-		{ nullptr, 0, nullptr, 0 }
+		{ }
 	};
 
 	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)

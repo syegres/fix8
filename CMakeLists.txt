@@ -53,31 +53,26 @@ fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 # c++ settings
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-if (UNIX AND CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-	add_compile_options(-Wno-unused-parameter)
-	set(CMAKE_CXX_FLAGS "-fPIC -pthread -Wno-overloaded-virtual")
-	set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-	set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-	set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O1")
-endif()
 
 # ----------------------------------------------------------------------------------------
 # deps
-find_package(ZLIB REQUIRED)
+#find_package(ZLIB REQUIRED)
 fix8_fetch(tcmalloc google/tcmalloc master)
 fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
 fix8_fetch(googletest google/googletest main)
 #fix8_fetch(ff fastflow/fastflow master) [ss] doesn't work due to invalid ff CMakeLists.txt
-#fix8_fetch(oneTBB uxlfoundation/oneTBB v2022.1.0)
+#fix8_fetch(oneTBB uxlfoundation/oneTBB v2022.1.0) [ss] doesn't compile in release
+fix8_fetch(zip madler/zlib v1.3.1)
+cpp_opts()
+
 # ----------------------------------------------------------------------------------------
 # runtime
 set(F8LIB fix8)
 set(rtdir ${CMAKE_SOURCE_DIR}/runtime)
 file(GLOB rsrc "${rtdir}/*.cpp" "${rtdir}/*.c")
 add_library(${F8LIB} SHARED ${rsrc})
-target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ZLIB::ZLIB)
+target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML zlib)
 target_include_directories(${F8LIB} PRIVATE include ${tcmalloc})
-comp_opts(${F8LIB})
 
 # ----------------------------------------------------------------------------------------
 # compiler
@@ -87,7 +82,6 @@ file(GLOB csrc "${compdir}/*.cpp")
 add_executable(${F8C} ${csrc})
 target_link_libraries(${F8C} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
 target_include_directories(${F8C} PRIVATE ${compdir} include ${tcmalloc})
-comp_opts(${F8C})
 
 # ----------------------------------------------------------------------------------------
 # shared standard schema libs
@@ -122,7 +116,6 @@ if(BUILD_UNITTESTS)
 	add_executable(session_test utests/session_test.cpp utests/mockConnection.cpp)
 	target_link_libraries(session_test PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
 	target_include_directories(session_test PRIVATE utests include ${CMAKE_BINARY_DIR}/generated/FIX42UTEST)
-	comp_opts(session_test)
 #gtest_discover_tests(session_test)
 endif()
 
@@ -132,23 +125,19 @@ add_executable(f8test test/myfix.cpp)
 fix8_gen_shared_library(Myfix schema/FIX50SP2.xml --verbose --namespace TEX --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 target_link_libraries(f8test PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
 target_include_directories(f8test PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
-comp_opts(f8test)
 
 add_executable(f8print test/myprint.cpp)
 target_link_libraries(f8print PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
 target_include_directories(f8print PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
-comp_opts(f8print)
 
 add_executable(harness test/harness.cpp)
 target_link_libraries(harness PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
 target_include_directories(harness PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
-comp_opts(harness)
 
 add_executable(hftest test/hftest.cpp)
 fix8_gen_shared_library(Perf schema/FIX42PERF.xml --verbose --namespace TEX --second --noconst --prefix Perf --norealm)
 target_link_libraries(hftest PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Perf GTest::gtest GTest::gtest_main)
 target_include_directories(hftest PRIVATE test include ${CMAKE_BINARY_DIR}/generated/FIX42PERF)
-comp_opts(hftest)
 
 # ----------------------------------------------------------------------------------------
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
