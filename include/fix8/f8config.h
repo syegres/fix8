@@ -1,6 +1,6 @@
 #ifndef _INCLUDE_FIX__F_CONFIG_H
 #define _INCLUDE_FIX__F_CONFIG_H 1
- 
+
 /* include/fix8/f8config.h. Generated automatically at end of configure. */
 /* intermediate_config.h.  Generated from intermediate_config.h.in by configure.  */
 /* intermediate_config.h.in.  Generated from configure.ac by autoheader.  */
@@ -557,7 +557,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Minor version number */
 #ifndef FIX8_MINOR_VERSION_NUM
-#define FIX8_MINOR_VERSION_NUM 4
+#define FIX8_MINOR_VERSION_NUM 5
 #endif
 
 /* FIX8_FF MPMC */
@@ -612,7 +612,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Patch number */
 #ifndef FIX8_PATCH_VERSION_NUM
-#define FIX8_PATCH_VERSION_NUM 3
+#define FIX8_PATCH_VERSION_NUM 0
 #endif
 
 /* Define to 1 to enable metatdata population in encode/decodes */
@@ -781,6 +781,6 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Define as `fork' if `vfork' does not work. */
 /* #undef vfork */
- 
+
 /* once: _INCLUDE_FIX__F_CONFIG_H */
 #endif

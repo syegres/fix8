@@ -19,7 +19,7 @@ and framework; and a set of complete client/server test applications.
 1. [Directory Layout](#directory-layout)
 1. [Documentation](#documentation)
 1. [Branch Layout](#branch-layout)
-1. [C++11](#c11)
+1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
 1. [Building on Linux/UNIX](#building-on-linuxunix)
@@ -133,7 +133,7 @@ and framework; and a set of complete client/server test applications.
           </tr>
           <tr>
              <td><code>test/</code></td>
-g            <td>test applications client/server source</td>
+             <td>test applications client/server source</td>
           </tr>
           <tr>
              <td><code>utests/</code></td>
@@ -196,6 +196,8 @@ flag on your compiler command line. Most compilers since 2020 default to at leas
 Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
+This release now uses cmake. The build will download and build the default dependencies - poco, tcmalloc and gtest.
+
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 
 Additional libraries are needed for building on Windows, [see here](https://fix8engine.atlassian.net/wiki/x/EICW).
@@ -240,7 +242,7 @@ The build system now uses cmake.
 	% cd build
 	% cmake ..
 	% make -j4 -l4
-	% make install
+	% cmake --install . --prefix <target install directory>
 
 If you have built the test cases, you can also run them as follows:
 
@@ -256,7 +258,7 @@ The build system now uses cmake.
 	% cd build
 	% cmake ..
 	% make -j4 -l4
-	% make install
+	% cmake --install . --prefix <target install directory>
 
 Please see [this document](https://fix8engine.atlassian.net/wiki/x/B4AtAQ) for more instructions for building on OSX.
 

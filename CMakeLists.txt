@@ -65,6 +65,8 @@ add_library(${F8LIB} SHARED ${rsrc})
 target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ZLIB::ZLIB)
 target_include_directories(${F8LIB} PRIVATE include ${tcmalloc})
 comp_opts(${F8LIB})
+install(TARGETS ${F8LIB})
+install(DIRECTORY include DESTINATION include)
 
 # ----------------------------------------------------------------------------------------
 # compiler
@@ -75,6 +77,7 @@ add_executable(${F8C} ${csrc})
 target_link_libraries(${F8C} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
 target_include_directories(${F8C} PRIVATE ${compdir} include ${tcmalloc})
 comp_opts(${F8C})
+install(TARGETS ${F8C})
 
 # ----------------------------------------------------------------------------------------
 # shared standard schema libs
@@ -94,6 +97,9 @@ fix8_gen_shared_library(FIX50SP1 schema/FIX50SP1.xml --verbose --namespace FIX50
 target_link_libraries(FIX50SP1 PRIVATE fix8)
 fix8_gen_shared_library(FIX50SP2 schema/FIX50SP2.xml --verbose --namespace FIX50SP2 -p FIX50SP2 --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 target_link_libraries(FIX50SP2 PRIVATE fix8)
+install(TARGETS FIX40 FIX41 FIX42 FIX43 FIX44 FIX50 FIX50SP1 FIX50SP2)
+install(DIRECTORY include DESTINATION include)
+install(DIRECTORY schema DESTINATION .)
 
 # ----------------------------------------------------------------------------------------
 # unit tests
@@ -136,6 +142,7 @@ fix8_gen_shared_library(Perf schema/FIX42PERF.xml --verbose --namespace TEX --se
 target_link_libraries(hftest PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Perf GTest::gtest GTest::gtest_main)
 target_include_directories(hftest PRIVATE test include ${CMAKE_BINARY_DIR}/generated/FIX42PERF)
 comp_opts(hftest)
+install(TARGETS f8test f8print harness harness)
 
 # ----------------------------------------------------------------------------------------
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -152,3 +159,4 @@ if(CMAKE_DUMP_VARS)
       endif()
    endforeach()
 endif()
+
