@@ -12,8 +12,6 @@ and framework; and a set of complete client/server test applications.
 
 **For enterprise use we recommend Fix8Pro.**
 
-**For enterprise use we recommend Fix8Pro.**
-
 ## Contents
 
 1. [Contents](#contents)
@@ -135,7 +133,7 @@ and framework; and a set of complete client/server test applications.
           </tr>
           <tr>
              <td><code>test/</code></td>
-             <td>test applications client/server source</td>
+g            <td>test applications client/server source</td>
           </tr>
           <tr>
              <td><code>utests/</code></td>
@@ -185,13 +183,13 @@ a login. For our complete API Documentation see [here](http://fix8.org/fix8/html
 </table>
 
 
-## C++11
+## C++17
 
-Fix8 now **requires C++11 compiler support**. Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
+Fix8 now **requires C++17 compiler support**. Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
 
-	-std=c++11
+	-std=c++17
 
-flag on your compiler command line. Some older compiler versions may no longer be supported. Sorry.
+flag on your compiler command line. Most compilers since 2020 default to at least C++17. Some older compiler versions may no longer be supported. Sorry.
 
 ## External Dependencies (required)
 
@@ -234,30 +232,30 @@ If you wish to use BerkeleyDB for message persistence:
 
 ## Building on Linux/UNIX
 
-The build system is based on automake/autoconf/libtool.
-You **must** have [libtool](http://www.gnu.org/software/libtool/) installed to build.
+The build system now uses cmake.
 
-	% tar xvzf 1.4.3.tar.gz
-	% cd fix8-1.4.3
-	% ./bootstrap
-	% ./configure
-	% make
+	% tar xvzf 1.5.0.tar.gz
+	% cd fix8-1.5.0
+	% mkdir build
+	% cd build
+	% cmake ..
+	% make -j4 -l4
 	% make install
 
 If you have built the test cases, you can also run them as follows:
 
-	% make check
+	% ctest
 
 ## Building on OSX
 
-You **must** have [glibtool, autotools](http://www.jattcode.com/installing-autoconf-automake-libtool-on-mac-osx-mountain-lion/) installed to build.
+The build system now uses cmake.
 
-	% tar xvzf 1.4.3.tar.gz
-	% cd fix8-1.4.3
-	% export LIBTOOLIZE=`which glibtoolize`
-	% ./bootstrap
-	% ./configure
-	% make
+	% tar xvzf 1.5.0.tar.gz
+	% cd fix8-1.5.0
+	% mkdir build
+	% cd build
+	% cmake ..
+	% make -j4 -l4
 	% make install
 
 Please see [this document](https://fix8engine.atlassian.net/wiki/x/B4AtAQ) for more instructions for building on OSX.
