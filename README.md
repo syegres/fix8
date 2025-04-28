@@ -12,8 +12,6 @@ and framework; and a set of complete client/server test applications.
 
 **For enterprise use we recommend Fix8Pro.**
 
-**For enterprise use we recommend Fix8Pro.**
-
 ## Contents
 
 1. [Contents](#contents)
@@ -21,7 +19,7 @@ and framework; and a set of complete client/server test applications.
 1. [Directory Layout](#directory-layout)
 1. [Documentation](#documentation)
 1. [Branch Layout](#branch-layout)
-1. [C++11](#c11)
+1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
 1. [Building on Linux/UNIX](#building-on-linuxunix)
@@ -185,18 +183,20 @@ a login. For our complete API Documentation see [here](http://fix8.org/fix8/html
 </table>
 
 
-## C++11
+## C++17
 
-Fix8 now **requires C++11 compiler support**. Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
+Fix8 now **requires C++17 compiler support**. Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
 
-	-std=c++11
+	-std=c++17
 
-flag on your compiler command line. Some older compiler versions may no longer be supported. Sorry.
+flag on your compiler command line. Most compilers since 2020 default to at least C++17. Some older compiler versions may no longer be supported. Sorry.
 
 ## External Dependencies (required)
 
 Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
+
+This release now uses cmake. The build will download and build the default dependencies - poco, tcmalloc and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 
@@ -234,31 +234,31 @@ If you wish to use BerkeleyDB for message persistence:
 
 ## Building on Linux/UNIX
 
-The build system is based on automake/autoconf/libtool.
-You **must** have [libtool](http://www.gnu.org/software/libtool/) installed to build.
+The build system now uses cmake.
 
-	% tar xvzf 1.4.3.tar.gz
-	% cd fix8-1.4.3
-	% ./bootstrap
-	% ./configure
-	% make
-	% make install
+	% tar xvzf 1.5.0.tar.gz
+	% cd fix8-1.5.0
+	% mkdir build
+	% cd build
+	% cmake ..
+	% make -j4 -l4
+	% cmake --install . --prefix <target install directory>
 
 If you have built the test cases, you can also run them as follows:
 
-	% make check
+	% ctest
 
 ## Building on OSX
 
-You **must** have [glibtool, autotools](http://www.jattcode.com/installing-autoconf-automake-libtool-on-mac-osx-mountain-lion/) installed to build.
+The build system now uses cmake.
 
-	% tar xvzf 1.4.3.tar.gz
-	% cd fix8-1.4.3
-	% export LIBTOOLIZE=`which glibtoolize`
-	% ./bootstrap
-	% ./configure
-	% make
-	% make install
+	% tar xvzf 1.5.0.tar.gz
+	% cd fix8-1.5.0
+	% mkdir build
+	% cd build
+	% cmake ..
+	% make -j4 -l4
+	% cmake --install . --prefix <target install directory>
 
 Please see [this document](https://fix8engine.atlassian.net/wiki/x/B4AtAQ) for more instructions for building on OSX.
 

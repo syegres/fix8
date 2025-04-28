@@ -50,11 +50,6 @@ fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 
 # ----------------------------------------------------------------------------------------
-# c++ settings
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-# ----------------------------------------------------------------------------------------
 # deps
 #find_package(ZLIB REQUIRED)
 fix8_fetch(tcmalloc google/tcmalloc master)
@@ -71,8 +66,11 @@ set(F8LIB fix8)
 set(rtdir ${CMAKE_SOURCE_DIR}/runtime)
 file(GLOB rsrc "${rtdir}/*.cpp" "${rtdir}/*.c")
 add_library(${F8LIB} SHARED ${rsrc})
-target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML zlib)
+target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ZLIB::ZLIB)
 target_include_directories(${F8LIB} PRIVATE include ${tcmalloc})
+comp_opts(${F8LIB})
+install(TARGETS ${F8LIB})
+install(DIRECTORY include DESTINATION include)
 
 # ----------------------------------------------------------------------------------------
 # compiler
@@ -82,6 +80,8 @@ file(GLOB csrc "${compdir}/*.cpp")
 add_executable(${F8C} ${csrc})
 target_link_libraries(${F8C} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
 target_include_directories(${F8C} PRIVATE ${compdir} include ${tcmalloc})
+comp_opts(${F8C})
+install(TARGETS ${F8C})
 
 # ----------------------------------------------------------------------------------------
 # shared standard schema libs
@@ -101,6 +101,9 @@ fix8_gen_shared_library(FIX50SP1 schema/FIX50SP1.xml --verbose --namespace FIX50
 target_link_libraries(FIX50SP1 PRIVATE fix8)
 fix8_gen_shared_library(FIX50SP2 schema/FIX50SP2.xml --verbose --namespace FIX50SP2 -p FIX50SP2 --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 target_link_libraries(FIX50SP2 PRIVATE fix8)
+install(TARGETS FIX40 FIX41 FIX42 FIX43 FIX44 FIX50 FIX50SP1 FIX50SP2)
+install(DIRECTORY include DESTINATION include)
+install(DIRECTORY schema DESTINATION .)
 
 # ----------------------------------------------------------------------------------------
 # unit tests
@@ -116,6 +119,7 @@ if(BUILD_UNITTESTS)
 	add_executable(session_test utests/session_test.cpp utests/mockConnection.cpp)
 	target_link_libraries(session_test PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
 	target_include_directories(session_test PRIVATE utests include ${CMAKE_BINARY_DIR}/generated/FIX42UTEST)
+	comp_opts(session_test)
 #gtest_discover_tests(session_test)
 endif()
 
@@ -125,19 +129,24 @@ add_executable(f8test test/myfix.cpp)
 fix8_gen_shared_library(Myfix schema/FIX50SP2.xml --verbose --namespace TEX --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 target_link_libraries(f8test PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
 target_include_directories(f8test PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
+comp_opts(f8test)
 
 add_executable(f8print test/myprint.cpp)
 target_link_libraries(f8print PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
 target_include_directories(f8print PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
+comp_opts(f8print)
 
 add_executable(harness test/harness.cpp)
 target_link_libraries(harness PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
 target_include_directories(harness PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
+comp_opts(harness)
 
 add_executable(hftest test/hftest.cpp)
 fix8_gen_shared_library(Perf schema/FIX42PERF.xml --verbose --namespace TEX --second --noconst --prefix Perf --norealm)
 target_link_libraries(hftest PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Perf GTest::gtest GTest::gtest_main)
 target_include_directories(hftest PRIVATE test include ${CMAKE_BINARY_DIR}/generated/FIX42PERF)
+comp_opts(hftest)
+install(TARGETS f8test f8print harness harness)
 
 # ----------------------------------------------------------------------------------------
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -154,3 +163,4 @@ if(CMAKE_DUMP_VARS)
       endif()
    endforeach()
 endif()
+
