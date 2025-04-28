@@ -50,10 +50,6 @@ fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 
 # ----------------------------------------------------------------------------------------
-# compiler options
-cpp_opts()
-
-# ----------------------------------------------------------------------------------------
 # deps
 fix8_fetch(tcmalloc google/tcmalloc master)
 fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
@@ -67,6 +63,10 @@ else()
 	find_package(ZLIB REQUIRED)
 	set(ziplib ZLIB::ZLIB)
 endif()
+
+# ----------------------------------------------------------------------------------------
+# compiler options
+cpp_opts()
 
 # ----------------------------------------------------------------------------------------
 # runtime

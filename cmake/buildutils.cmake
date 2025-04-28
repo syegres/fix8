@@ -83,26 +83,37 @@ endmacro()
 function(cpp_opts)
 	if (NOT MSVC)
 		if(BUILD_ALL_WARNINGS)
-			set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wpedantic")
+			set(CXX_FLAGS -Wall -Wextra -Wpedantic )
 		endif()
-		set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -pthread -Wno-overloaded-virtual -Wno-unused-parameter -Wno-missing-field-initializers")
-		set(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-		set(CMAKE_CXX_FLAGS_RELEASE "-O3")
-		set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O1")
+		set(CXX_FLAGS ${CXX_FLAGS} -fPIC -pthread -Wno-overloaded-virtual -Wno-unused-parameter -Wno-missing-field-initializers)
+		set(CXX_FLAGS_DEBUG -g -O0 -D_DEBUG)
+		set(CXX_FLAGS_RELEASE -O3 -DNDEBUG)
+		set(CXX_FLAGS_RELWITHDEBINFO -g -O1 -D_DEBUG)
+		message("*** ${CXX_FLAGS_DEBUG}")
 	else()
 		if(BUILD_ALL_WARNINGS)
-			set(CMAKE_CXX_FLAGS "/W4")
+			set(CXX_FLAGS "/W4")
 		endif()
-		#set(CMAKE_CXX_FLAGS "-fPIC")
-		set(CMAKE_CXX_FLAGS_DEBUG "/g /O0")
-		set(CMAKE_CXX_FLAGS_RELEASE "/O3")
-		set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/g /O1")
+		#set(CXX_FLAGS "-fPIC")
+		set(CXX_FLAGS_DEBUG "/g /O0")
+		set(CXX_FLAGS_RELEASE "/O3")
+		set(CXX_FLAGS_RELWITHDEBINFO "/g /O1")
 	endif()
+	set(FIX8_CXX_FLAGS ${CXX_FLAGS} PARENT_SCOPE)
+	set(FIX8_CXX_FLAGS_DEBUG ${CXX_FLAGS_DEBUG} PARENT_SCOPE)
+	set(FIX8_CXX_FLAGS_RELEASE ${CXX_FLAGS_RELEASE} PARENT_SCOPE)
+	set(FIX8_CXX_FLAGS_RELWITHDEBINFO ${CXX_FLAGS_RELWITHDEBINFO} PARENT_SCOPE)
 endfunction()
 
 # ----------------------------------------------------------------------------------------
 function(comp_opts targ)
 	target_compile_features(${targ} PRIVATE cxx_std_17)
+	target_compile_options(${targ} PRIVATE
+			${FIX8_CXX_FLAGS}
+			$<$<CONFIG:Debug>:${FIX8_CXX_FLAGS_DEBUG}>
+			$<$<CONFIG:Release>:${FIX8_CXX_FLAGS_RELEASE}>
+			$<$<CONFIG:RelWithDebInfo>:${FIX8_CXX_FLAGS_RELWITHDEBINFO}>
+		)
 endfunction()
 
 # ----------------------------------------------------------------------------------------
