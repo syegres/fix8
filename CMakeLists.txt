@@ -50,15 +50,23 @@ fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 
 # ----------------------------------------------------------------------------------------
+# compiler options
+cpp_opts()
+
+# ----------------------------------------------------------------------------------------
 # deps
-#find_package(ZLIB REQUIRED)
 fix8_fetch(tcmalloc google/tcmalloc master)
 fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
 fix8_fetch(googletest google/googletest main)
 #fix8_fetch(ff fastflow/fastflow master) [ss] doesn't work due to invalid ff CMakeLists.txt
 #fix8_fetch(oneTBB uxlfoundation/oneTBB v2022.1.0) [ss] doesn't compile in release
-fix8_fetch(zip madler/zlib v1.3.1)
-cpp_opts()
+if (MSVC)
+	fix8_fetch(zip madler/zlib v1.3.1)
+	set(ziplib zlib)
+else()
+	find_package(ZLIB REQUIRED)
+	set(ziplib ZLIB::ZLIB)
+endif()
 
 # ----------------------------------------------------------------------------------------
 # runtime
@@ -66,7 +74,7 @@ set(F8LIB fix8)
 set(rtdir ${CMAKE_SOURCE_DIR}/runtime)
 file(GLOB rsrc "${rtdir}/*.cpp" "${rtdir}/*.c")
 add_library(${F8LIB} SHARED ${rsrc})
-target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ZLIB::ZLIB)
+target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ${ziplib})
 target_include_directories(${F8LIB} PRIVATE include ${tcmalloc})
 comp_opts(${F8LIB})
 install(TARGETS ${F8LIB})

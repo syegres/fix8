@@ -91,13 +91,18 @@ function(cpp_opts)
 		set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g -O1")
 	else()
 		if(BUILD_ALL_WARNINGS)
-			add_compile_options(/W4)
+			set(CMAKE_CXX_FLAGS "/W4")
 		endif()
 		#set(CMAKE_CXX_FLAGS "-fPIC")
 		set(CMAKE_CXX_FLAGS_DEBUG "/g /O0")
 		set(CMAKE_CXX_FLAGS_RELEASE "/O3")
 		set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "/g /O1")
 	endif()
+endfunction()
+
+# ----------------------------------------------------------------------------------------
+function(comp_opts targ)
+	target_compile_features(${targ} PRIVATE cxx_std_17)
 endfunction()
 
 # ----------------------------------------------------------------------------------------
