@@ -188,7 +188,7 @@ public:
                     break;
 
                 // exponential delay with max value
-                for(volatile unsigned i=0;i<bk;++i) ;
+                for(unsigned i=0;i<bk;++i) ;
                 bk <<= 1;
                 bk &= BACKOFF_MAX;
             } else
@@ -326,7 +326,7 @@ public:
                     break;
 
                 // exponential delay with max value
-                for(volatile unsigned i=0;i<bk;++i) ;
+                for(unsigned i=0;i<bk;++i) ;
                 bk <<= 1;
                 bk &= BACKOFF_MAX;
             } else
@@ -360,7 +360,7 @@ public:
                     break;
 
                 // exponential delay with max value
-                for(volatile unsigned i=0;i<bk;++i) ;
+                for(unsigned i=0;i<bk;++i) ;
                 bk <<= 1;
                 bk &= BACKOFF_MAX;
             } else {
@@ -474,7 +474,7 @@ public:
                     break;
 
                 // exponential delay with max value
-                for(volatile unsigned i=0;i<bk;++i) ;
+                for(unsigned i=0;i<bk;++i) ;
                 bk <<= 1;
                 bk &= BACKOFF_MAX;
             }
@@ -503,7 +503,7 @@ public:
                     break;
 
                 // exponential delay with max value
-                for(volatile unsigned i=0;i<bk;++i) ;
+                for(unsigned i=0;i<bk;++i) ;
                 bk <<= 1;
                 bk &= BACKOFF_MAX;
             }
@@ -909,7 +909,7 @@ public:
             if (CAS((volatile atom_t *)&dequeue, (atom_t)(q+1), (atom_t)q) == (atom_t)q) break;
             //if(dequeue.compare_exchange_strong(<#long &__e#>, <#long __d#>)
             // exponential delay with max value
-            for(volatile unsigned i=0;i<bk;++i) ;
+            for(unsigned i=0;i<bk;++i) ;
             bk <<= 1;
             bk &= BACKOFF_MAX;
         } while(1);

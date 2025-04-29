@@ -48,36 +48,49 @@ project (fix8
 fix8_setbuildtype(FIX8 Release)
 fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
+fix8_addoption("BUILD_DOXYGEN_DOCS|enable building of self documentation|true")
 
 # ----------------------------------------------------------------------------------------
 # deps
 find_package(ZLIB REQUIRED)
 fix8_fetch(tcmalloc google/tcmalloc master)
-fix8_fetch(poco pocoproject/poco poco-1.14.1-release)
-fix8_fetch(googletest google/googletest main)
+fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
 
 # ----------------------------------------------------------------------------------------
 # runtime
-set(F8LIB fix8)
+macro(build_lib name type)
+	add_library(${name} ${type} ${rsrc})
+	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ZLIB::ZLIB)
+	target_include_directories(${name} PRIVATE include ${tcmalloc})
+	comp_opts(${name})
+	install(TARGETS ${name})
+endmacro()
+
 set(rtdir ${CMAKE_SOURCE_DIR}/runtime)
 file(GLOB rsrc "${rtdir}/*.cpp" "${rtdir}/*.c")
-add_library(${F8LIB} SHARED ${rsrc})
-target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ZLIB::ZLIB)
-target_include_directories(${F8LIB} PRIVATE include ${tcmalloc})
-comp_opts(${F8LIB})
-install(TARGETS ${F8LIB})
+build_lib(fix8 SHARED)
+build_lib(fix8stat STATIC)
+set_target_properties(fix8stat PROPERTIES OUTPUT_NAME fix8)
 install(DIRECTORY include DESTINATION include)
 
 # ----------------------------------------------------------------------------------------
 # compiler
-set(F8C f8c)
 set(compdir ${CMAKE_SOURCE_DIR}/compiler)
 file(GLOB csrc "${compdir}/*.cpp")
-add_executable(${F8C} ${csrc})
-target_link_libraries(${F8C} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
-target_include_directories(${F8C} PRIVATE ${compdir} include ${tcmalloc})
-comp_opts(${F8C})
-install(TARGETS ${F8C})
+add_executable(f8c ${csrc})
+target_link_libraries(f8c PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
+target_include_directories(f8c PRIVATE ${compdir} include ${tcmalloc})
+comp_opts(f8c)
+install(TARGETS f8c)
+
+# ----------------------------------------------------------------------------------------
+# util
+set(utildir ${CMAKE_SOURCE_DIR}/util)
+add_executable(seqedit ${utildir}/seqedit.cpp)
+target_link_libraries(seqedit PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
+target_include_directories(seqedit PRIVATE ${utildir} include ${tcmalloc})
+comp_opts(seqedit)
+install(TARGETS seqedit)
 
 # ----------------------------------------------------------------------------------------
 # shared standard schema libs
@@ -104,6 +117,7 @@ install(DIRECTORY schema DESTINATION .)
 # ----------------------------------------------------------------------------------------
 # unit tests
 if(BUILD_UNITTESTS)
+	fix8_fetch(googletest google/googletest main)
 	set(EXTRA_FIELDS "<field number='9999' name='SampleUserField'  type='STRING' messages='NewOrderSingle:N ExecutionReport:N OrderCancelRequest:Y' /><field number='9991' name='SampleUserField2' type='STRING' messages='NewOrderSingle:N ExecutionReport:N OrderCancelRequest:Y' />")
 	fix8_gen_shared_library(utest schema/FIX42UTEST.xml --verbose -F ${EXTRA_FIELDS} -p utest --namespace UTEST)
 	target_link_libraries(utest PRIVATE fix8)
@@ -143,6 +157,12 @@ target_link_libraries(hftest PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::
 target_include_directories(hftest PRIVATE test include ${CMAKE_BINARY_DIR}/generated/FIX42PERF)
 comp_opts(hftest)
 install(TARGETS f8test f8print harness harness)
+
+# ----------------------------------------------------------------------------------------
+# generated docs
+if(BUILD_DOXYGEN_DOCS)
+	add_subdirectory(doc)
+endif()
 
 # ----------------------------------------------------------------------------------------
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)

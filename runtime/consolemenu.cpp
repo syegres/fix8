@@ -381,7 +381,7 @@ int ConsoleMenu::EditMsgs(tty_save_state& tty, MsgList& lst) const
 }
 
 //-------------------------------------------------------------------------------------------------
-Message *ConsoleMenu::RemoveMsg(tty_save_state& tty, MsgList& lst) const
+Message *ConsoleMenu::RemoveMsg(tty_save_state&, MsgList& lst) const
 {
 	Message *msg(SelectFromMsg(lst));
 	if (msg)
@@ -405,7 +405,7 @@ Message *ConsoleMenu::RemoveMsg(tty_save_state& tty, MsgList& lst) const
 }
 
 //-------------------------------------------------------------------------------------------------
-int ConsoleMenu::DeleteAllMsgs(tty_save_state& tty, MsgList& lst) const
+int ConsoleMenu::DeleteAllMsgs(tty_save_state&, MsgList& lst) const
 {
 	if (lst.size() && get_yn("Delete all msgs? (y/n):", true))
 	{
@@ -417,7 +417,7 @@ int ConsoleMenu::DeleteAllMsgs(tty_save_state& tty, MsgList& lst) const
 }
 
 //-------------------------------------------------------------------------------------------------
-int ConsoleMenu::DeleteMsgs(tty_save_state& tty, MsgList& lst) const
+int ConsoleMenu::DeleteMsgs(tty_save_state&, MsgList& lst) const
 {
 	for (;;)
 	{

@@ -187,24 +187,24 @@ int main(int argc, char **argv)
 #ifdef FIX8_HAVE_GETOPT_LONG
 	option long_options[]
 	{
-		{ "help",		0,	0,	'h' },
-		{ "version",	0,	0,	'v' },
-		{ "log",			1,	0,	'l' },
-		{ "delimiter",	1,	0,	'D' },
-		{ "config",		1,	0,	'c' },
-		{ "session",	1,	0,	'N' },
-		{ "once",	   0,	0,	'o' },
-		{ "server",		0,	0,	's' },
-		{ "multi",		0,	0,	'm' },
-		{ "send",		1,	0,	'S' },
-		{ "receive",	1,	0,	'R' },
-		{ "quiet",		0,	0,	'q' },
-		{ "reliable",	0,	0,	'r' },
-		{ "dump",		0,	0,	'd' },
-		{ 0 },
+		{ "help",		0,	nullptr,	'h' },
+		{ "version",	0,	nullptr,	'v' },
+		{ "log",			1,	nullptr,	'l' },
+		{ "delimiter",	1,	nullptr,	'D' },
+		{ "config",		1,	nullptr,	'c' },
+		{ "session",	1,	nullptr,	'N' },
+		{ "once",	   0,	nullptr,	'o' },
+		{ "server",		0,	nullptr,	's' },
+		{ "multi",		0,	nullptr,	'm' },
+		{ "send",		1,	nullptr,	'S' },
+		{ "receive",	1,	nullptr,	'R' },
+		{ "quiet",		0,	nullptr,	'q' },
+		{ "reliable",	0,	nullptr,	'r' },
+		{ "dump",		0,	nullptr,	'd' },
+		{},
 	};
 
-	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, 0)) != -1)
+	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
 #else
 	while ((val = getopt (argc, argv, GETARGLIST.c_str())) != -1)
 #endif

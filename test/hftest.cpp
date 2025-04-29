@@ -127,6 +127,10 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #include "Perf_classes.hpp"
 
 #include "hftest.hpp"
+#if __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough="
+#endif
 
 //-----------------------------------------------------------------------------------------
 using namespace std;
@@ -263,23 +267,23 @@ int main(int argc, char **argv)
 #ifdef FIX8_HAVE_GETOPT_LONG
 	option long_options[]
 	{
-		{ "help",		0,	0,	'h' },
-		{ "version",	0,	0,	'v' },
-		{ "once",	   0,	0,	'o' },
-		{ "log",			1,	0,	'l' },
-		{ "config",		1,	0,	'c' },
-		{ "server",		0,	0,	's' },
-		{ "batch",		1,	0,	'b' },
-		{ "send",		1,	0,	'S' },
-		{ "receive",	1,	0,	'R' },
-		{ "quiet",		0,	0,	'q' },
-		{ "reliable",	0,	0,	'r' },
-		{ "preload",	1,	0,	'p' },
-		{ "update",		1,	0,	'u' },
-		{ 0 },
+		{ "help",		0,	nullptr,	'h' },
+		{ "version",	0,	nullptr,	'v' },
+		{ "once",	   0,	nullptr,	'o' },
+		{ "log",			1,	nullptr,	'l' },
+		{ "config",		1,	nullptr,	'c' },
+		{ "server",		0,	nullptr,	's' },
+		{ "batch",		1,	nullptr,	'b' },
+		{ "send",		1,	nullptr,	'S' },
+		{ "receive",	1,	nullptr,	'R' },
+		{ "quiet",		0,	nullptr,	'q' },
+		{ "reliable",	0,	nullptr,	'r' },
+		{ "preload",	1,	nullptr,	'p' },
+		{ "update",		1,	nullptr,	'u' },
+		{},
 	};
 
-	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, 0)) != -1)
+	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
 #else
 	while ((val = getopt (argc, argv, GETARGLIST.c_str())) != -1)
 #endif
@@ -392,7 +396,7 @@ int main(int argc, char **argv)
 					{
 						ch = getch();
 #else
-					if (select(1, &rfds, 0, 0, &tv) > 0)
+					if (select(1, &rfds, nullptr, nullptr, &tv) > 0)
 					{
 						if (read (0, &ch, 1) < 0)
 							break;
@@ -447,7 +451,7 @@ void send_msg(FIX8::Message* msg, FIX8::Session& session)
 	perf_metric_start(performance_metrics::msg_send);
 	session.send(msg, false);
 	perf_metric_stop(performance_metrics::msg_send);
-	
+
 	perf_metric_start(performance_metrics::msg_destroy);
 	msg_ptr.reset();
 	perf_metric_stop(performance_metrics::msg_destroy);
@@ -774,4 +778,7 @@ bool hf_session_server::handle_application(const unsigned seqnum, const FIX8::Me
 {
 	return enforce(seqnum, msg) || msg->process(_router);
 }
+#if __GNUC__
+#pragma GCC diagnostic pop
+#endif
 

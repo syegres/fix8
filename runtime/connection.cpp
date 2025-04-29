@@ -37,6 +37,11 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #include "precomp.hpp"
 #include <fix8/f8includes.hpp>
 
+#if __GNUC__
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wimplicit-fallthrough="
+#endif
+
 //-------------------------------------------------------------------------------------------------
 using namespace FIX8;
 using namespace std;

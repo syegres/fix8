@@ -143,7 +143,7 @@ public:
 	int yield() const
 	{
 #if (FIX8_THREAD_SYSTEM == FIX8_THREAD_PTHREAD)
-		return pthread_yield();
+		return sched_yield();
 #elif (FIX8_THREAD_SYSTEM == FIX8_THREAD_STDTHREAD)
 		std::this_thread::yield();
 #endif

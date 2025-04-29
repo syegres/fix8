@@ -51,7 +51,7 @@ class SessionID
 	sender_comp_id _senderCompID;
 	target_comp_id _targetCompID;
 
-	f8String _id, _rid;
+	f8String _id;
 
 public:
 	/*! Ctor.
@@ -70,14 +70,9 @@ public:
 
 	/*! Ctor.
 	    \param from SessionID string */
-	SessionID(const f8String& from) { from_string(from); }
+	explicit SessionID(const f8String& from) { from_string(from); }
 
-	/*! Ctor.
-	    \param from SessionID field */
-	SessionID(const SessionID& from) : _beginString(from._beginString), _senderCompID(from._senderCompID),
-		_targetCompID(from._targetCompID), _id(from._id) {}
-
-	SessionID() {}
+	SessionID() = default;
 
 	/// Dtor.
 	virtual ~SessionID() {}
@@ -481,13 +476,13 @@ protected:
 	    \param seqnum message sequence number
 	    \param msg Message
 	    \return true on success */
-	virtual bool handle_reject(const unsigned seqnum, const Message *msg) { return false; }
+	virtual bool handle_reject(const unsigned, const Message *) { return false; }
 
 	/*! Administrative message callback. Called on receipt of all admin messages.
 	    \param seqnum message sequence number
 	    \param msg Message
 	    \return true on success */
-	virtual bool handle_admin(const unsigned seqnum, const Message *msg) { return true; }
+	virtual bool handle_admin(const unsigned, const Message *) { return true; }
 
 	/*! Outbound Reject callback. Override to receive callback when an inbound message has caused a reject
 	    \param seqnum message sequence number
@@ -507,17 +502,17 @@ protected:
 	/*! This method id called whenever a session state change occurs
 	    \param before previous session state
 	    \param after new session state */
-	virtual void state_change(const States::SessionStates before, const States::SessionStates after) {}
+	virtual void state_change(const States::SessionStates, const States::SessionStates) {}
 
 	/*! Permit modification of message just prior to sending.
 	     \param msg Message */
-	virtual void modify_outbound(Message *msg) {}
+	virtual void modify_outbound(Message *) {}
 
 	/*! Call user defined authentication with logon message.
 	    \param id Session id of inbound connection
 	    \param msg Message
 	    \return true on success */
-	virtual bool authenticate(SessionID& id, const Message *msg) { return true; }
+	virtual bool authenticate(SessionID&, const Message *) { return true; }
 
 	/// Recover next expected and next to send sequence numbers from persitence layer.
 	F8API virtual void recover_seqnums();
@@ -734,7 +729,7 @@ public:
 	    \param seqnum message sequence number
 	    \param msg Message
 	    \return true if active */
-	virtual bool activation_check(const unsigned seqnum, const Message *msg) { return _active; }
+	virtual bool activation_check(const unsigned, const Message *) { return _active; }
 
 	/*! Enforce session semantics. Checks compids, sequence numbers.
 	    \param seqnum message sequence number

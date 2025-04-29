@@ -155,7 +155,7 @@ public:
         pLogger = new FileLogger( "utest_plog.log", flag, Logger::Levels( Logger::All ) );
 #else
         f8String cmd("|/bin/cat");
-        ebitset<Logger::Flags> flag;
+        ebitset<Logger::Flags> flag(0);
         flag.set(Logger::timestamp, true);
         flag.set(Logger::sequence, true);
         flag.set(Logger::thread, true);

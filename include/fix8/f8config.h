@@ -265,6 +265,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Define to 1 if you have the <openssl/ssl.h> header file. */
 /* #undef HAVE_OPENSSL_SSL_H */
+#ifndef FIX8_HAVE_OPENSSL
+#define FIX8_HAVE_OPENSSL 1
+#endif
 
 /* Define to 1 if you have the `popen' function. */
 #ifndef FIX8_HAVE_POPEN
@@ -692,7 +695,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* pthread used for threading */
 #ifndef FIX8_THREAD_SYSTEM
-#define FIX8_THREAD_SYSTEM FIX8_THREAD_PTHREAD
+#define FIX8_THREAD_SYSTEM FIX8_THREAD_STDTHREAD
 #endif
 
 /* Define to 1 if your <sys/time.h> declares `struct tm'. */

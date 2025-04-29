@@ -122,15 +122,15 @@ int main(int argc, char **argv)
 #ifdef FIX8_HAVE_GETOPT_LONG
 	option long_options[]
 	{
-		{ "help",			0,	0,	'h' },
-		{ "offset",			1,	0,	'o' },
-		{ "version",		0,	0,	'v' },
-		{ "summary",		0,	0,	's' },
-		{ "context",		0,	0,	'c' },
-		{ 0 },
+		{ "help",			0,	nullptr,	'h' },
+		{ "offset",			1,	nullptr,	'o' },
+		{ "version",		0,	nullptr,	'v' },
+		{ "summary",		0,	nullptr,	's' },
+		{ "context",		0,	nullptr,	'c' },
+		{},
 	};
 
-	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, 0)) != -1)
+	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
 #else
 	while ((val = getopt (argc, argv, GETARGLIST.c_str())) != -1)
 #endif
@@ -174,7 +174,7 @@ int main(int argc, char **argv)
 	}
 
 	unsigned msgs(0);
-	MessageCount *mc(summary ? new MessageCount : 0);
+	MessageCount *mc(summary ? new MessageCount : nullptr);
 
 	char buffer[FIX8_MAX_MSG_LENGTH];
 
