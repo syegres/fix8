@@ -48,7 +48,7 @@ project (fix8
 fix8_setbuildtype(FIX8 Release)
 fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
-fix8_addoption("BUILD_DOXYGEN_DOCS|enable building of self documentation|true")
+fix8_addoption("BUILD_DOXYGEN_DOCS|enable building of self documentation|false")
 
 # ----------------------------------------------------------------------------------------
 # deps
@@ -69,6 +69,7 @@ endmacro()
 set(rtdir ${CMAKE_SOURCE_DIR}/runtime)
 file(GLOB rsrc "${rtdir}/*.cpp" "${rtdir}/*.c")
 build_lib(fix8 SHARED)
+set_target_properties(fix8 PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
 build_lib(fix8stat STATIC)
 set_target_properties(fix8stat PROPERTIES OUTPUT_NAME fix8)
 install(DIRECTORY include DESTINATION include)
