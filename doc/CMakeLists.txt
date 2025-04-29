@@ -1,4 +1,4 @@
-# -----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # SPDX-License-Identifier: LGPL-3.0-or-later
 # SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
 # SPDX-FileType: SOURCE
@@ -34,7 +34,7 @@
 # THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 # HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 cmake_minimum_required (VERSION 3.20)
 find_package(Doxygen REQUIRED)
 find_package(FLEX REQUIRED)

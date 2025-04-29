@@ -1,4 +1,4 @@
-# -----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # SPDX-License-Identifier: LGPL-3.0-or-later
 # SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
 # SPDX-FileType: SOURCE
@@ -34,10 +34,10 @@
 # THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 # HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # cmake build utils
 # min cmake version 3.20 (Mar 24, 2021)
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 function(fix8_setbuildtype define_prefix default_type)
 	if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "")
 		if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
@@ -58,7 +58,7 @@ function(fix8_setbuildtype define_prefix default_type)
 	endif()
 endfunction()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 macro(fix8_addoption option_string)
 	string(REPLACE "|" ";" part ${option_string})
 	list(GET part 0 opt_name)
@@ -71,7 +71,7 @@ macro(fix8_addoption option_string)
 	message("-- Build: ${opt_description}: ${${opt_name}}")
 endmacro()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 macro(fix8_fetch modname parturl tag)
 	include(FetchContent)
 	message(STATUS "Downloading ${modname}...")
@@ -79,7 +79,7 @@ macro(fix8_fetch modname parturl tag)
 	FetchContent_MakeAvailable(${modname})
 endmacro()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 function(comp_opts targ)
 	target_compile_features(${targ} PRIVATE cxx_std_17)
 	if(BUILD_ALL_WARNINGS)
@@ -89,7 +89,7 @@ function(comp_opts targ)
 	endif()
 endfunction()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 function(build_test loc x)
 	add_executable(${x} ${loc}/${x}.cpp)
 	target_link_libraries(${x} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
@@ -98,7 +98,7 @@ function(build_test loc x)
 	comp_opts(${x})
 endfunction()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 macro(fix8_gen_library shared name xml extra_fields)
 	if ("${extra_fields}" STREQUAL "_")
 		set(args ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10} ${CMAKE_SOURCE_DIR}/${xml})
@@ -149,12 +149,12 @@ macro(fix8_gen_library shared name xml extra_fields)
 	target_link_libraries(${libname} PUBLIC fix8)
 endmacro()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 macro(fix8_gen_shared_library name xml)
 	fix8_gen_library(shared ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10})
 endmacro()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 macro(add_gen_static_library name xml)
 	fix8_gen_library(static ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10})
 endmacro()
