@@ -123,7 +123,7 @@ public:
 
 	/*! Join the thread.
 	  \return result of join */
-	virtual int join(int timeoutInMs = 0)
+	virtual int join([[maybe_unused]] int timeoutInMs = 0)
 	{
 #if (FIX8_THREAD_SYSTEM == FIX8_THREAD_PTHREAD)
 		return getid() != get_threadid() ? pthread_join(_tid, nullptr) ? -1 : 0 : -1; // prevent self-join

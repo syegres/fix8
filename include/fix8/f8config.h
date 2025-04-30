@@ -61,12 +61,12 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Short Date system was configured */
 #ifndef FIX8_CONFIGURE_SDATE
-#define FIX8_CONFIGURE_SDATE "2023/05/10"
+#define FIX8_CONFIGURE_SDATE "2025/05/01"
 #endif
 
 /* Date system was configured */
 #ifndef FIX8_CONFIGURE_TIME
-#define FIX8_CONFIGURE_TIME "Wed May 10 11:31:59 AEST 2023"
+#define FIX8_CONFIGURE_TIME "Wed May 10 11:31:59 AEST 2025"
 #endif
 
 /* date/time as seconds since start epoch */
@@ -535,7 +535,8 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* malloc system to use */
 #ifndef FIX8_MALLOC_SYSTEM
-#define FIX8_MALLOC_SYSTEM MALLOC_STD
+// #define FIX8_MALLOC_SYSTEM MALLOC_STD
+#define FIX8_MALLOC_SYSTEM FIX8_MALLOC_MIMALLOC
 #endif
 
 /* TBB malloc */
@@ -546,6 +547,11 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 /* tcmalloc */
 #ifndef FIX8_MALLOC_TCMALLOC
 #define FIX8_MALLOC_TCMALLOC 2
+#endif
+
+/* mimalloc */
+#ifndef FIX8_MALLOC_MIMALLOC
+#define FIX8_MALLOC_MIMALLOC 4
 #endif
 
 /* Maximum length of a FIX field (default=2048) */
