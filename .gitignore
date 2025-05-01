@@ -15,6 +15,7 @@ compiler/.libs/
 compiler/Makefile
 compiler/Makefile.in
 compiler/f8c
+include/fix8/f8config.h
 config.guess
 config.log
 config.status
