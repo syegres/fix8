@@ -59,12 +59,14 @@ private:
     };
 
     union {
-        Node * volatile   head;
+        //Node * volatile   head;
+        Node * head;
         char padding1[CACHE_LINE_SIZE];
         //long padding1[longxCacheLine-(sizeof(Node *)/sizeof(long))];
     };
     union {
-        Node * volatile   tail;
+        //Node * volatile   tail;
+        Node * tail;
         char padding2[CACHE_LINE_SIZE];
         //long padding2[longxCacheLine-(sizeof(Node*)/sizeof(long))];
     };
@@ -242,11 +244,15 @@ private:
         struct Node * next;
     };
 
-    Node * volatile         head;
-    volatile unsigned long  pwrite;
+    //Node * volatile         head;
+    Node * head;
+    //volatile unsigned long  pwrite;
+    unsigned long  pwrite;
     long padding1[longxCacheLine-((sizeof(Node *)+sizeof(unsigned long))/sizeof(long))];
-    Node * volatile        tail;
-    volatile unsigned long pread;
+    //Node * volatile        tail;
+    Node * tail;
+    //volatile unsigned long pread;
+    unsigned long pread;
     long padding2[longxCacheLine-((sizeof(Node*)+sizeof(unsigned long))/sizeof(long))];
 
     const   size_t cachesize;

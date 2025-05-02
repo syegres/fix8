@@ -413,7 +413,7 @@ application_call:
 }
 
 //-------------------------------------------------------------------------------------------------
-void Session::compid_check(const unsigned seqnum, const Message *msg, const SessionID& id) const
+void Session::compid_check([[maybe_unused]] const unsigned seqnum, const Message *msg, const SessionID& id) const
 {
 	if (_loginParameters._enforce_compids)
 	{
@@ -1006,7 +1006,7 @@ size_t Session::send_batch(const vector<Message *>& msgs, bool destroy)
 }
 
 //-------------------------------------------------------------------------------------------------
-int Session::modify_header(MessageBase *msg)
+int Session::modify_header([[maybe_unused]] MessageBase *msg)
 {
 	return 0;
 }
@@ -1197,13 +1197,13 @@ void Session::set_affinity(int core_id)
 }
 #else
 //-------------------------------------------------------------------------------------------------
-void Session::set_scheduler(int priority)
+void Session::set_scheduler([[maybe_unused]] int priority)
 {
 	slout_error << "set_scheduler: not implemented";
 }
 
 //-------------------------------------------------------------------------------------------------
-void Session::set_affinity(int core_id)
+void Session::set_affinity([[maybe_unused]] int core_id)
 {
 	slout_error << "set_affinity: not implemented";
 }
@@ -1240,7 +1240,7 @@ void Fix8CertificateHandler::onInvalidCertificate(const void*, Poco::Net::Verifi
 	errorCert.setIgnoreError(true);
 }
 
-void Fix8PassPhraseHandler::onPrivateKeyRequested(const void*, std::string& privateKey)
+void Fix8PassPhraseHandler::onPrivateKeyRequested(const void*, [[maybe_unused]] std::string& privateKey)
 {
 	glout_warn << "warning: privatekey passphrase requested and ignored!";
 }

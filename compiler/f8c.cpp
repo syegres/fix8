@@ -182,7 +182,7 @@ int main(int argc, char **argv)
 		{ "namespace",		1,	nullptr,	'n' },
 		{ "tabsize",		1,	nullptr,	't' },
 		{ "fixt",			1,	nullptr,	'x' },
-		{ }
+		{},
 	};
 
 	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
@@ -1249,7 +1249,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 		<< '{' << endl << "public:" << endl;
 	osu_hpp << spacer << ctxt._clname << "_Router() {}" << endl;
 	osu_hpp << spacer << "virtual ~" << ctxt._clname << "_Router() {}" << endl << endl;
-   osu_hpp << spacer << "virtual bool operator() (const class Message *msg) ";
+   osu_hpp << spacer << "virtual bool operator() (const class Message *) ";
    if (!nconst_router)
       osu_hpp << "const ";
    osu_hpp << "{ return false; }" << endl;
@@ -1257,7 +1257,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 	{
 		if (pp.second._name == "trailer" || pp.second._name == "header")
 			continue;
-		osu_hpp << spacer << "virtual bool operator() (const class " << pp.second._name << " *msg)";
+		osu_hpp << spacer << "virtual bool operator() (const class " << pp.second._name << " *)";
       if (no_default_routers)
          osu_hpp << ';' << endl;
       else

@@ -606,7 +606,7 @@ public:
 	  \param wait if true wait till session finishes before returning
 	  \param send_seqnum if supplied, override the send login sequence number, set next send to seqnum+1
 	  \param recv_seqnum if supplied, override the receive login sequence number, set next recv to seqnum+1 */
-	virtual void start(bool wait, unsigned send_seqnum=0, unsigned recv_seqnum=0) {}
+	virtual void start(bool, unsigned, unsigned) {}
 
 	/// Stop the session. Cleanup.
 	virtual void stop() {}

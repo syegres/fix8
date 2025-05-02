@@ -163,7 +163,7 @@ void process_special_traits(const unsigned short field, FieldTraits& fts)
 	case Common_BeginString:
 	case Common_BodyLength:
 	case Common_CheckSum:
-		fts.set(field, FieldTrait::suppress);	// drop through
+		fts.set(field, FieldTrait::suppress);
 		[[fallthrough]];
 	case Common_MsgType:
 		fts.set(field, FieldTrait::automatic);

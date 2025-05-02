@@ -1,9 +1,7 @@
 #ifndef _INCLUDE_FIX__F_CONFIG_H
 #define _INCLUDE_FIX__F_CONFIG_H 1
 
-/* include/fix8/f8config.h. Generated automatically at end of configure. */
-/* intermediate_config.h.  Generated from intermediate_config.h.in by configure.  */
-/* intermediate_config.h.in.  Generated from configure.ac by autoheader.  */
+/* Generated from f8config.h.in by cmake  */
 
 //-----------------------------------------------------------------------------------------
 /*
@@ -11,7 +9,7 @@
 Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 
 Fix8 Open Source FIX Engine.
-Copyright (C) 2010-19 David L. Dight <fix@fix8.org>
+Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
 
 Fix8 is free software: you can redistribute it and/or modify  it under the terms of the GNU
 Lesser General Public License as  published by the Free Software Foundation, either version
@@ -61,12 +59,12 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Short Date system was configured */
 #ifndef FIX8_CONFIGURE_SDATE
-#define FIX8_CONFIGURE_SDATE "2023/05/10"
+#define FIX8_CONFIGURE_SDATE "@fix8_SDATE@"
 #endif
 
 /* Date system was configured */
 #ifndef FIX8_CONFIGURE_TIME
-#define FIX8_CONFIGURE_TIME "Wed May 10 11:31:59 AEST 2023"
+#define FIX8_CONFIGURE_TIME "@fix8_TIMESTAMP@"
 #endif
 
 /* date/time as seconds since start epoch */
@@ -265,6 +263,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Define to 1 if you have the <openssl/ssl.h> header file. */
 /* #undef HAVE_OPENSSL_SSL_H */
+#ifndef FIX8_HAVE_OPENSSL
+#define FIX8_HAVE_OPENSSL 1
+#endif
 
 #ifndef FIX8_HAVE_OPENSSL
 #define FIX8_HAVE_OPENSSL 1
@@ -516,7 +517,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Encode version */
 #ifndef FIX8_MAGIC_NUM
-#define FIX8_MAGIC_NUM 16793603
+#define FIX8_MAGIC_NUM "@fix8_MAGIC_NUM@"
 #endif
 
 /* Encoded Version as expresion */
@@ -526,7 +527,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Major version number */
 #ifndef FIX8_MAJOR_VERSION_NUM
-#define FIX8_MAJOR_VERSION_NUM 1
+#define FIX8_MAJOR_VERSION_NUM "@fix8_VERSION_MAJOR@"
 #endif
 
 /* std malloc */
@@ -536,7 +537,8 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* malloc system to use */
 #ifndef FIX8_MALLOC_SYSTEM
-#define FIX8_MALLOC_SYSTEM MALLOC_STD
+// #define FIX8_MALLOC_SYSTEM MALLOC_STD
+#define FIX8_MALLOC_SYSTEM FIX8_MALLOC_MIMALLOC
 #endif
 
 /* TBB malloc */
@@ -547,6 +549,11 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 /* tcmalloc */
 #ifndef FIX8_MALLOC_TCMALLOC
 #define FIX8_MALLOC_TCMALLOC 2
+#endif
+
+/* mimalloc */
+#ifndef FIX8_MALLOC_MIMALLOC
+#define FIX8_MALLOC_MIMALLOC 4
 #endif
 
 /* Maximum length of a FIX field (default=2048) */
@@ -561,7 +568,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Minor version number */
 #ifndef FIX8_MINOR_VERSION_NUM
-#define FIX8_MINOR_VERSION_NUM 5
+#define FIX8_MINOR_VERSION_NUM "@fix8_VERSION_MINOR@"
 #endif
 
 /* FIX8_FF MPMC */
@@ -596,7 +603,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Define to the full name and version of this package. */
 #ifndef FIX8_PACKAGE_STRING
-#define FIX8_PACKAGE_STRING "fix8 1.4.3"
+#define FIX8_PACKAGE_STRING "fix8 @fix8_VERSION@"
 #endif
 
 /* Define to the one symbol short name of this package. */
@@ -611,12 +618,12 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Define to the version of this package. */
 #ifndef FIX8_PACKAGE_VERSION
-#define FIX8_PACKAGE_VERSION "1.4.3"
+#define FIX8_PACKAGE_VERSION "@fix8_VERSION@"
 #endif
 
 /* Patch number */
 #ifndef FIX8_PATCH_VERSION_NUM
-#define FIX8_PATCH_VERSION_NUM 0
+#define FIX8_PATCH_VERSION_NUM "@fix8_VERSION_PATCH@"
 #endif
 
 /* Define to 1 to enable metatdata population in encode/decodes */
@@ -710,7 +717,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Version number of package */
 #ifndef FIX8_VERSION
-#define FIX8_VERSION "1.4.3"
+#define FIX8_VERSION "@fix8_VERSION@"
 #endif
 
 /* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most

@@ -1,4 +1,4 @@
-# -----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # SPDX-License-Identifier: LGPL-3.0-or-later
 # SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
 # SPDX-FileType: SOURCE
@@ -34,7 +34,7 @@
 # THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 # HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 cmake_minimum_required (VERSION 3.20)
 include(cmake/buildutils.cmake)
 project (fix8
@@ -43,19 +43,17 @@ project (fix8
    DESCRIPTION "Open Source C++ FIX Engine"
    VERSION 1.5.0)
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # options
+# -------------------------------------------------------------------------------------------
 fix8_setbuildtype(FIX8 Release)
 fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
+fix8_addoption("BUILD_DOXYGEN_DOCS|enable building of self documentation|false")
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # deps
-fix8_fetch(tcmalloc google/tcmalloc master)
-fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
-fix8_fetch(googletest google/googletest main)
-#fix8_fetch(ff fastflow/fastflow master) [ss] doesn't work due to invalid ff CMakeLists.txt
-#fix8_fetch(oneTBB uxlfoundation/oneTBB v2022.1.0) [ss] doesn't compile in release
+# -------------------------------------------------------------------------------------------
 if (MSVC)
 	fix8_fetch(zip madler/zlib v1.3.1)
 	set(ziplib zlib)
@@ -63,36 +61,59 @@ else()
 	find_package(ZLIB REQUIRED)
 	set(ziplib ZLIB::ZLIB)
 endif()
+#fix8_fetch(tcmalloc google/tcmalloc master)
+fix8_fetch(mimalloc microsoft/mimalloc v3.0.3)
+fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
 
-# ----------------------------------------------------------------------------------------
-# compiler options
-cpp_opts()
-
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # runtime
-set(F8LIB fix8)
+# -------------------------------------------------------------------------------------------
+macro(build_lib name type)
+	add_library(${name} ${type} ${rsrc})
+	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ${ziplib} mimalloc)
+	target_include_directories(${name} PRIVATE include ${MIMALLOC_INCLUDE_DIR})
+	comp_opts(${name})
+	install(TARGETS ${name})
+endmacro()
+
+math(EXPR fix8_MAGIC_NUM "${fix8_VERSION_MAJOR} << 24 | ${fix8_VERSION_MINOR} << 12 | ${fix8_VERSION_PATCH}")
+string(TIMESTAMP fix8_SDATE "%Y/%m/%d")
+string(TIMESTAMP fix8_TIMESTAMP)
+configure_file(${CMAKE_SOURCE_DIR}/f8config.h.in ${CMAKE_SOURCE_DIR}/include/fix8/f8config.h @ONLY)
 set(rtdir ${CMAKE_SOURCE_DIR}/runtime)
 file(GLOB rsrc "${rtdir}/*.cpp" "${rtdir}/*.c")
-add_library(${F8LIB} SHARED ${rsrc})
-target_link_libraries(${F8LIB} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ${ziplib})
-target_include_directories(${F8LIB} PRIVATE include ${tcmalloc})
-comp_opts(${F8LIB})
-install(TARGETS ${F8LIB})
-install(DIRECTORY include DESTINATION include)
+build_lib(fix8 SHARED)
+set_target_properties(fix8 PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PROJECT_VERSION_MAJOR})
+build_lib(fix8stat STATIC)
+set_target_properties(fix8stat PROPERTIES OUTPUT_NAME fix8)
+install(DIRECTORY include DESTINATION .)
+install(DIRECTORY schema DESTINATION share)
+install(DIRECTORY contrib DESTINATION share)
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # compiler
-set(F8C f8c)
+# -------------------------------------------------------------------------------------------
 set(compdir ${CMAKE_SOURCE_DIR}/compiler)
 file(GLOB csrc "${compdir}/*.cpp")
-add_executable(${F8C} ${csrc})
-target_link_libraries(${F8C} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8)
-target_include_directories(${F8C} PRIVATE ${compdir} include ${tcmalloc})
-comp_opts(${F8C})
-install(TARGETS ${F8C})
+add_executable(f8c ${csrc})
+target_link_libraries(f8c PUBLIC fix8)
+target_include_directories(f8c PRIVATE ${compdir} include)
+comp_opts(f8c)
+install(TARGETS f8c)
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
+# util
+# -------------------------------------------------------------------------------------------
+set(utildir ${CMAKE_SOURCE_DIR}/util)
+add_executable(seqedit ${utildir}/seqedit.cpp)
+target_link_libraries(seqedit PUBLIC fix8 mimalloc)
+target_include_directories(seqedit PRIVATE ${utildir} include ${MIMALLOC_INCLUDE_DIR})
+comp_opts(seqedit)
+install(TARGETS seqedit)
+
+# -------------------------------------------------------------------------------------------
 # shared standard schema libs
+# -------------------------------------------------------------------------------------------
 fix8_gen_shared_library(FIX40 schema/FIX40.xml --verbose --namespace FIX40 -p FIX40)
 target_link_libraries(FIX40 PRIVATE fix8)
 fix8_gen_shared_library(FIX41 schema/FIX41.xml --verbose --namespace FIX41 -p FIX41)
@@ -110,13 +131,14 @@ target_link_libraries(FIX50SP1 PRIVATE fix8)
 fix8_gen_shared_library(FIX50SP2 schema/FIX50SP2.xml --verbose --namespace FIX50SP2 -p FIX50SP2 --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 target_link_libraries(FIX50SP2 PRIVATE fix8)
 install(TARGETS FIX40 FIX41 FIX42 FIX43 FIX44 FIX50 FIX50SP1 FIX50SP2)
-install(DIRECTORY include DESTINATION include)
-install(DIRECTORY schema DESTINATION .)
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # unit tests
+# -------------------------------------------------------------------------------------------
 if(BUILD_UNITTESTS)
-	set(EXTRA_FIELDS "<field number='9999' name='SampleUserField'  type='STRING' messages='NewOrderSingle:N ExecutionReport:N OrderCancelRequest:Y' /><field number='9991' name='SampleUserField2' type='STRING' messages='NewOrderSingle:N ExecutionReport:N OrderCancelRequest:Y' />")
+	fix8_fetch(googletest google/googletest main)
+	set(EXTRA_FIELDS "<field number='9999' name='SampleUserField'  type='STRING' messages='NewOrderSingle:N ExecutionReport:N OrderCancelRequest:Y' />\
+<field number='9991' name='SampleUserField2' type='STRING' messages='NewOrderSingle:N ExecutionReport:N OrderCancelRequest:Y' />")
 	fix8_gen_shared_library(utest schema/FIX42UTEST.xml --verbose -F ${EXTRA_FIELDS} -p utest --namespace UTEST)
 	target_link_libraries(utest PRIVATE fix8)
 	include(GoogleTest)
@@ -125,43 +147,55 @@ if(BUILD_UNITTESTS)
 	build_test(utests fileLogger_test)
 	build_test(utests filePersister_test)
 	add_executable(session_test utests/session_test.cpp utests/mockConnection.cpp)
-	target_link_libraries(session_test PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
+	target_link_libraries(session_test PUBLIC fix8 utest GTest::gtest GTest::gtest_main)
 	target_include_directories(session_test PRIVATE utests include ${CMAKE_BINARY_DIR}/generated/FIX42UTEST)
 	comp_opts(session_test)
 #gtest_discover_tests(session_test)
 endif()
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # test apps
+# -------------------------------------------------------------------------------------------
 add_executable(f8test test/myfix.cpp)
 fix8_gen_shared_library(Myfix schema/FIX50SP2.xml --verbose --namespace TEX --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
-target_link_libraries(f8test PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
-target_include_directories(f8test PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
+target_link_libraries(f8test PUBLIC fix8 Myfix GTest::gtest GTest::gtest_main mimalloc)
+target_include_directories(f8test PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix ${MIMALLOC_INCLUDE_DIR})
 comp_opts(f8test)
 
 add_executable(f8print test/myprint.cpp)
-target_link_libraries(f8print PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
-target_include_directories(f8print PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
+target_link_libraries(f8print PUBLIC fix8 Myfix GTest::gtest GTest::gtest_main mimalloc)
+target_include_directories(f8print PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix ${MIMALLOC_INCLUDE_DIR})
 comp_opts(f8print)
 
 add_executable(harness test/harness.cpp)
-target_link_libraries(harness PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Myfix GTest::gtest GTest::gtest_main)
-target_include_directories(harness PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix)
+target_link_libraries(harness PUBLIC fix8 Myfix GTest::gtest GTest::gtest_main mimalloc)
+target_include_directories(harness PRIVATE test include ${CMAKE_BINARY_DIR}/generated/Myfix ${MIMALLOC_INCLUDE_DIR})
 comp_opts(harness)
 
 add_executable(hftest test/hftest.cpp)
 fix8_gen_shared_library(Perf schema/FIX42PERF.xml --verbose --namespace TEX --second --noconst --prefix Perf --norealm)
-target_link_libraries(hftest PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 Perf GTest::gtest GTest::gtest_main)
-target_include_directories(hftest PRIVATE test include ${CMAKE_BINARY_DIR}/generated/FIX42PERF)
+target_link_libraries(hftest PUBLIC fix8 Perf GTest::gtest GTest::gtest_main mimalloc)
+target_include_directories(hftest PRIVATE test include ${CMAKE_BINARY_DIR}/generated/FIX42PERF ${MIMALLOC_INCLUDE_DIR})
 comp_opts(hftest)
 install(TARGETS f8test f8print harness harness)
+install(FILES ${CMAKE_SOURCE_DIR}/test/hf_client.xml ${CMAKE_SOURCE_DIR}/test/myfix_client.xml ${CMAKE_SOURCE_DIR}/test/hf_client_include.xml
+   ${CMAKE_SOURCE_DIR}/test/hf_server.xml ${CMAKE_SOURCE_DIR}/test/myfix_server.xml DESTINATION share/test)
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
+# generated docs
+# -------------------------------------------------------------------------------------------
+if(BUILD_DOXYGEN_DOCS)
+	add_subdirectory(doc)
+	install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html DESTINATION share)
+endif()
+
+# -------------------------------------------------------------------------------------------
 target_include_directories(${PROJECT_NAME} INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# ----------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------
 # to dump all non-empty cmake variables
 # cmake -DCMAKE_DUMP_VARS=true ..
+# -------------------------------------------------------------------------------------------
 option(CMAKE_DUMP_VARS "dump all cmake vars" false)
 if(CMAKE_DUMP_VARS)
    get_cmake_property(varname VARIABLES)

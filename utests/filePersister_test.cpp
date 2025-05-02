@@ -257,14 +257,14 @@ public:
 
     /*! retrans_callback overload
             add resent messages to a local map for future check*/
-    virtual bool retrans_callback(const SequencePair& with, RetransmissionContext& rctx)
+    virtual bool retrans_callback(const SequencePair& with, RetransmissionContext&)
     {
         _resends.insert(std::make_pair(with.first, with.second));
         return true;
     }
 
 	 /// All sessions must provide this method
-	 bool handle_application(const unsigned seqnum, const Message *&msg) { return true; }
+	 bool handle_application(const unsigned seqnum, const Message *&) { return true; }
 
     std::map<unsigned, f8String> _resends;
 };

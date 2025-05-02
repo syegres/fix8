@@ -106,11 +106,13 @@ private:
     long padding2[longxCacheLine-1];
 #else
     ALIGN_TO_PRE(CACHE_LINE_SIZE)
-    volatile unsigned long pread;
+    //volatile unsigned long pread;
+    unsigned long pread;
     ALIGN_TO_POST(CACHE_LINE_SIZE)
 
     ALIGN_TO_PRE(CACHE_LINE_SIZE)
-    volatile unsigned long pwrite;
+    //volatile unsigned long pwrite;
+    unsigned long pwrite;
     ALIGN_TO_POST(CACHE_LINE_SIZE)
 #endif
     const    unsigned long size;
@@ -382,9 +384,11 @@ class Lamport_Buffer {
 private:
     // Padding is required to avoid false-sharing between
     // core's private cache
-    volatile unsigned long    pread;
+    //volatile unsigned long    pread;
+    unsigned long    pread;
     long padding1[longxCacheLine-1];
-    volatile unsigned long    pwrite;
+    //volatile unsigned long    pwrite;
+    unsigned long    pwrite;
     long padding2[longxCacheLine-1];
 
     const    unsigned long size;

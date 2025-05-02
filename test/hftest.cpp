@@ -127,7 +127,6 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #include "Perf_classes.hpp"
 
 #include "hftest.hpp"
-
 #if __GNUC__
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough="
@@ -281,7 +280,7 @@ int main(int argc, char **argv)
 		{ "reliable",	0,	nullptr,	'r' },
 		{ "preload",	1,	nullptr,	'p' },
 		{ "update",		1,	nullptr,	'u' },
-		{ },
+		{},
 	};
 
 	while ((val = getopt_long (argc, argv, GETARGLIST.c_str(), long_options, nullptr)) != -1)
@@ -452,7 +451,7 @@ void send_msg(FIX8::Message* msg, FIX8::Session& session)
 	perf_metric_start(performance_metrics::msg_send);
 	session.send(msg, false);
 	perf_metric_stop(performance_metrics::msg_send);
-	
+
 	perf_metric_start(performance_metrics::msg_destroy);
 	msg_ptr.reset();
 	perf_metric_stop(performance_metrics::msg_destroy);
@@ -779,6 +778,9 @@ bool hf_session_server::handle_application(const unsigned seqnum, const FIX8::Me
 {
 	return enforce(seqnum, msg) || msg->process(_router);
 }
+#if __GNUC__
+#pragma GCC diagnostic pop
+#endif
 
 #if __GNUC__
 #pragma GCC diagnostic pop
