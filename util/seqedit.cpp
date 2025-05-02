@@ -113,7 +113,7 @@ int main(int argc, char **argv)
 			cout << "Released under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3. See <http://fsf.org/> for details." << endl;
 			return 0;
 		case 'h': print_usage(); return 0;
-		case 'D': rawdump = true; // drop through
+		case 'D': rawdump = true; [[fallthrough]];
 		case 'd': dump = true; break;
 		case 'i': indexonly = true; break;
 		case 'q': quiet = true; break;

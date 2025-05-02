@@ -64,6 +64,7 @@ endif()
 #fix8_fetch(tcmalloc google/tcmalloc master)
 fix8_fetch(mimalloc microsoft/mimalloc v3.0.3)
 fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
+cpp_opts()
 
 # -------------------------------------------------------------------------------------------
 # runtime
