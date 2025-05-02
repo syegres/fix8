@@ -122,6 +122,7 @@ function(build_test loc x)
 	target_link_libraries(${x} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main mimalloc)
 	target_include_directories(${x} PRIVATE ${loc} include ${CMAKE_BINARY_DIR}/generated/FIX42UTEST ${MIMALLOC_INCLUDE_DIR})
 	gtest_discover_tests(${x})
+	comp_opts(${x})
 endfunction()
 
 # -------------------------------------------------------------------------------------------
