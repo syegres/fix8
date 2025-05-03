@@ -269,7 +269,6 @@ int BDBPersister::operator()()
    {
 		KeyDataBuffer *msg_ptr(0);
 
-#if (FIX8_MPMC_SYSTEM == FIX8_MPMC_TBB)
 		KeyDataBuffer buffer;
 		if (stopping)	// make sure we dequeue any pending msgs before exiting
 		{
@@ -280,16 +279,11 @@ int BDBPersister::operator()()
 			_persist_queue.pop (buffer); // will block
 		msg_ptr = &buffer;
 
-      if (buffer.empty())  // means exit
+		if (buffer.empty())  // means exit
 		{
-         stopping = true;
+			stopping = true;
 			continue;
 		}
-#else
-		_persist_queue.pop(msg_ptr); // will block
-		if (msg_ptr->empty())  // means exit
-			break;
-#endif
 		//cout << "persisted..." << endl;
 
 		++received;
@@ -303,9 +297,6 @@ int BDBPersister::operator()()
 			else
 				++persisted;
 		}
-#if (FIX8_MPMC_SYSTEM == FIX8_MPMC_FF)
-		_persist_queue.release(msg_ptr);
-#endif
 	}
 
 	//cout << "persister()() exited..." << endl;

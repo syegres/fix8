@@ -571,21 +571,6 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #define FIX8_MINOR_VERSION_NUM @fix8_VERSION_MINOR@
 #endif
 
-/* FIX8_FF MPMC */
-#ifndef FIX8_MPMC_FF
-#define FIX8_MPMC_FF 2
-#endif
-
-/* MPMC system used */
-#ifndef FIX8_MPMC_SYSTEM
-#define FIX8_MPMC_SYSTEM FIX8_MPMC_TBB
-#endif
-
-/* FIX8_TBB MPMC */
-#ifndef FIX8_MPMC_TBB
-#define FIX8_MPMC_TBB 1
-#endif
-
 /* Name of package */
 #ifndef FIX8_PACKAGE
 #define FIX8_PACKAGE "fix8"

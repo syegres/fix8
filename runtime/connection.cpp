@@ -170,32 +170,20 @@ int FIXReader::callback_processor()
 {
 	int processed(0), ignored(0);
 
-   for (; !_cancellation_token && !_session.is_shutdown();)
-   {
-		f8String *msg_ptr(0);
-#if (FIX8_MPMC_SYSTEM == FIX8_MPMC_TBB)
-      f8String msg;
+	for (; !_cancellation_token && !_session.is_shutdown();)
+	{
+		f8String msg;
 		_msg_queue.pop (msg); // will block
-      if (msg.empty())  // means exit
+		if (msg.empty())  // means exit
 			break;
-		msg_ptr = &msg;
-#else
-		_msg_queue.pop (msg_ptr); // will block
-		if (msg_ptr->empty())  // means exit
-			break;
-#endif
-
-      if (!_session.process(*msg_ptr))
+		if (!_session.process(msg))
 		{
-			scout_warn << "Unhandled message: " << *msg_ptr;
+			scout_warn << "Unhandled message: " << msg;
 			++ignored;
 		}
 		else
 			++processed;
-#if (FIX8_MPMC_SYSTEM == FIX8_MPMC_FF)
-		_msg_queue.release(msg_ptr);
-#endif
-   }
+	}
 
 	scout_info << "FIXReaderCallback: " << processed << " messages processed, " << ignored << " ignored";
 
