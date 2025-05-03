@@ -82,7 +82,7 @@ Usage: f8test [-NRScdhlmoqrsv]\n
 	All FIX8 classes and functions reside inside this namespace.
 */
 
-/*! \namespace FIX8::TEX
+/*! \namespace FIX8::MYFIX
 	This namespace is used by the generated classes and types, and was specified as a namespace
 	to the \c f8c compiler.
 */
@@ -134,6 +134,7 @@ Usage: f8test [-NRScdhlmoqrsv]\n
 //-----------------------------------------------------------------------------------------
 using namespace std;
 using namespace FIX8;
+using namespace FIX8::MYFIX;
 
 //-----------------------------------------------------------------------------------------
 void print_usage();
@@ -263,8 +264,8 @@ int main(int argc, char **argv)
 			if (multi)	// demonstrate use of multi session server manager
 			{
 				unique_ptr<ServerManager> sm(new ServerManager);
-				sm->add(new ServerSession<myfix_session_server>(TEX::ctx(), conf_file, "TEX1"));
-				sm->add(new ServerSession<myfix_session_server>(TEX::ctx(), conf_file, "TEX2"));
+				sm->add(new ServerSession<myfix_session_server>(ctx(), conf_file, "TEX1"));
+				sm->add(new ServerSession<myfix_session_server>(ctx(), conf_file, "TEX2"));
 
 				vector<thread> thrds;
 				while (!term_received)
@@ -280,7 +281,7 @@ int main(int argc, char **argv)
 			}
 			else	// serial server instances only
 			{
-				unique_ptr<ServerSessionBase> srv(new ServerSession<myfix_session_server>(TEX::ctx(), conf_file, "TEX"));
+				unique_ptr<ServerSessionBase> srv(new ServerSession<myfix_session_server>(ctx(), conf_file, "TEX"));
 
 				while (!term_received)
 				{
@@ -298,10 +299,10 @@ int main(int argc, char **argv)
 			{
 				const f8String cl1("DLD1"), cl2("DLD2");
 				ClientManager cm;
-				cm.add(cl1, reliable ? new ReliableClientSession<myfix_session_client>(TEX::ctx(), conf_file, cl1)
-											: new ClientSession<myfix_session_client>(TEX::ctx(), conf_file, cl1));
-				cm.add(cl2, reliable ? new ReliableClientSession<myfix_session_client>(TEX::ctx(), conf_file, cl2)
-											: new ClientSession<myfix_session_client>(TEX::ctx(), conf_file, cl2));
+				cm.add(cl1, reliable ? new ReliableClientSession<myfix_session_client>(ctx(), conf_file, cl1)
+											: new ClientSession<myfix_session_client>(ctx(), conf_file, cl1));
+				cm.add(cl2, reliable ? new ReliableClientSession<myfix_session_client>(ctx(), conf_file, cl2)
+											: new ClientSession<myfix_session_client>(ctx(), conf_file, cl2));
 
 				ClientSessionBase *csb(cm.for_each_if([&](ClientSessionBase *pp)
 				{
@@ -336,8 +337,8 @@ int main(int argc, char **argv)
 			{
 				const string my_session(session.empty() ? "DLD1" : session);
 				unique_ptr<ClientSessionBase>
-					mc(reliable ? new ReliableClientSession<myfix_session_client>(TEX::ctx(), conf_file, my_session)
-									: new ClientSession<myfix_session_client>(TEX::ctx(), conf_file, my_session));
+					mc(reliable ? new ReliableClientSession<myfix_session_client>(ctx(), conf_file, my_session)
+									: new ClientSession<myfix_session_client>(ctx(), conf_file, my_session));
 				if (!quiet)
 					mc->session_ptr()->control() |= Session::printnohb;
 				mc->start(false, next_send, next_receive, mc->session_ptr()->get_login_parameters()._davi());
@@ -456,68 +457,68 @@ Message *MyMenu::generate_new_order_single_alternate()
 	static unsigned oid(0);
 	ostringstream oistr;
 	oistr << "ord" << ++oid;
-	TEX::NewOrderSingle *nos(new TEX::NewOrderSingle(false)); // shallow construction
-	*nos << new TEX::TransactTime
-	     << new TEX::OrderQty(1 + RandDev::getrandom(9999))
-	     << new TEX::Price(RandDev::getrandom(500.), 5)	// 5 decimal places if necessary
-	     << new TEX::ClOrdID(oistr.str())
-	     << new TEX::Symbol("BHP")
-	     << new TEX::OrdType(TEX::OrdType_LIMIT)
-	     << new TEX::Side(TEX::Side_BUY)
-	     << new TEX::TimeInForce(TEX::TimeInForce_FILL_OR_KILL);
+	NewOrderSingle *nos(new NewOrderSingle(false)); // shallow construction
+	*nos << new TransactTime
+	     << new OrderQty(1 + RandDev::getrandom(9999))
+	     << new Price(RandDev::getrandom(500.), 5)	// 5 decimal places if necessary
+	     << new ClOrdID(oistr.str())
+	     << new Symbol("BHP")
+	     << new OrdType(OrdType_LIMIT)
+	     << new Side(Side_BUY)
+	     << new TimeInForce(TimeInForce_FILL_OR_KILL);
 
-	*nos << new TEX::NoPartyIDs(unsigned(0));
-	*nos << new TEX::NoUnderlyings(3);
-	GroupBase *noul(nos->find_add_group<TEX::NewOrderSingle::NoUnderlyings>(nullptr)); // no parent group
+	*nos << new NoPartyIDs(unsigned(0));
+	*nos << new NoUnderlyings(3);
+	GroupBase *noul(nos->find_add_group<NewOrderSingle::NoUnderlyings>(nullptr)); // no parent group
 
 	// repeating groups
 	MessageBase *gr1(noul->create_group(false)); // shallow construction
-	*gr1 << new TEX::UnderlyingSymbol("BLAH")
-	     << new TEX::UnderlyingQty(1 + RandDev::getrandom(999));
+	*gr1 << new UnderlyingSymbol("BLAH")
+	     << new UnderlyingQty(1 + RandDev::getrandom(999));
 	*noul << gr1;
 
 	MessageBase *gr2(noul->create_group(false)); // shallow construction
 	// nested repeating groups
-	*gr2 << new TEX::UnderlyingSymbol("FOO")
-	     << new TEX::NoUnderlyingSecurityAltID(2);
+	*gr2 << new UnderlyingSymbol("FOO")
+	     << new NoUnderlyingSecurityAltID(2);
 	*noul << gr2;
-	GroupBase *nosai(gr2->find_add_group<TEX::NewOrderSingle::NoUnderlyings::NoUnderlyingSecurityAltID>(noul)); // parent is noul
+	GroupBase *nosai(gr2->find_add_group<NewOrderSingle::NoUnderlyings::NoUnderlyingSecurityAltID>(noul)); // parent is noul
 	MessageBase *gr3(nosai->create_group(false)); // shallow construction
-	*gr3 << new TEX::UnderlyingSecurityAltID("UnderBlah");
+	*gr3 << new UnderlyingSecurityAltID("UnderBlah");
 	*nosai << gr3;
 	MessageBase *gr4(nosai->create_group(false)); // shallow construction
-	*gr4 << new TEX::UnderlyingSecurityAltID("OverFoo");
+	*gr4 << new UnderlyingSecurityAltID("OverFoo");
 	*nosai << gr4;
 
 	MessageBase *gr5(noul->create_group(false)); // shallow construction
-	*gr5 << new TEX::UnderlyingSymbol("BOOM");
+	*gr5 << new UnderlyingSymbol("BOOM");
 	// nested repeating groups
-	GroupBase *nus(gr5->find_add_group<TEX::NewOrderSingle::NoUnderlyings::NoUnderlyingStips>(noul)); // parent is noul
+	GroupBase *nus(gr5->find_add_group<NewOrderSingle::NoUnderlyings::NoUnderlyingStips>(noul)); // parent is noul
 	static const char *secIDs[] { "Reverera", "Orlanda", "Withroon", "Longweed", "Blechnod" };
-	*gr5 << new TEX::NoUnderlyingStips(sizeof(secIDs)/sizeof(char *));
+	*gr5 << new NoUnderlyingStips(sizeof(secIDs)/sizeof(char *));
 	for (size_t ii(0); ii < sizeof(secIDs)/sizeof(char *); ++ii)
 	{
 		MessageBase *gr(nus->create_group(false)); // shallow construction
-		*gr << new TEX::UnderlyingStipType(secIDs[ii]);
+		*gr << new UnderlyingStipType(secIDs[ii]);
 		*nus << gr;
 	}
 	*noul << gr5;
 
 	// multiply nested repeating groups
-	*nos << new TEX::NoAllocs(1);
-	GroupBase *noall(nos->find_add_group<TEX::NewOrderSingle::NoAllocs>(nullptr)); // no parent group
+	*nos << new NoAllocs(1);
+	GroupBase *noall(nos->find_add_group<NewOrderSingle::NoAllocs>(nullptr)); // no parent group
 	MessageBase *gr9(noall->create_group(false)); // shallow construction
-	*gr9 << new TEX::AllocAccount("Account1")
-	     << new TEX::NoNestedPartyIDs(1);
+	*gr9 << new AllocAccount("Account1")
+	     << new NoNestedPartyIDs(1);
 	*noall << gr9;
-	GroupBase *nonp(gr9->find_add_group<TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs>(noall)); // parent is noall
+	GroupBase *nonp(gr9->find_add_group<NewOrderSingle::NoAllocs::NoNestedPartyIDs>(noall)); // parent is noall
 	MessageBase *gr10(nonp->create_group(false)); // shallow construction
-	*gr10 << new TEX::NestedPartyID("nestedpartyID1")
-	      << new TEX::NoNestedPartySubIDs(1);
+	*gr10 << new NestedPartyID("nestedpartyID1")
+	      << new NoNestedPartySubIDs(1);
 	*nonp << gr10;
-	GroupBase *nonpsid(gr10->find_add_group<TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs>(nonp)); // parent is nonp
+	GroupBase *nonpsid(gr10->find_add_group<NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs>(nonp)); // parent is nonp
 	MessageBase *gr11(nonpsid->create_group(false)); // shallow construction
-	*gr11 << new TEX::NestedPartySubID("subnestedpartyID1");
+	*gr11 << new NestedPartySubID("subnestedpartyID1");
 	*nonpsid << gr11;
 
 	return nos;
@@ -529,68 +530,68 @@ Message *MyMenu::generate_new_order_single()
 	static unsigned oid(0);
 	ostringstream oistr;
 	oistr << "ord" << ++oid;
-	TEX::NewOrderSingle *nos(new TEX::NewOrderSingle);
-	*nos << new TEX::TransactTime
-	     << new TEX::OrderQty(1 + RandDev::getrandom(9999))
-	     << new TEX::Price(RandDev::getrandom(500.), 5)	// 5 decimal places if necessary
-	     << new TEX::ClOrdID(oistr.str())
-	     << new TEX::Symbol("BHP")
-	     << new TEX::OrdType(TEX::OrdType_LIMIT)
-	     << new TEX::Side(TEX::Side_BUY)
-	     << new TEX::TimeInForce(TEX::TimeInForce_FILL_OR_KILL);
+	NewOrderSingle *nos(new NewOrderSingle);
+	*nos << new TransactTime
+	     << new OrderQty(1 + RandDev::getrandom(9999))
+	     << new Price(RandDev::getrandom(500.), 5)	// 5 decimal places if necessary
+	     << new ClOrdID(oistr.str())
+	     << new Symbol("BHP")
+	     << new OrdType(OrdType_LIMIT)
+	     << new Side(Side_BUY)
+	     << new TimeInForce(TimeInForce_FILL_OR_KILL);
 
-	*nos << new TEX::NoPartyIDs(unsigned(0));
-	*nos << new TEX::NoUnderlyings(3);
-	GroupBase *noul(nos->find_group<TEX::NewOrderSingle::NoUnderlyings>());
+	*nos << new NoPartyIDs(unsigned(0));
+	*nos << new NoUnderlyings(3);
+	GroupBase *noul(nos->find_group<NewOrderSingle::NoUnderlyings>());
 
 	// repeating groups
 	MessageBase *gr1(noul->create_group());
-	*gr1 << new TEX::UnderlyingSymbol("BLAH")
-	     << new TEX::UnderlyingQty(1 + RandDev::getrandom(999));
+	*gr1 << new UnderlyingSymbol("BLAH")
+	     << new UnderlyingQty(1 + RandDev::getrandom(999));
 	*noul << gr1;
 
 	MessageBase *gr2(noul->create_group());
 	// nested repeating groups
-	*gr2 << new TEX::UnderlyingSymbol("FOO")
-	     << new TEX::NoUnderlyingSecurityAltID(2);
+	*gr2 << new UnderlyingSymbol("FOO")
+	     << new NoUnderlyingSecurityAltID(2);
 	*noul << gr2;
-	GroupBase *nosai(gr2->find_group<TEX::NewOrderSingle::NoUnderlyings::NoUnderlyingSecurityAltID>());
+	GroupBase *nosai(gr2->find_group<NewOrderSingle::NoUnderlyings::NoUnderlyingSecurityAltID>());
 	MessageBase *gr3(nosai->create_group());
-	*gr3 << new TEX::UnderlyingSecurityAltID("UnderBlah");
+	*gr3 << new UnderlyingSecurityAltID("UnderBlah");
 	*nosai << gr3;
 	MessageBase *gr4(nosai->create_group());
-	*gr4 << new TEX::UnderlyingSecurityAltID("OverFoo");
+	*gr4 << new UnderlyingSecurityAltID("OverFoo");
 	*nosai << gr4;
 
 	MessageBase *gr5(noul->create_group());
-	*gr5 << new TEX::UnderlyingSymbol("BOOM");
+	*gr5 << new UnderlyingSymbol("BOOM");
 	// nested repeating groups
-	GroupBase *nus(gr5->find_group<TEX::NewOrderSingle::NoUnderlyings::NoUnderlyingStips>());
+	GroupBase *nus(gr5->find_group<NewOrderSingle::NoUnderlyings::NoUnderlyingStips>());
 	static const char *secIDs[] { "Reverera", "Orlanda", "Withroon", "Longweed", "Blechnod" };
-	*gr5 << new TEX::NoUnderlyingStips(sizeof(secIDs)/sizeof(char *));
+	*gr5 << new NoUnderlyingStips(sizeof(secIDs)/sizeof(char *));
 	for (size_t ii(0); ii < sizeof(secIDs)/sizeof(char *); ++ii)
 	{
 		MessageBase *gr(nus->create_group());
-		*gr << new TEX::UnderlyingStipType(secIDs[ii]);
+		*gr << new UnderlyingStipType(secIDs[ii]);
 		*nus << gr;
 	}
 	*noul << gr5;
 
 	// multiply nested repeating groups
-	*nos << new TEX::NoAllocs(1);
-	GroupBase *noall(nos->find_group<TEX::NewOrderSingle::NoAllocs>());
+	*nos << new NoAllocs(1);
+	GroupBase *noall(nos->find_group<NewOrderSingle::NoAllocs>());
 	MessageBase *gr9(noall->create_group());
-	*gr9 << new TEX::AllocAccount("Account1")
-	     << new TEX::NoNestedPartyIDs(1);
+	*gr9 << new AllocAccount("Account1")
+	     << new NoNestedPartyIDs(1);
 	*noall << gr9;
-	GroupBase *nonp(gr9->find_group<TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs>());
+	GroupBase *nonp(gr9->find_group<NewOrderSingle::NoAllocs::NoNestedPartyIDs>());
 	MessageBase *gr10(nonp->create_group());
-	*gr10 << new TEX::NestedPartyID("nestedpartyID1")
-	      << new TEX::NoNestedPartySubIDs(1);
+	*gr10 << new NestedPartyID("nestedpartyID1")
+	      << new NoNestedPartySubIDs(1);
 	*nonp << gr10;
-	GroupBase *nonpsid(gr10->find_group<TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs>());
+	GroupBase *nonpsid(gr10->find_group<NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs>());
 	MessageBase *gr11(nonpsid->create_group());
-	*gr11 << new TEX::NestedPartySubID("subnestedpartyID1");
+	*gr11 << new NestedPartySubID("subnestedpartyID1");
 	*nonpsid << gr11;
 
 	return nos;
@@ -716,7 +717,7 @@ bool MyMenu::do_logout()
 {
 	if (!_session.is_shutdown())
 	{
-		_session.send(new TEX::Logout);
+		_session.send(new Logout);
 		get_ostr() << "logout..." << endl;
 	}
 	hypersleep<h_seconds>(1);
@@ -767,7 +768,7 @@ void print_usage()
 }
 
 //-----------------------------------------------------------------------------------------
-bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
+bool myfix_router_server::operator() (const NewOrderSingle *msg) const
 {
 #if defined FIX8_RAW_MSG_SUPPORT
 	// demonstrate access to inbound raw fix message and payload
@@ -798,8 +799,8 @@ bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
 
 	static unsigned oid(0), eoid(0);
 
-	TEX::OrderQty qty;
-	TEX::Price price;
+	OrderQty qty;
+	Price price;
 
 	if (!quiet)
 	{
@@ -808,29 +809,29 @@ bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
 			cout << "Order qty (copy):" << qty() << endl;
 
 		// This is how you get a field value in place
-		if (msg->has<TEX::OrderQty>())
-			cout << "Order qty (in place):" << msg->get<TEX::OrderQty>()->get() << endl;
+		if (msg->has<OrderQty>())
+			cout << "Order qty (in place):" << msg->get<OrderQty>()->get() << endl;
 
 		if (msg->get(price))
 			cout << "price:" << price() << endl;
 
 		// This is how you extract values from a repeating group
-		const GroupBase *grnoul(msg->find_group<TEX::NewOrderSingle::NoUnderlyings>());
+		const GroupBase *grnoul(msg->find_group<NewOrderSingle::NoUnderlyings>());
 		if (grnoul)
 		{
 			for (size_t cnt(0); cnt < grnoul->size(); ++cnt)
 			{
-				TEX::UnderlyingSymbol unsym;
+				UnderlyingSymbol unsym;
 				MessageBase *me(grnoul->get_element(static_cast<unsigned>(cnt)));
 				me->get(unsym);
 				cout << "Underlying symbol:" << unsym() << endl;
 				// This is how you extract values from a nested repeating group
-				GroupBase *nus(me->find_group<TEX::NewOrderSingle::NoUnderlyings::NoUnderlyingStips>());
+				GroupBase *nus(me->find_group<NewOrderSingle::NoUnderlyings::NoUnderlyingStips>());
 				if (nus)
 				{
 					for (size_t cnt(0); cnt < nus->size(); ++cnt)
 					{
-						TEX::UnderlyingStipType stipType;
+						UnderlyingStipType stipType;
 						MessageBase *me(nus->get_element(static_cast<unsigned>(cnt)));
 						me->get(stipType);
 						cout << "Underlying StipType:" << stipType() << endl;
@@ -839,35 +840,35 @@ bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
 			}
 		}
 
-		const GroupBase *grallocs(msg->find_group<TEX::NewOrderSingle::NoAllocs>());
+		const GroupBase *grallocs(msg->find_group<NewOrderSingle::NoAllocs>());
 		if (grnoul)
 		{
 			for (size_t cnt(0); cnt < grallocs->size(); ++cnt)
 			{
-				TEX::AllocAccount acc;
+				AllocAccount acc;
 				MessageBase *me(grallocs->get_element(static_cast<unsigned>(cnt)));
 				me->get(acc);
-				cout << "TEX::NewOrderSingle::NoAllocs Account:" << acc() << endl;
+				cout << "NewOrderSingle::NoAllocs Account:" << acc() << endl;
 				// This is how you extract values from a nested repeating group
-				GroupBase *nnpi(me->find_group<TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs>());
+				GroupBase *nnpi(me->find_group<NewOrderSingle::NoAllocs::NoNestedPartyIDs>());
 				if (nnpi)
 				{
 					for (size_t cnt(0); cnt < nnpi->size(); ++cnt)
 					{
-						TEX::NestedPartyID npi;
+						NestedPartyID npi;
 						MessageBase *me(nnpi->get_element(static_cast<unsigned>(cnt)));
 						me->get(npi);
-						cout << "TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs NestedPartyID:" << npi() << endl;
+						cout << "NewOrderSingle::NoAllocs::NoNestedPartyIDs NestedPartyID:" << npi() << endl;
 						// This is how you extract values from a nested nested repeating group
-						GroupBase *nnpsi(me->find_group<TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs>());
+						GroupBase *nnpsi(me->find_group<NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs>());
 						if (nnpsi)
 						{
 							for (size_t cnt(0); cnt < nnpsi->size(); ++cnt)
 							{
-								TEX::NestedPartySubID npsi;
+								NestedPartySubID npsi;
 								MessageBase *me(nnpsi->get_element(static_cast<unsigned>(cnt)));
 								me->get(npsi);
-								cout << "TEX::NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs NestedPartySubID:" << npsi() << endl;
+								cout << "NewOrderSingle::NoAllocs::NoNestedPartyIDs::NoNestedPartySubIDs NestedPartySubID:" << npsi() << endl;
 							}
 						}
 					}
@@ -876,22 +877,22 @@ bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
 		}
 	}
 
-	TEX::ExecutionReport *er(new TEX::ExecutionReport);
+	ExecutionReport *er(new ExecutionReport);
 	msg->copy_legal(er);
 	if (!quiet)
 		cout << endl;
 
 	ostringstream oistr;
 	oistr << "ord" << ++oid;
-	*er << new TEX::OrderID(oistr.str())
-	    << new TEX::ExecType(TEX::ExecType_NEW)
-	    << new TEX::OrdStatus(TEX::OrdStatus_NEW)
-	    << new TEX::LeavesQty(qty())
-	    << new TEX::CumQty(0.)
-	    << new TEX::AvgPx(0.)
-	    << new TEX::LastCapacity('5')
-	    << new TEX::ReportToExch('Y')
-	    << new TEX::ExecID(oistr.str());
+	*er << new OrderID(oistr.str())
+	    << new ExecType(ExecType_NEW)
+	    << new OrdStatus(OrdStatus_NEW)
+	    << new LeavesQty(qty())
+	    << new CumQty(0.)
+	    << new AvgPx(0.)
+	    << new LastCapacity('5')
+	    << new ReportToExch('Y')
+	    << new ExecID(oistr.str());
 	msg->push_unknown(er);
 	_session.send(er);
 
@@ -901,20 +902,20 @@ bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
 		unsigned trdqty(RandDev::getrandom(remaining_qty));
 		if (!trdqty)
 			trdqty = 1;
-		er = new TEX::ExecutionReport;
+		er = new ExecutionReport;
 		msg->copy_legal(er);
 		ostringstream eistr;
 		eistr << "exec" << ++eoid;
 		remaining_qty -= trdqty;
 		cum_qty += trdqty;
-		*er << new TEX::OrderID(oistr.str())
-		    << new TEX::ExecID(eistr.str())
-		    << new TEX::ExecType(TEX::ExecType_NEW)
-		    << new TEX::OrdStatus(remaining_qty == trdqty ? TEX::OrdStatus_FILLED : TEX::OrdStatus_PARTIALLY_FILLED)
-		    << new TEX::LeavesQty(remaining_qty)
-		    << new TEX::CumQty(cum_qty)
-		    << new TEX::LastQty(trdqty)
-		    << new TEX::AvgPx(price());
+		*er << new OrderID(oistr.str())
+		    << new ExecID(eistr.str())
+		    << new ExecType(ExecType_NEW)
+		    << new OrdStatus(remaining_qty == trdqty ? OrdStatus_FILLED : OrdStatus_PARTIALLY_FILLED)
+		    << new LeavesQty(remaining_qty)
+		    << new CumQty(cum_qty)
+		    << new LastQty(trdqty)
+		    << new AvgPx(price());
 		_session.send(er);
 	}
 
@@ -922,14 +923,14 @@ bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
 }
 
 //-----------------------------------------------------------------------------------------
-bool tex_router_client::operator() (const TEX::ExecutionReport *msg) const
+bool myfix_router_client::operator() (const ExecutionReport *msg) const
 {
-	TEX::LastCapacity lastCap;
+	LastCapacity lastCap;
 	if (msg->get(lastCap))
 	{
 		// if we have set a realm range for LastCapacity, when can check it here
 		if (!quiet && !lastCap.is_valid())
-			cout << "TEX::LastCapacity(" << lastCap << ") is not a valid value" << endl;
+			cout << "LastCapacity(" << lastCap << ") is not a valid value" << endl;
 	}
 	return true;
 }

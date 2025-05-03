@@ -43,19 +43,19 @@ class myfix_session_client;
 /// Example client message router. Derives from fix8 generated router class.
 /*! Your application must define a class similar to this in order to receive
     the appropriate callback when Message::process is called. */
-class tex_router_client : public FIX8::TEX::Myfix_Router
+class myfix_router_client : public FIX8::MYFIX::Myfix_Router
 {
 	myfix_session_client& _session;
 
 public:
 	/*! Ctor.
 	    \param session client session */
-	tex_router_client(myfix_session_client& session) : _session(session) {}
+	myfix_router_client(myfix_session_client& session) : _session(session) {}
 
 	/*! Execution report handler. Here is where you provide your own methods for the messages you wish to
 		 handle. Only those messages that are of interest to you need to be implemented.
 	    \param msg Execution report message session */
-	virtual bool operator() (const FIX8::TEX::ExecutionReport *msg) const;
+	virtual bool operator() (const FIX8::MYFIX::ExecutionReport *msg) const;
 };
 
 /// Example client session. Derives from FIX8::Session.
@@ -63,7 +63,7 @@ public:
     You must also implement handle_application in order to receive application messages from the framework. */
 class myfix_session_client : public FIX8::Session
 {
-	tex_router_client _router;
+	myfix_router_client _router;
 
 public:
 	/*! Ctor. Initiator.
@@ -95,19 +95,19 @@ class myfix_session_server;
 /// Example server message router. Derives from fix8 generated router class.
 /*! Your application must define a class similar to this in order to receive
     the appropriate callback when Message::process is called. */
-class tex_router_server : public FIX8::TEX::Myfix_Router
+class myfix_router_server : public FIX8::MYFIX::Myfix_Router
 {
 	myfix_session_server& _session;
 
 public:
 	/*! Ctor.
 	    \param session server session */
-	tex_router_server(myfix_session_server& session) : _session(session) {}
+	myfix_router_server(myfix_session_server& session) : _session(session) {}
 
 	/*! NewOrderSingle message handler. Here is where you provide your own methods for the messages you wish to
 		 handle. Only those messages that are of interest to you need to be implemented.
 	    \param msg NewOrderSingle message */
-	virtual bool operator() (const FIX8::TEX::NewOrderSingle *msg) const;
+	virtual bool operator() (const FIX8::MYFIX::NewOrderSingle *msg) const;
 };
 
 /// Example server session. Derives from FIX8::Session.
@@ -115,7 +115,7 @@ public:
     You must also implement handle_application in order to receive application messages from the framework. */
 class myfix_session_server : public FIX8::Session
 {
-	tex_router_server _router;
+	myfix_router_server _router;
 
 public:
 	/*! Ctor. Acceptor.

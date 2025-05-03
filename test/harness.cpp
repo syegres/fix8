@@ -82,7 +82,7 @@ Usage: harness [-LRSchlpqrsv] \n
 	All FIX8 classes and functions reside inside this namespace.
 */
 
-/*! \namespace FIX8::TEX
+/*! \namespace TEX
 	This namespace is used by the generated classes and types, and was specified as a namespace
 	to the \c f8c compiler.
 */
@@ -129,6 +129,7 @@ Usage: harness [-LRSchlpqrsv] \n
 //-----------------------------------------------------------------------------------------
 using namespace std;
 using namespace FIX8;
+using namespace MYFIX;
 
 //-----------------------------------------------------------------------------------------
 void print_usage();
@@ -247,13 +248,13 @@ int main(int argc, char **argv)
 
 		if (server)
 		{
-			unique_ptr<ServerSessionBase> ms(new ServerSession<myfix_session_server>(TEX::ctx(), conf_file, "TEX1"));
+			unique_ptr<ServerSessionBase> ms(new ServerSession<myfix_session_server>(ctx(), conf_file, "TEX1"));
 
 			for (unsigned scnt(0); !term_received; )
 			{
 				if (!ms->poll())
 					continue;
-				unique_ptr<FIX8::SessionInstanceBase> inst(ms->create_server_instance());
+				unique_ptr<SessionInstanceBase> inst(ms->create_server_instance());
 				if (!quiet)
 					inst->session_ptr()->control() |= Session::printnohb;
 				glout_info << "client(" << ++scnt << ") connection established.";
@@ -265,8 +266,8 @@ int main(int argc, char **argv)
 		else
 		{
 			unique_ptr<ClientSessionBase>
-				mc(reliable ? new ReliableClientSession<myfix_session_client>(TEX::ctx(), conf_file, "DLD1")
-							   : new ClientSession<myfix_session_client>(TEX::ctx(), conf_file, "DLD1"));
+				mc(reliable ? new ReliableClientSession<myfix_session_client>(ctx(), conf_file, "DLD1")
+							   : new ClientSession<myfix_session_client>(ctx(), conf_file, "DLD1"));
 			if (!quiet)
 				mc->session_ptr()->control() |= Session::printnohb;
 
@@ -278,7 +279,7 @@ int main(int argc, char **argv)
 			else
 				mc->start(false);
 
-			ConsoleMenu cm(TEX::ctx(), cin, cout, lines);
+			ConsoleMenu cm(ctx(), cin, cout, lines);
 			MyMenu mymenu(*mc->session_ptr(), 0, cout, &cm);
 			mymenu.get_tty().set_raw_mode();
 			hypersleep<h_seconds>(1);
@@ -324,7 +325,7 @@ bool myfix_session_client::handle_application(const unsigned seqnum, const Messa
 }
 
 //-----------------------------------------------------------------------------------------
-void myfix_session_client::state_change(const FIX8::States::SessionStates before, const FIX8::States::SessionStates after)
+void myfix_session_client::state_change(const States::SessionStates before, const States::SessionStates after)
 {
 	cout << get_session_state_string(before) << " => " << get_session_state_string(after) << endl;
 }
@@ -336,7 +337,7 @@ bool myfix_session_server::handle_application(const unsigned seqnum, const Messa
 }
 
 //-----------------------------------------------------------------------------------------
-void myfix_session_server::state_change(const FIX8::States::SessionStates before, const FIX8::States::SessionStates after)
+void myfix_session_server::state_change(const States::SessionStates before, const States::SessionStates after)
 {
 	cout << get_session_state_string(before) << " => " << get_session_state_string(after) << endl;
 }
@@ -368,7 +369,7 @@ bool MyMenu::do_logout()
 {
 	if (!_session.is_shutdown())
 	{
-		_session.send(new TEX::Logout);
+		_session.send(new Logout);
 		get_ostr() << "logout..." << endl;
 	}
 	hypersleep<h_seconds>(1);
@@ -395,13 +396,13 @@ void print_usage()
 }
 
 //-----------------------------------------------------------------------------------------
-bool tex_router_server::operator() (const TEX::NewOrderSingle *msg) const
+bool myfix_router_server::operator() (const NewOrderSingle *msg) const
 {
 	return true;
 }
 
 //-----------------------------------------------------------------------------------------
-bool tex_router_client::operator() (const TEX::ExecutionReport *msg) const
+bool myfix_router_client::operator() (const ExecutionReport *msg) const
 {
 	return true;
 }
@@ -546,7 +547,7 @@ bool MyMenu::load_msgs(const string& fname)
 		ifs.getline(buffer, FIX8_MAX_MSG_LENGTH - 1);
 		if (!buffer[0])
 			continue;
-		Message *msg(Message::factory(TEX::ctx(), buffer));
+		Message *msg(Message::factory(ctx(), buffer));
 		if (msg->is_admin())
 		{
 			++skipped;

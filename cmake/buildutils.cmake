@@ -89,20 +89,27 @@ function(cpp_opts)
 		set(CXX_FLAGS_DEBUG -g -O0 -D_DEBUG)
 		set(CXX_FLAGS_RELEASE -O3 -DNDEBUG)
 		set(CXX_FLAGS_RELWITHDEBINFO -g -O1 -D_DEBUG)
-		message("*** ${CXX_FLAGS_DEBUG}")
+		# message("*** ${CXX_FLAGS_DEBUG}")
 	else()
 		if(BUILD_ALL_WARNINGS)
-			set(CXX_FLAGS "/W4")
+			set(CXX_FLAGS /W4)
 		endif()
-		#set(CXX_FLAGS "-fPIC")
-		set(CXX_FLAGS_DEBUG "/g /O0")
-		set(CXX_FLAGS_RELEASE "/O3")
-		set(CXX_FLAGS_RELWITHDEBINFO "/g /O1")
+		set(CXX_FLAGS ${CXX_FLAGS} /D_CRT_SECURE_NO_WARNINGS /D_CRT_NONSTDC_NO_DEPRECATE /D_WINDLL /wd4996 /wd4100 /bigobj)
+		set(CXX_FLAGS_DEBUG /DEBUG /D_DEBUG /Od)
+		set(CXX_FLAGS_RELEASE /DNDEBUG /O2 /Oi)
+		set(CXX_FLAGS_RELWITHDEBINFO /DEBUG /D_DEBUG /O2)
 	endif()
 	set(FIX8_CXX_FLAGS ${CXX_FLAGS} PARENT_SCOPE)
 	set(FIX8_CXX_FLAGS_DEBUG ${CXX_FLAGS_DEBUG} PARENT_SCOPE)
 	set(FIX8_CXX_FLAGS_RELEASE ${CXX_FLAGS_RELEASE} PARENT_SCOPE)
 	set(FIX8_CXX_FLAGS_RELWITHDEBINFO ${CXX_FLAGS_RELWITHDEBINFO} PARENT_SCOPE)
+	set(FIX8_LD_LIBRARY_PATH LD_LIBRARY_PATH=${LIB_OUTPUT_DIR}/lib PARENT_SCOPE)
+	if (MSVC)
+		set(dlls $<TARGET_FILE_DIR:Poco::Foundation> $<TARGET_FILE_DIR:TBB::tbb> $<TARGET_FILE_DIR:zlib>)
+		string(JOIN "\;" dlls_string ${dlls})
+		set(FIX8_LD_LIBRARY_PATH "PATH=${dlls_string}" PARENT_SCOPE)
+	endif()
+
 endfunction()
 
 # -------------------------------------------------------------------------------------------
@@ -117,12 +124,15 @@ function(comp_opts targ)
 endfunction()
 
 # -------------------------------------------------------------------------------------------
-function(build_test loc x)
-	add_executable(${x} ${loc}/${x}.cpp)
-	target_link_libraries(${x} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML fix8 utest GTest::gtest GTest::gtest_main TBB::tbbmalloc_proxy)
-	target_include_directories(${x} PRIVATE ${loc} include ${CMAKE_BINARY_DIR}/generated/FIX42UTEST)
-	gtest_discover_tests(${x})
-	comp_opts(${x})
+function(build_test name files)
+	add_executable(${name} ${files})
+	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML fix8 utest GTest::gtest GTest::gtest_main TBB::tbbmalloc_proxy)
+	target_include_directories(${name} PRIVATE include ${CMAKE_BINARY_DIR}/generated/utest)
+	target_compile_definitions(${name} PRIVATE F8_UTEST_API_SHARED)
+	if(!MSVC) # TODO:[ss] fix me - need to pass the path to dlls
+		gtest_discover_tests(${name}) # PROPERTIES ENVIRONMENT "[==[${FIX8_LD_LIBRARY_PATH}]==]") # https://stackoverflow.com/questions/57541741/with-cmake-how-can-i-set-environment-properties-on-the-gtest-discover-tests-g
+	endif()
+	comp_opts(${name})
 endfunction()
 
 # -------------------------------------------------------------------------------------------
@@ -147,7 +157,7 @@ macro(fix8_gen_library shared name xml extra_fields)
 			${prefix}/${name}_types.cpp
 			${prefix}/${name}_classes.hpp
 			${prefix}/${name}_types.hpp
-			COMMAND ${CMAKE_COMMAND} -E env LD_LIBRARY_PATH=${LIB_OUTPUT_DIR}/lib $<TARGET_FILE:f8c> ${args}
+			COMMAND ${CMAKE_COMMAND} -E env ${FIX8_LD_LIBRARY_PATH} $<TARGET_FILE:f8c> ${args}
 			MAIN_DEPENDENCY ${xml}
 			WORKING_DIRECTORY ${prefix}
 			VERBATIM)
@@ -160,7 +170,8 @@ macro(fix8_gen_library shared name xml extra_fields)
 				${prefix}/${name}_classes.hpp
 				${prefix}/${name}_types.hpp
 				)
-		target_compile_definitions(${libname} PRIVATE BUILD_F8_${name}_API)
+		string(TOUPPER ${name} name_upper)
+		target_compile_definitions(${libname} PRIVATE  F8_${name_upper}_API_SHARED BUILD_F8_${name_upper}_API)
 	else()
 		set(libname ${name})
 		add_library(${libname} STATIC
@@ -174,6 +185,7 @@ macro(fix8_gen_library shared name xml extra_fields)
 	target_include_directories(${libname} PUBLIC ${prefix})
 	target_compile_options(${libname} PRIVATE -fno-var-tracking -fno-var-tracking-assignments)
 	target_link_libraries(${libname} PUBLIC fix8)
+	comp_opts(${libname})
 endmacro()
 
 # -------------------------------------------------------------------------------------------
