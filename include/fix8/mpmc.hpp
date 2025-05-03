@@ -41,34 +41,8 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 // provide generic names to Multi Producer Multi Consumer queues and mutexes from
 // different libraries
 
-//-------------------------------------------------------------------------------------------------
-#if (FIX8_MPMC_SYSTEM == FIX8_MPMC_TBB)
-
 # include <tbb/concurrent_queue.h>
 template<typename T> using f8_concurrent_queue = tbb::concurrent_bounded_queue<T>;
-
-//-------------------------------------------------------------------------------------------------
-#elif (FIX8_MPMC_SYSTEM == FIX8_MPMC_FF)
-
-# include <fix8/ff/allocator.hpp>
-# include <fix8/ff/buffer.hpp>
-#if __GNUC__
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-#endif
-# include <fix8/ff/mpmc/MPMCqueues.hpp>
-#if __GNUC__
-#pragma GCC diagnostic pop
-#endif
-# include <sched.h>
-
-// std wrappers for ff
-# include <fix8/ff_wrapper.hpp>
-
-template<typename T> using f8_concurrent_queue = FIX8::ff_unbounded_queue<T>;
-
-//-------------------------------------------------------------------------------------------------
-#endif // FIX8_MPMC_SYSTEM
 
 //-------------------------------------------------------------------------------------------------
 
