@@ -85,9 +85,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 #include <fix8/usage.hpp>
 #include <fix8/consolemenu.hpp>
-#include "Myfix_types.hpp"
-#include "Myfix_router.hpp"
-#include "Myfix_classes.hpp"
+#include "myfix_types.hpp"
+#include "myfix_router.hpp"
+#include "myfix_classes.hpp"
 #include "myfix.hpp"
 
 //-----------------------------------------------------------------------------------------

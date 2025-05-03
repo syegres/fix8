@@ -43,7 +43,7 @@ class hf_session_client;
 /// Example client message router. Derives from fix8 generated router class.
 /*! Your application must define a class similar to this in order to receive
     the appropriate callback when Message::process is called. */
-class perf_router_client : public FIX8::PERF::Perf_Router
+class perf_router_client : public FIX8::PERF::perf_Router
 {
 	hf_session_client& _session;
 
@@ -105,7 +105,7 @@ class hf_session_server;
 /// Example server message router. Derives from fix8 generated router class.
 /*! Your application must define a class similar to this in order to receive
     the appropriate callback when Message::process is called. */
-class perf_router_server : public FIX8::PERF::Perf_Router
+class perf_router_server : public FIX8::PERF::perf_Router
 {
 	hf_session_server& _session;
 

@@ -122,9 +122,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #if defined(FIX8_CODECTIMING)
 #include <fix8/f8measure.hpp>
 #endif
-#include "Perf_types.hpp"
-#include "Perf_router.hpp"
-#include "Perf_classes.hpp"
+#include "perf_types.hpp"
+#include "perf_router.hpp"
+#include "perf_classes.hpp"
 
 #include "hftest.hpp"
 #if __GNUC__
