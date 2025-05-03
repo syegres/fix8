@@ -79,17 +79,7 @@ macro(fix8_fetch modname parturl tag)
 	FetchContent_MakeAvailable(${modname})
 endmacro()
 
-# -------------------------------------------------------------------------------------------
-function(comp_opts targ)
-	target_compile_features(${targ} PRIVATE cxx_std_17)
-	if(BUILD_ALL_WARNINGS)
-		target_compile_options(${targ} PRIVATE
-		$<$<CXX_COMPILER_ID:MSVC>:/W4>
-		$<$<NOT:$<CXX_COMPILER_ID:MSVC>>:-Wall -Wextra -Wpedantic>)
-	endif()
-endfunction()
-
-# -------------------------------------------------------------------------------------------
+# ----------------------------------------------------------------------------------------
 function(cpp_opts)
 	if (NOT MSVC)
 		if(BUILD_ALL_WARNINGS)
@@ -113,6 +103,17 @@ function(cpp_opts)
 	set(FIX8_CXX_FLAGS_DEBUG ${CXX_FLAGS_DEBUG} PARENT_SCOPE)
 	set(FIX8_CXX_FLAGS_RELEASE ${CXX_FLAGS_RELEASE} PARENT_SCOPE)
 	set(FIX8_CXX_FLAGS_RELWITHDEBINFO ${CXX_FLAGS_RELWITHDEBINFO} PARENT_SCOPE)
+endfunction()
+
+# -------------------------------------------------------------------------------------------
+function(comp_opts targ)
+	target_compile_features(${targ} PRIVATE cxx_std_17)
+	target_compile_options(${targ} PRIVATE
+			${FIX8_CXX_FLAGS}
+			$<$<CONFIG:Debug>:${FIX8_CXX_FLAGS_DEBUG}>
+			$<$<CONFIG:Release>:${FIX8_CXX_FLAGS_RELEASE}>
+			$<$<CONFIG:RelWithDebInfo>:${FIX8_CXX_FLAGS_RELWITHDEBINFO}>
+		)
 endfunction()
 
 # -------------------------------------------------------------------------------------------

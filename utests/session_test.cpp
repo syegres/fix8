@@ -184,7 +184,7 @@ public:
 class initiator_fixture : public session_fixture
 {
 public:
-    ClientConnection * initiator;
+    ClientConnection * initiator = nullptr;
 
     /// Ctor, create a test initiator connected to "127.0.0.1:80"
     initiator_fixture()
@@ -200,6 +200,7 @@ public:
     {
         ss->stop();
         delete initiator;
+        initiator = nullptr;
     };
 };
 
@@ -216,18 +217,16 @@ protected:
     static void TearDownTestCase()
     {
 		delete initiator_test;
+        initiator_test = nullptr;
     }
 public:
     // MSVC: We can't have a static initiator here; we get bitten by
     // static order initialisation issues - specifically, the initiator
     // tries to construct a Logon message before the static members of
     // Logon (field maps, traist etc) have been initialised.
-    static initiator_fixture* initiator_test;
+    static inline initiator_fixture* initiator_test = nullptr;
     static unsigned recv_seq;
 };
-
-/// global initiator fixture
-initiator_fixture* sessionTest::initiator_test = 0;
 
 /// global incoming sequence number
 unsigned sessionTest::recv_seq;

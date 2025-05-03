@@ -526,4 +526,3 @@ TEST(message, nestedGroup_encode)
     delete nol;
     nol = 0;
 }
-

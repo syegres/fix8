@@ -389,3 +389,7 @@ bool ClientConnection::connect()
 	scout_error << "Connection failed";
 	return false;
 }
+
+#if __GNUC__
+#pragma GCC diagnostic pop
+#endif

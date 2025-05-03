@@ -64,13 +64,16 @@ endif()
 #fix8_fetch(tcmalloc google/tcmalloc master)
 fix8_fetch(mimalloc microsoft/mimalloc v3.0.3)
 fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
+set(TBB_TEST OFF)
+fix8_fetch(tbb uxlfoundation/oneTBB v2022.1.0)
+cpp_opts()
 
 # -------------------------------------------------------------------------------------------
 # runtime
 # -------------------------------------------------------------------------------------------
 macro(build_lib name type)
 	add_library(${name} ${type} ${rsrc})
-	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ${ziplib} mimalloc)
+	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util Poco::NetSSL Poco::Crypto Poco::XML ${ziplib} mimalloc TBB::tbb)
 	target_include_directories(${name} PRIVATE include ${MIMALLOC_INCLUDE_DIR})
 	comp_opts(${name})
 	install(TARGETS ${name})

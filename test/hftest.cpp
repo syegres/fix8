@@ -782,3 +782,6 @@ bool hf_session_server::handle_application(const unsigned seqnum, const FIX8::Me
 #pragma GCC diagnostic pop
 #endif
 
+#if __GNUC__
+#pragma GCC diagnostic pop
+#endif
