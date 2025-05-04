@@ -376,7 +376,7 @@ class RegExp
 
 	regex_t reg_;
 #elif FIX8_REGEX_SYSTEM == FIX8_REGEX_POCO
-	Poco::RegularExpression * _regexp;
+	std::unique_ptr<Poco::RegularExpression> _regexp;
 #endif
 	std::string errString;
 	int errCode_;
@@ -397,11 +397,11 @@ public:
 		}
 	}
 #elif FIX8_REGEX_SYSTEM == FIX8_REGEX_POCO
-		: pattern_(pattern), _regexp()
+		: pattern_(pattern)
 	{
 		try
 		{
-			_regexp = new Poco::RegularExpression(pattern, flags, true);
+			_regexp = std::make_unique<Poco::RegularExpression>(pattern, flags, true);
 		}
 		catch(const Poco::RegularExpressionException& ex)
 		{
@@ -418,7 +418,6 @@ public:
 		if (errCode_ == 0)
 			regfree(&reg_);
 #elif FIX8_REGEX_SYSTEM == FIX8_REGEX_POCO
-		delete _regexp;
 #endif
 	}
 
