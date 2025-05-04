@@ -218,7 +218,7 @@ public:
 	FIX8::Message *generate_new_order_single_alternate();
 	void send_lst();
 	bool save_msg(const std::string& fname, FIX8::Message *msg);
-	unsigned get_msg_cnt() const { return _lst.size(); }
+	unsigned get_msg_cnt() const { return static_cast<unsigned>(_lst.size()); }
 
 	FIX8::tty_save_state& get_tty() { return _tty; }
 

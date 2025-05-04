@@ -580,7 +580,7 @@ bool MyMenu::read_msgs()
    _ostr << "Playback (*.playback) files in ";
 #ifdef _MSC_VER
 	_ostr << _getcwd(cwd, sizeof(cwd)) << endl;
-   if (system("dir *.playback"));
+	if (system("dir *.playback")) {}
 #else
 	_ostr << getcwd(cwd, sizeof(cwd)) << endl;
    if (system("ls -l *.playback")){}

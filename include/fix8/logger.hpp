@@ -67,7 +67,7 @@ protected:
 
    virtual std::streamsize xsputn(const char *s, std::streamsize num)
    {
-      return write (fd, s, num);
+      return write(fd, s, static_cast<unsigned>(num));
    }
 
 public:
@@ -123,7 +123,7 @@ protected:
 
    virtual std::streamsize xsputn(const char *s, std::streamsize num)
    {
-      _sock->sendBytes(s, num);
+      _sock->sendBytes(s, static_cast<int>(num));
       return num;
    }
 

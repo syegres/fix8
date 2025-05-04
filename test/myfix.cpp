@@ -896,7 +896,7 @@ bool myfix_router_server::operator() (const NewOrderSingle *msg) const
 	msg->push_unknown(er);
 	_session.send(er);
 
-	unsigned remaining_qty(qty()), cum_qty(0);
+	unsigned remaining_qty(static_cast<unsigned>(qty())), cum_qty(0);
 	while (remaining_qty > 0)
 	{
 		unsigned trdqty(RandDev::getrandom(remaining_qty));
