@@ -43,19 +43,19 @@ class hf_session_client;
 /// Example client message router. Derives from fix8 generated router class.
 /*! Your application must define a class similar to this in order to receive
     the appropriate callback when Message::process is called. */
-class tex_router_client : public FIX8::TEX::Perf_Router
+class perf_router_client : public FIX8::PERF::perf_Router
 {
 	hf_session_client& _session;
 
 public:
 	/*! Ctor.
 	    \param session client session */
-	tex_router_client(hf_session_client& session) : _session(session) {}
+	perf_router_client(hf_session_client& session) : _session(session) {}
 
 	/*! Execution report handler. Here is where you provide your own methods for the messages you wish to
 		 handle. Only those messages that are of interest to you need to be implemented.
 	    \param msg Execution report message session */
-	virtual bool operator() (const FIX8::TEX::ExecutionReport *msg);
+	virtual bool operator() (const FIX8::PERF::ExecutionReport *msg);
 };
 
 /// Example client session. Derives from FIX8::Session.
@@ -63,8 +63,8 @@ public:
     You must also implement handle_application in order to receive application messages from the framework. */
 class hf_session_client : public FIX8::Session
 {
-	tex_router_client _router;
-	using Nos_queue = std::queue<FIX8::TEX::NewOrderSingle *>;
+	perf_router_client _router;
+	using Nos_queue = std::queue<FIX8::PERF::NewOrderSingle *>;
 	Nos_queue _nos_queue;
 
 public:
@@ -85,12 +85,12 @@ public:
 		 \return true on success */
 	bool handle_application(const unsigned seqnum, const FIX8::Message *&msg);
 
-	void push(FIX8::TEX::NewOrderSingle *nos) { _nos_queue.push(nos); }
-	FIX8::TEX::NewOrderSingle *pop()
+	void push(FIX8::PERF::NewOrderSingle *nos) { _nos_queue.push(nos); }
+	FIX8::PERF::NewOrderSingle *pop()
 	{
 		if (_nos_queue.empty())
 			return 0;
-		FIX8::TEX::NewOrderSingle *nos(_nos_queue.front());
+		FIX8::PERF::NewOrderSingle *nos(_nos_queue.front());
 		_nos_queue.pop();
 		return nos;
 	}
@@ -105,19 +105,19 @@ class hf_session_server;
 /// Example server message router. Derives from fix8 generated router class.
 /*! Your application must define a class similar to this in order to receive
     the appropriate callback when Message::process is called. */
-class tex_router_server : public FIX8::TEX::Perf_Router
+class perf_router_server : public FIX8::PERF::perf_Router
 {
 	hf_session_server& _session;
 
 public:
 	/*! Ctor.
 	    \param session server session */
-	tex_router_server(hf_session_server& session) : _session(session) {}
+	perf_router_server(hf_session_server& session) : _session(session) {}
 
 	/*! NewOrderSingle message handler. Here is where you provide your own methods for the messages you wish to
 		 handle. Only those messages that are of interest to you need to be implemented.
 	    \param msg NewOrderSingle message */
-	virtual bool operator() (const FIX8::TEX::NewOrderSingle *msg);
+	virtual bool operator() (const FIX8::PERF::NewOrderSingle *msg);
 };
 
 /// Example server session. Derives from FIX8::Session.
@@ -125,7 +125,7 @@ public:
     You must also implement handle_application in order to receive application messages from the framework. */
 class hf_session_server : public FIX8::Session
 {
-	tex_router_server _router;
+	perf_router_server _router;
 
 public:
 	/*! Ctor. Acceptor.

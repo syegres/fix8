@@ -173,3 +173,5 @@ msvc/.vs/fix8-vc142/v16/Solution.VC.db
 msvc/nuget/build-3rdparty/*.nupkg
 build/
 cmake-build*/
+/out/*
+/.vs/*

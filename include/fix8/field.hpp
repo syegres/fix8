@@ -96,7 +96,7 @@ struct RealmBase
 		if (_dtype == dt_set)
 		{
 			const T *rng(static_cast<const T*>(_range)), *res(std::lower_bound(rng, rng + _sz, what));
-			return res != rng + _sz ? res - rng : -1;
+			return res != rng + _sz ? static_cast<int>(res - rng) : -1;
 		}
 		return 0;
 	}

@@ -376,7 +376,7 @@ class RegExp
 
 	regex_t reg_;
 #elif FIX8_REGEX_SYSTEM == FIX8_REGEX_POCO
-	Poco::RegularExpression * _regexp;
+	std::unique_ptr<Poco::RegularExpression> _regexp;
 #endif
 	std::string errString;
 	int errCode_;
@@ -397,11 +397,11 @@ public:
 		}
 	}
 #elif FIX8_REGEX_SYSTEM == FIX8_REGEX_POCO
-		: pattern_(pattern), _regexp()
+		: pattern_(pattern)
 	{
 		try
 		{
-			_regexp = new Poco::RegularExpression(pattern, flags, true);
+			_regexp = std::make_unique<Poco::RegularExpression>(pattern, flags, true);
 		}
 		catch(const Poco::RegularExpressionException& ex)
 		{
@@ -418,7 +418,6 @@ public:
 		if (errCode_ == 0)
 			regfree(&reg_);
 #elif FIX8_REGEX_SYSTEM == FIX8_REGEX_POCO
-		delete _regexp;
 #endif
 	}
 
@@ -889,9 +888,9 @@ public:
 				break;
 		if (itr == sset.cend())
 			return -1;
-		const int dist(std::distance(sset.cbegin(), itr));
+		auto dist(std::distance(sset.cbegin(), itr));
 		set(static_cast<T>(dist), on);
-		return dist;
+		return static_cast<int>(dist);
 	}
 
 	/*! Clear a bit on or off.
@@ -1117,10 +1116,9 @@ protected:
    {
       if (gptr() < egptr())
          return *gptr();
-      int put_back_cnt(gptr() - eback());
-      if (put_back_cnt > _back_limit)
-         put_back_cnt = _back_limit;
-		memcpy(_buffer + (_back_limit - put_back_cnt), gptr() - put_back_cnt, put_back_cnt);
+      auto put_back_cnt(gptr() - eback());
+      put_back_cnt = std::min<long long>(put_back_cnt, _back_limit);
+      memcpy(_buffer + (_back_limit - put_back_cnt), gptr() - put_back_cnt, put_back_cnt);
 #ifdef _MSC_VER
       int num_read(_read (_fd, _buffer + _back_limit, _buffer_size - _back_limit));
 #else

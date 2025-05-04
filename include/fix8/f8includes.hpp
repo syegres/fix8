@@ -42,6 +42,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 //-------------------------------------------------------------------------------------------------
 #include <fix8/f8dll.h>
 #include <fix8/f8config.h>
+#if _MSC_VER
+#include <direct.h>
+#endif
 
 #ifdef FIX8_PROFILING_BUILD
 #include <sys/gmon.h>

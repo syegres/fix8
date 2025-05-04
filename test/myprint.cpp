@@ -85,9 +85,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 #include <fix8/usage.hpp>
 #include <fix8/consolemenu.hpp>
-#include "Myfix_types.hpp"
-#include "Myfix_router.hpp"
-#include "Myfix_classes.hpp"
+#include "myfix_types.hpp"
+#include "myfix_router.hpp"
+#include "myfix_classes.hpp"
 #include "myfix.hpp"
 
 //-----------------------------------------------------------------------------------------
@@ -146,8 +146,8 @@ int main(int argc, char **argv)
 		case 'o': offset = stoi(optarg); break;
 		case 's': summary = true; break;
 		case 'c':
-			 cout << "Context FIX beginstring:" << TEX::ctx()._beginStr << endl;
-			 cout << "Context FIX version:" << TEX::ctx().version() << endl;
+			 cout << "Context FIX beginstring:" << MYFIX::ctx()._beginStr << endl;
+			 cout << "Context FIX version:" << MYFIX::ctx().version() << endl;
 			 return 0;
 		default: break;
 		}
@@ -185,7 +185,7 @@ int main(int argc, char **argv)
 			ifs().getline(buffer, FIX8_MAX_MSG_LENGTH);
 			if (buffer[0])
 			{
-				unique_ptr<Message> msg(Message::factory(TEX::ctx(), buffer + offset));
+				unique_ptr<Message> msg(Message::factory(MYFIX::ctx(), buffer + offset));
 				if (summary)
 				{
 					MessageCount::iterator mitr(mc->find(msg->get_msgtype()));
@@ -216,7 +216,7 @@ int main(int argc, char **argv)
 	{
 		for (MessageCount::const_iterator mitr(mc->begin()); mitr != mc->end(); ++mitr)
 		{
-			const BaseMsgEntry *bme(TEX::ctx()._bme.find_ptr(mitr->first.c_str()));
+			const BaseMsgEntry *bme(MYFIX::ctx()._bme.find_ptr(mitr->first.c_str()));
 			cout << setw(20) << left << bme->_name << " (\"" << mitr->first << "\")" << '\t' << mitr->second << endl;
 		}
 	}

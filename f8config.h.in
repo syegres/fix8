@@ -131,8 +131,10 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #endif
 
 /* Define if you have clock_nanosleep() */
+#ifndef _MSC_VER
 #ifndef FIX8_HAVE_CLOCK_NANOSLEEP
 #define FIX8_HAVE_CLOCK_NANOSLEEP 1
+#endif
 #endif
 
 /* Define to 1 if zlib headers and library were found */
@@ -263,12 +265,10 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 /* Define to 1 if you have the <openssl/ssl.h> header file. */
 /* #undef HAVE_OPENSSL_SSL_H */
+#ifndef _MSC_VER
 #ifndef FIX8_HAVE_OPENSSL
 #define FIX8_HAVE_OPENSSL 1
 #endif
-
-#ifndef FIX8_HAVE_OPENSSL
-#define FIX8_HAVE_OPENSSL 1
 #endif
 
 /* Define to 1 if you have the `popen' function. */

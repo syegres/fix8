@@ -479,7 +479,7 @@ int load_fields(XmlElement& xf, FieldSpecMap& fspec)
             {
 					result = fspec.insert({stoul(number), FieldSpec(name, ft)});
 				}
-            catch (exception& e)
+            catch (exception&)
             {
 					cerr << shortName << ':' << recover_line(*pp) << ": error: Failed to convert (stoul) number " << number << " in " << name << endl;
 					++glob_errors;
@@ -1532,7 +1532,7 @@ void binary_report()
 unsigned lookup_component(const Components& compon, const f8String& name)
 {
 	Components::const_iterator citr(compon.find(name));
-	return citr != compon.end() ? 1 + distance(compon.begin(), citr) : 0;
+	return citr != compon.end() ? static_cast<unsigned>(1 + distance(compon.begin(), citr)) : 0;
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -1563,7 +1563,7 @@ const MessageSpec *find_group(const CommonGroupMap& globmap, int& vers, unsigned
    CommonGroups::const_iterator key_result(tp_result->second.find(key));
    if (key_result == tp_result->second.end())
       return nullptr;
-   vers = 1 + distance(tp_result->second.begin(), key_result);
+   vers = static_cast<int>(1 + distance(tp_result->second.begin(), key_result));
    return &key_result->second;
 }
 
