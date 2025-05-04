@@ -121,12 +121,16 @@ function(comp_opts targ)
 			$<$<CONFIG:Release>:${FIX8_CXX_FLAGS_RELEASE}>
 			$<$<CONFIG:RelWithDebInfo>:${FIX8_CXX_FLAGS_RELWITHDEBINFO}>
 		)
+	target_link_libraries(${targ} PRIVATE TBB::tbbmalloc_proxy)
+	if (MSVC)
+		target_link_options(${targ} PRIVATE	/INCLUDE:__TBB_malloc_proxy)
+	endif()
 endfunction()
 
 # -------------------------------------------------------------------------------------------
 function(build_test name files)
 	add_executable(${name} ${files})
-	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML fix8 utest GTest::gtest GTest::gtest_main TBB::tbbmalloc_proxy)
+	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
 	target_include_directories(${name} PRIVATE include utests ${CMAKE_BINARY_DIR}/generated/utest)
 	target_compile_definitions(${name} PRIVATE F8_UTEST_API_SHARED)
 	if(!MSVC) # TODO:[ss] fix me - need to pass the path to dlls
