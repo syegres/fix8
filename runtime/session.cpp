@@ -51,20 +51,18 @@ namespace
 }
 
 //-------------------------------------------------------------------------------------------------
-RegExp SessionID::_sid("([^:]+):([^-]+)->(.+)");
-
-//-------------------------------------------------------------------------------------------------
-#if defined(_MSC_VER) && !defined(BUILD_F8API)
-// no need in definition since it is in dll already
-#else
-const vector<f8String> Session::_state_names
+std::string_view Session::get_session_state_string(const States::SessionStates state)
 {
-	"none", "continuous", "session_terminated",
-	"wait_for_logon", "not_logged_in", "logon_sent", "logon_received", "logoff_sent",
-	"logoff_received", "test_request_sent", "sequence_reset_sent",
-	"sequence_reset_received", "resend_request_sent", "resend_request_received"
-};
-#endif
+	static constexpr array<std::string_view, States::st_num_states> _state_names
+	{
+		"none", "continuous", "session_terminated",
+		"wait_for_logon", "not_logged_in", "logon_sent", "logon_received", "logoff_sent",
+		"logoff_received", "test_request_sent", "sequence_reset_sent",
+		"sequence_reset_received", "resend_request_sent", "resend_request_received"
+	};
+	static constexpr std::string_view unknown{"Unknown"};
+	return state < _state_names.size() ? _state_names[state] : unknown;
+}
 #if defined(_MSC_VER)
 #pragma warning(push)
 #pragma warning(disable: 4273)
@@ -86,15 +84,16 @@ SessionID SessionID::make_reverse_id() const
 //-------------------------------------------------------------------------------------------------
 void SessionID::from_string(const f8String& from)
 {
+	RegExp sid_regex("([^:]+):([^-]+)->(.+)");
 	RegMatch match;
-	if (_sid.SearchString(match, from, 4) == 4)
+	if (sid_regex.SearchString(match, from, 4) == 4)
 	{
 		f8String bstr, scid, tcid;
-		_sid.SubExpr(match, from, bstr, 0, 1);
+		RegExp::SubExpr(match, from, bstr, 0, 1);
 		_beginString.set(bstr);
-		_sid.SubExpr(match, from, scid, 0, 2);
+		RegExp::SubExpr(match, from, scid, 0, 2);
 		_senderCompID.set(scid);
-		_sid.SubExpr(match, from, tcid, 0, 3);
+		RegExp::SubExpr(match, from, tcid, 0, 3);
 		_targetCompID.set(tcid);
 		make_id();
 	}
