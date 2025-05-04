@@ -45,8 +45,6 @@ namespace FIX8 {
 /// Quickfix style sessionid.
 class SessionID
 {
-	static RegExp _sid;
-
 	begin_string _beginString;
 	sender_comp_id _senderCompID;
 	target_comp_id _targetCompID;
@@ -420,9 +418,6 @@ protected:
 	TimerEvent<Session> _hb_processor, _session_scheduler;
 	std::string _batchmsgs_buffer;
 	Session_Schedule *_schedule;
-
-	/// string representation of Sessionstates
-	F8API static const std::vector<f8String> _state_names;
 
 	/// Heartbeat generation service thread method.
 	F8API bool heartbeat_service();
@@ -846,11 +841,7 @@ public:
 	/*! Find the string representation for the given session state
 	    \param state session state
 	    \return string found or "unknown" */
-	static const f8String& get_session_state_string(const States::SessionStates state)
-	{
-		static const f8String unknown("Unknown");
-		return state < _state_names.size() ? _state_names[state] : unknown;
-	}
+	F8API static std::string_view get_session_state_string(States::SessionStates state);
 
 	/*! Return the version and copyright for this version
 	    \return string */
