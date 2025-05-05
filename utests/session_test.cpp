@@ -208,13 +208,13 @@ public:
 class sessionTest : public ::testing::Test
 {
 protected:
-    static void SetUpTestCase()
+    void SetUp() override
     {
 		initiator_test = new initiator_fixture();
         recv_seq = 1;
     }
 
-    static void TearDownTestCase()
+    void TearDown() override
     {
 		delete initiator_test;
         initiator_test = nullptr;
@@ -314,11 +314,7 @@ f8String composeOrder(unsigned seq)
     return tmp;
 }
 
-/*!session logon test
-    \param sessionTest test suit name
-    \param logon test case name*/
-
-TEST_F(sessionTest, logon)
+void logon(initiator_fixture *initiator_test)
 {
     //initiator send logon
     f8String output = getSingleMsg();
@@ -330,7 +326,7 @@ TEST_F(sessionTest, logon)
     Logon * logon = new Logon;
     fillRecvHeader(logon->Header());
 
-	HeartBtInt hbi(initiator_test->initiator->get_hb_interval());
+    HeartBtInt hbi(initiator_test->initiator->get_hb_interval());
     *logon << new HeartBtInt(hbi()) << new EncryptMethod(0);
     f8String logon_str;
     logon->encode(logon_str);
@@ -341,8 +337,16 @@ TEST_F(sessionTest, logon)
     EXPECT_EQ(static_cast<unsigned>(hbi()), initiator_test->initiator->get_hb_interval());
 
     delete logon;
-
     clearOutputs();
+}
+
+/*!session logon test
+    \param sessionTest test suit name
+    \param logon test case name*/
+
+TEST_F(sessionTest, logon)
+{
+    logon(initiator_test);
 }
 
 /*!session resend request test
@@ -351,6 +355,8 @@ TEST_F(sessionTest, logon)
 
 TEST_F(sessionTest, handle_resend_request)
 {
+    logon(initiator_test);
+
     //no message available
     ResendRequest * resend = new ResendRequest;
     fillRecvHeader(resend->Header());
@@ -363,7 +369,7 @@ TEST_F(sessionTest, handle_resend_request)
     initiator_test->ss->update_received();
     initiator_test->ss->process(resend_str);
 
-    f8String output = getSingleMsg();
+    auto output = getSingleMsg();
 
     EXPECT_EQ(States::st_continuous, initiator_test->ss->getState());
     EXPECT_TRUE(output.find("35=4") !=  std::string::npos);
@@ -459,6 +465,8 @@ TEST_F(sessionTest, handle_resend_request)
 
 TEST_F(sessionTest, handle_seq_reset)
 {
+    logon(initiator_test);
+
     SequenceReset * reset = new SequenceReset;
     fillRecvHeader(reset->Header());
 
@@ -479,6 +487,8 @@ TEST_F(sessionTest, handle_seq_reset)
 
 TEST_F(sessionTest, handle_test_request)
 {
+    logon(initiator_test);
+
     TestRequest * testreq = new TestRequest;
     fillRecvHeader(testreq->Header());
 
@@ -503,6 +513,8 @@ TEST_F(sessionTest, handle_test_request)
 
 TEST_F(sessionTest, send_test_request)
 {
+    logon(initiator_test);
+
     //make sure test request is sent
     Tickval now(true);
     initiator_test->ss->set_last_sent(Tickval(true)); // to prevent sending HB when HB service is kicked
