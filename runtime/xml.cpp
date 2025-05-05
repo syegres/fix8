@@ -44,30 +44,9 @@ using namespace std;
 //----------------------------------------------------------------------------------------
 const XmlElement::XmlSet XmlElement::emptyset_;
 const XmlElement::XmlAttrs XmlElement::emptyattrs_;
-RegExp XmlElement::rCE_("&#(x[A-Fa-f0-9]+|[0-9]+);"), XmlElement::rCX_("&([a-z]{2,}[1-4]{0,});"),
-	XmlElement::rIn_("href=\"([^\"]+)\""),
-   XmlElement::rEn_("\\$\\{([^}]+)\\}"), XmlElement::rEv_("!\\{([^}]+)\\}");
 XmlElement::XmlFlags XmlElement::flags_;
 
 //----------------------------------------------------------------------------------------
-const Str2Chr XmlElement::stringtochar_
-{
-	{"amp", '&'},		{"lt", '<'},		{"gt", '>'},
-	{"apos", '\''},	{"quot", '"'},		{"nbsp", 160},
-	{"iexcl", 161},	{"cent", 162},		{"pound", 163},
-	{"curren", 164},	{"yen", 165},		{"brvbar", 166},
-	{"sect", 167},		{"uml", 168},		{"copy", 169},
-	{"ordf", 170},		{"laquo", 171},	{"not", 172},
-	{"shy", 173},		{"reg", 174},		{"macr", 175},
-	{"deg", 176},		{"plusmn", 177},	{"sup2", 178},
-	{"sup3", 179},		{"acute", 180},	{"micro", 181},
-	{"para", 182},		{"middot", 183},	{"cedil", 184},
-	{"sup1", 185},		{"ordm", 186},		{"raquo", 187},
-	{"frac14", 188},	{"frac12", 189},	{"frac34", 190},
-	{"iquest", 191}
-};
-
-//-----------------------------------------------------------------------------------------
 ostream& operator<<(ostream& os, const XmlElement& en)
 {
 	const string spacer(en.depth_ * 3, ' ');
@@ -463,11 +442,12 @@ illegal_tag:
 				{
 					if ((tag_ = tmpotag) == "xi:include")	// handle inclusion
 					{
+						static RegExp rIn("href=\"([^\"]+)\"");
 						RegMatch match;
-						if (rIn_.SearchString(match, tmpattr, 2) == 2)
+						if (rIn.SearchString(match, tmpattr, 2) == 2)
 						{
 							string whatv;
-							rIn_.SubExpr(match, tmpattr, whatv, 0, 1);
+							rIn.SubExpr(match, tmpattr, whatv, 0, 1);
 							ifstream *ifs1(new ifstream(InplaceXlate(whatv).c_str()));
 							if (!*ifs1)
 							{
@@ -764,19 +744,39 @@ bool XmlElement::GetAttr(const string& what, string& target) const
 //-----------------------------------------------------------------------------------------
 const string& XmlElement::InplaceXlate (string& what)
 {
+	/// XML entity char lookup
+	static const std::map<std::string_view, unsigned char> stringtochar
+	{
+		{"amp", '&'},		{"lt", '<'},		{"gt", '>'},
+		{"apos", '\''},	{"quot", '"'},		{"nbsp", 160},
+		{"iexcl", 161},	{"cent", 162},		{"pound", 163},
+		{"curren", 164},	{"yen", 165},		{"brvbar", 166},
+		{"sect", 167},		{"uml", 168},		{"copy", 169},
+		{"ordf", 170},		{"laquo", 171},	{"not", 172},
+		{"shy", 173},		{"reg", 174},		{"macr", 175},
+		{"deg", 176},		{"plusmn", 177},	{"sup2", 178},
+		{"sup3", 179},		{"acute", 180},	{"micro", 181},
+		{"para", 182},		{"middot", 183},	{"cedil", 184},
+		{"sup1", 185},		{"ordm", 186},		{"raquo", 187},
+		{"frac14", 188},	{"frac12", 189},	{"frac34", 190},
+		{"iquest", 191}
+	};
+
+	static RegExp rCX("&([a-z]{2,}[1-4]{0,});");
 	RegMatch match;
-	while (rCX_.SearchString(match, what, 2) == 2)
+	while (rCX.SearchString(match, what, 2) == 2)
 	{
 		string whatv;
-		rCX_.SubExpr(match, what, whatv, 0, 1);
-		const auto sitr(stringtochar_.find(whatv));
-		rCX_.Replace(match, what, sitr == stringtochar_.cend() ? '?' : sitr->second); // not found character entity replaces string with '?'
+		rCX.SubExpr(match, what, whatv, 0, 1);
+		const auto sitr(stringtochar.find(whatv));
+		rCX.Replace(match, what, sitr == stringtochar.cend() ? '?' : sitr->second); // not found character entity replaces string with '?'
 	}
 
-	while (rCE_.SearchString(match, what, 2) == 2)	// translate Numeric character references &#x12d; or &#12;
+	static RegExp rCE("&#(x[A-Fa-f0-9]+|[0-9]+);");
+	while (rCE.SearchString(match, what, 2) == 2)	// translate Numeric character references &#x12d; or &#12;
 	{
 		string whatv;
-		rCE_.SubExpr(match, what, whatv, 0, 1);
+		rCE.SubExpr(match, what, whatv, 0, 1);
 		istringstream istr(whatv);
 		int value;
 		if (whatv[0] == 'x')
@@ -790,31 +790,33 @@ const string& XmlElement::InplaceXlate (string& what)
 		if (value & 0xff00)	// handle hi byte
 			oval += static_cast<char>(value >> 8 & 0xff);
 		oval += static_cast<char>(value & 0xff);
-		rCE_.Replace(match, what, oval);
+		rCE.Replace(match, what, oval);
 	}
 
 	if (!(flags_ & noextensions))
 	{
-		if (rEn_.SearchString(match, what, 2) == 2)  // environment var replacement ${XXX}
+		static RegExp rEn("\\$\\{([^}]+)\\}");
+		if (rEn.SearchString(match, what, 2) == 2)  // environment var replacement ${XXX}
 		{
 			string whatv;
-			rEn_.SubExpr(match, what, whatv, 0, 1);
+			rEn.SubExpr(match, what, whatv, 0, 1);
 			const char *gresult(getenv(whatv.c_str()));
 			if (gresult)
 			{
 				const string result(gresult);
 				if (!result.empty())
-					rEn_.Replace(match, what, result);
+					rEn.Replace(match, what, result);
 			}
 		}
 
-		if (rEv_.SearchString(match, what, 2) == 2)  // evaluate shell command and replace with result !{XXX}
+		static RegExp rEv("!\\{([^}]+)\\}");
+		if (rEv.SearchString(match, what, 2) == 2)  // evaluate shell command and replace with result !{XXX}
 		{
 			string whatv;
-			rEv_.SubExpr(match, what, whatv, 0, 1);
+			rEv.SubExpr(match, what, whatv, 0, 1);
 			string result;
 			if (exec_cmd(whatv, result))
-				rEv_.Replace(match, what, result);
+				rEv.Replace(match, what, result);
 		}
    }
 

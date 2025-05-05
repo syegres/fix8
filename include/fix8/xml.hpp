@@ -41,18 +41,11 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #include <set>
 
 //----------------------------------------------------------------------------------------
-using Str2Chr = std::map<std::string, unsigned char>;
-
-//----------------------------------------------------------------------------------------
 /// A simple xml parser with Xpath style lookup.
 class XmlElement
 {
-	/// XML entity char lookup
-	static const Str2Chr stringtochar_;
-
 	/// Maximum depth levels supported.
 	enum { MaxDepth = 128 };
-	static FIX8::RegExp rCE_, rCX_, rIn_, rEn_, rEv_;
 
 	XmlElement *parent_, *root_;
 
