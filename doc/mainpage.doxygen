@@ -8,8 +8,8 @@
   * This documentation also includes all the compiler generated code for this example, based on the \link FIX50SP2.xml \endlink schema.
   *
   * <ul>
-  * <li> \link Myfix_types.hpp \endlink example generated FIX field types.
-  * <li> \link Myfix_classes.hpp \endlink example generated FIX Message types.
+  * <li> \link myfix_types.hpp \endlink example generated FIX field types.
+  * <li> \link myfix_classes.hpp \endlink example generated FIX Message types.
   * </ul>
   *
   * Some of the more commonly used classes include:
