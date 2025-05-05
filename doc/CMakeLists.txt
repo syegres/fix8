@@ -220,4 +220,4 @@ set(DOXYGEN_DOT_MULTI_TARGETS      NO)
 set(DOXYGEN_GENERATE_LEGEND        YES)
 set(DOXYGEN_DOT_CLEANUP            YES)
 doxygen_add_docs(fix8_doxygen ${CMAKE_SOURCE_DIR}/include/fix8 ${CMAKE_SOURCE_DIR}/runtime ${CMAKE_SOURCE_DIR}/compiler ${CMAKE_SOURCE_DIR}/test
-	${CMAKE_SOURCE_DIR}/util ${CMAKE_SOURCE_DIR}/doc/mainpage.doxygen ${CMAKE_SOURCE_DIR}/schema/FIX50SP2.xml ${PROJECT_BINARY_DIR}/generated/Myfix ALL)
+	${CMAKE_SOURCE_DIR}/util ${CMAKE_SOURCE_DIR}/doc/mainpage.doxygen ${CMAKE_SOURCE_DIR}/schema/FIX50SP2.xml ${PROJECT_BINARY_DIR}/generated/myfix ALL)
