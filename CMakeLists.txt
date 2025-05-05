@@ -155,8 +155,6 @@ if(BUILD_UNITTESTS)
 	build_test(fileLogger_test "utests/fileLogger_test.cpp")
 	build_test(filePersister_test "utests/filePersister_test.cpp")
 	build_test(session_test "utests/session_test.cpp;utests/mockConnection.cpp")
-	comp_opts(session_test)
-#gtest_discover_tests(session_test)
 endif()
 
 # -------------------------------------------------------------------------------------------
