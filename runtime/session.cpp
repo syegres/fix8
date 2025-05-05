@@ -45,9 +45,9 @@ using namespace std;
 //-------------------------------------------------------------------------------------------------
 namespace
 {
-	const string package_version { FIX8_PACKAGE_NAME " version " FIX8_PACKAGE_VERSION };
-	const string copyright_short { "Copyright (c) 2010-" };
-	const string copyright_short2 { ", David L. Dight <" FIX8_PACKAGE_BUGREPORT ">, All rights reserved. [" FIX8_PACKAGE_URL "]"};
+	static constexpr std::string_view package_version { FIX8_PACKAGE_NAME " version " FIX8_PACKAGE_VERSION };
+	static constexpr std::string_view copyright_short { "Copyright (c) 2010-" };
+	static constexpr std::string_view copyright_short2 { ", David L. Dight <" FIX8_PACKAGE_BUGREPORT ">, All rights reserved. [" FIX8_PACKAGE_URL "]"};
 }
 
 //-------------------------------------------------------------------------------------------------
@@ -84,7 +84,7 @@ SessionID SessionID::make_reverse_id() const
 //-------------------------------------------------------------------------------------------------
 void SessionID::from_string(const f8String& from)
 {
-	RegExp sid_regex("([^:]+):([^-]+)->(.+)");
+	static RegExp sid_regex("([^:]+):([^-]+)->(.+)");
 	RegMatch match;
 	if (sid_regex.SearchString(match, from, 4) == 4)
 	{
