@@ -36,8 +36,6 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # -------------------------------------------------------------------------------------------
 cmake_minimum_required (VERSION 3.20)
-find_package(Doxygen REQUIRED)
-find_package(FLEX REQUIRED)
 set(DOXYGEN_HTML_OUTPUT ${PROJECT_BINARY_DIR}/doc/html)
 set(DOXYGEN_JAVADOC_AUTOBRIEF YES)
 set(DOXYGEN_GENERATE_HTML YES)

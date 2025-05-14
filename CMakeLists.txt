@@ -194,9 +194,11 @@ install(FILES ${CMAKE_SOURCE_DIR}/test/hf_client.xml ${CMAKE_SOURCE_DIR}/test/my
 # generated docs
 # -------------------------------------------------------------------------------------------
 if(BUILD_DOXYGEN_DOCS)
+	find_package(Doxygen REQUIRED)
+	find_package(FLEX REQUIRED)
 	add_subdirectory(doc)
 	add_dependencies(fix8_doxygen myfix)
-	install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html DESTINATION share)
+	install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html DESTINATION share/doc)
 endif()
 
 # -------------------------------------------------------------------------------------------
