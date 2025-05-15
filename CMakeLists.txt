@@ -69,7 +69,7 @@ else()
 endif()
 #fix8_fetch(tcmalloc google/tcmalloc master)
 #fix8_fetch(mimalloc microsoft/mimalloc v3.0.3)
-fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
+fix8_fetch(poco pocoproject/poco poco-1.14.2-release)
 set(TBB_TEST OFF)
 fix8_fetch(tbb uxlfoundation/oneTBB v2022.1.0)
 
