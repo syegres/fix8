@@ -59,8 +59,6 @@ namespace FIX8
 //-------------------------------------------------------------------------------------------------
 int Logger::operator()()
 {
-   unsigned received(0);
-
    while (!_stopping)
    {
 		LogElement *msg_ptr(0);
@@ -74,8 +72,6 @@ int Logger::operator()()
 		else
 			_msg_queue.pop (msg); // will block
 		msg_ptr = &msg;
-
-		++received;
 
 		if (msg_ptr)
 		{

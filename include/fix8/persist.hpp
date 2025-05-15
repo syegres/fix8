@@ -361,6 +361,7 @@ struct Prec
 	off_t _offset;
 	int32_t _size;
 
+	/*
 	Prec& operator=(const Prec& that)
 	{
 		if (this != &that)
@@ -369,7 +370,7 @@ struct Prec
 			_size = that._size;
 		}
 		return *this;
-	}
+	}*/
 
 	friend std::ostream& operator<<(std::ostream& os, const Prec& what)
 		{ return os << "offset:" << what._offset << " size:" << what._size; }

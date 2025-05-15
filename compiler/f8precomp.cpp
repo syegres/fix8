@@ -164,13 +164,12 @@ void filter_unique(XmlElement::XmlSet& fldlist)
 {
 	using UniqueFieldMap = map<string, const XmlElement *>;
 	UniqueFieldMap ufm;
-	unsigned dupls(0);
 	for(const auto *pp : fldlist)
 	{
 		string name;
 		pp->GetAttr("name", name);
 		if (!ufm.insert({name, pp}).second)
-			++dupls; // cerr << "Duplicate field: " << name << endl;
+			; // ++dupls; // cerr << "Duplicate field: " << name << endl;
 	}
 
 	fldlist.clear();
