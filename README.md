@@ -249,11 +249,10 @@ Please see [this document](https://fix8engine.atlassian.net/wiki/x/EICW) for det
 These options can be passed on the cmake command line
 | Option | Description| Default | Example|
 | :--- | :--- | :--- | :--- |
-|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=true`|
-|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=true`|
+|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=false`|
+|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=false`|
 |BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS=true`|
 
----
 ## Compiler support
 | Compiler | Version(s) |
 | :--- | :--- |
@@ -271,7 +270,6 @@ Please refer to the following pages for help:
 - [API Documentation](http://fix8.org/fix8/html)
 - [Jira Issues Page](https://fix8engine.atlassian.net/)
 - [Wiki](https://fix8engine.atlassian.net/wiki)
-- [Twitter](https://twitter.com/fix8engine)
 
 ## Downloads
 

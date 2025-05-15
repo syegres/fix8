@@ -1,11 +1,13 @@
 * Wed May 05 2025 David L. Dight <fix@fix8.org> 1.5.0
 - cmake build system
-- C++17
+- Minimum C++17 required
 - Fixed various compiler warnings
 - Removed tcmalloc, replaced with tbbmalloc
+- Removed FastFlow, replaced with tbb
 - cmake downloads and builds required deps
-- upgrade poco, removed deprecated calls
-- updated and merged bug fixes
+- Fixed build for Windows and MacOS
+- Upgrade poco, removed deprecated calls
+- Updated and merged bug fixes
 
 * Wed May 10 2023 David L. Dight <fix@fix8.org> 1.4.3
 - Fixed build issues hftest, utests, some compiler warnings
@@ -16,7 +18,7 @@
 - Fixed Jira tickets FX-729,FX-744,FX-821,FX-884
 - Fixed deadlock condition in heartbeat
 - Fixed memory leaks
-- Fixed f8c incorrectly removeing unused fields from the top of fields list
+- Fixed f8c incorrectly removing unused fields from the top of fields list
 - Fixed steroid chksum algorithm giving incorrect values for large messages
 
 * Fri Sep 16 2016 David L. Dight <fix@fix8.org> 1.4.0
