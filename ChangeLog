@@ -2,6 +2,10 @@
 - cmake build system
 - C++17
 - Fixed various compiler warnings
+- Removed tcmalloc, replaced with tbbmalloc
+- cmake downloads and builds required deps
+- upgrade poco, removed deprecated calls
+- updated and merged bug fixes
 
 * Wed May 10 2023 David L. Dight <fix@fix8.org> 1.4.3
 - Fixed build issues hftest, utests, some compiler warnings

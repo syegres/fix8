@@ -4,7 +4,7 @@
 Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 
 Fix8 Open Source FIX Engine.
-Copyright (C) 2010-19 David L. Dight <fix@fix8.org>
+Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
 
 Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
 GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
@@ -59,8 +59,6 @@ namespace FIX8
 //-------------------------------------------------------------------------------------------------
 int Logger::operator()()
 {
-   unsigned received(0);
-
    while (!_stopping)
    {
 		LogElement *msg_ptr(0);
@@ -74,8 +72,6 @@ int Logger::operator()()
 		else
 			_msg_queue.pop (msg); // will block
 		msg_ptr = &msg;
-
-		++received;
 
 		if (msg_ptr)
 		{

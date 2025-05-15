@@ -69,7 +69,7 @@ else()
 endif()
 #fix8_fetch(tcmalloc google/tcmalloc master)
 #fix8_fetch(mimalloc microsoft/mimalloc v3.0.3)
-fix8_fetch(poco pocoproject/poco poco-1.12.5-release)
+fix8_fetch(poco pocoproject/poco poco-1.14.2-release)
 set(TBB_TEST OFF)
 fix8_fetch(tbb uxlfoundation/oneTBB v2022.1.0)
 
@@ -81,10 +81,12 @@ cpp_opts()
 # -------------------------------------------------------------------------------------------
 # runtime
 # -------------------------------------------------------------------------------------------
+set(fix8_libs Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML ${ziplib} TBB::tbb)
 macro(build_lib name type)
 	add_library(${name} ${type} ${rsrc})
-	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML ${ziplib} TBB::tbb)
+	target_link_libraries(${name} PUBLIC ${fix8_libs})
 	target_include_directories(${name} PRIVATE include)
+	add_dependencies(${name} ${fix8_libs})
 	comp_opts(${name})
 	install(TARGETS ${name})
 endmacro()
@@ -194,9 +196,11 @@ install(FILES ${CMAKE_SOURCE_DIR}/test/hf_client.xml ${CMAKE_SOURCE_DIR}/test/my
 # generated docs
 # -------------------------------------------------------------------------------------------
 if(BUILD_DOXYGEN_DOCS)
+	find_package(Doxygen REQUIRED)
+	find_package(FLEX REQUIRED)
 	add_subdirectory(doc)
 	add_dependencies(fix8_doxygen myfix)
-	install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html DESTINATION share)
+	install(DIRECTORY ${CMAKE_BINARY_DIR}/doc/html DESTINATION share/doc)
 endif()
 
 # -------------------------------------------------------------------------------------------

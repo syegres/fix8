@@ -4,7 +4,7 @@
 Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 
 Fix8 Open Source FIX Engine.
-Copyright (C) 2010-19 David L. Dight <fix@fix8.org>
+Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
 
 Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
 GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
@@ -316,7 +316,7 @@ public:
 #endif
 //----------------------------------------------------------------------------------------
 /// generic spin_lock wrapper
-
+/*
 #ifdef __APPLE__
 // A simple spinlock that spins up to 100K times and then does a sched_yield to back-off.
 // unlock() could just set _lock to false BUT that assumes that the spinlock was locked
@@ -367,7 +367,7 @@ public:
 		}
 	}
 };
-#else
+#else */
 #if (FIX8_THREAD_SYSTEM == FIX8_THREAD_PTHREAD)
 class f8_spin_lock
 {
@@ -410,7 +410,7 @@ public:
 	void unlock() { _sl.clear(std::memory_order_release); }
 };
 #endif
-#endif //__APPLE__
+// #endif //__APPLE__
 
 template<typename T>
 class f8_scoped_lock_impl

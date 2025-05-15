@@ -4,7 +4,7 @@
 Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 
 Fix8 Open Source FIX Engine.
-Copyright (C) 2010-19 David L. Dight <fix@fix8.org>
+Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
 
 Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
 GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
@@ -164,13 +164,12 @@ void filter_unique(XmlElement::XmlSet& fldlist)
 {
 	using UniqueFieldMap = map<string, const XmlElement *>;
 	UniqueFieldMap ufm;
-	unsigned dupls(0);
 	for(const auto *pp : fldlist)
 	{
 		string name;
 		pp->GetAttr("name", name);
 		if (!ufm.insert({name, pp}).second)
-			++dupls; // cerr << "Duplicate field: " << name << endl;
+			; // ++dupls; // cerr << "Duplicate field: " << name << endl;
 	}
 
 	fldlist.clear();

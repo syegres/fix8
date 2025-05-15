@@ -4,7 +4,7 @@
 Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 
 Fix8 Open Source FIX Engine.
-Copyright (C) 2010-19 David L. Dight <fix@fix8.org>
+Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
 
 Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
 GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
@@ -36,6 +36,9 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 //-------------------------------------------------------------------------------------------------
 #ifndef FIX8_MULTISESSSION_HPP_
 #define FIX8_MULTISESSSION_HPP_
+
+#include <Poco/Net/Socket.h>
+#include <Poco/Net/PollSet.h>
 
 //-------------------------------------------------------------------------------------------------
 namespace FIX8 {
@@ -71,11 +74,19 @@ public:
 	  \return pointer to ServerSession that is ready to accept a connection or nullptr if timeout with none */
 	ServerSessionBase *select(const Poco::Timespan& timeout=Poco::Timespan(250000)) const
 	{
+		/*
 		Poco::Net::Socket::SocketList readList, writeList, exceptList;
 		for (auto& pp : _servermap)
 			readList.push_back(pp.first);
 		return Poco::Net::Socket::select(readList, writeList, exceptList, timeout) && !readList.empty()
 			? _servermap.find(readList[0])->second : nullptr;
+			*/
+		Poco::Net::PollSet pollSet;
+		for (auto& pp : _servermap)
+			pollSet.add(pp.first, Poco::Net::PollSet::POLL_READ);
+		if (auto modemap { pollSet.poll(timeout) }; !modemap.empty())
+			return _servermap.find(modemap.begin()->first)->second;
+		return nullptr;
 	}
 
 	/*! Check to see if there are any waiting inbound connections on any of the managed servers. Will add
@@ -86,12 +97,21 @@ public:
 	size_t select_l(std::vector<ServerSessionBase *>& result, const Poco::Timespan& timeout=Poco::Timespan(250000)) const
 	{
 		result.clear();
+		/*
 		Poco::Net::Socket::SocketList readList, writeList, exceptList;
 		for (auto& pp : _servermap)
 			readList.push_back(pp.first);
 		if (Poco::Net::Socket::select(readList, writeList, exceptList, timeout) && !readList.empty())
 			std::for_each(readList.begin(), readList.end(), [&](decltype(readList)::value_type& pp)
 				{ result.push_back(_servermap.find(pp)->second); });
+		*/
+		Poco::Net::PollSet pollSet;
+		for (auto& pp : _servermap)
+			pollSet.add(pp.first, Poco::Net::PollSet::POLL_READ);
+		auto modemap { pollSet.poll(timeout) };
+		for (auto& pp :  modemap)
+			if (auto ss { _servermap.find(pp.first) }; ss != _servermap.end())
+				result.push_back(ss->second);
 		return result.size();
 	}
 
