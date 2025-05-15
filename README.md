@@ -22,8 +22,7 @@ and framework; and a set of complete client/server test applications.
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
-1. [Building on Linux/UNIX](#building-on-linuxunix)
-1. [Building on OSX](#building-on-osx)
+1. [Building on Linux/UNIX and MacOS](#building-on-linuxunix)
 1. [Building on Windows](#building-on-windows)
 1. [Support](#support)
 1. [Downloads](#downloads)
@@ -213,12 +212,18 @@ If you wish to use BerkeleyDB for message persistence:
 
 - [Berkeley DB C++](http://www.oracle.com/technetwork/products/berkeleydb/downloads/index.html)
 
-## Building on Linux/UNIX
+## Building on Linux/UNIX and MacOS
+
+Either clone from the project on github or download the tarball.
 
 The build system now uses cmake.
 
 	% tar xvzf 1.5.0.tar.gz
 	% cd fix8-1.5.0
+or
+	% git clone git@github.com:fix8/fix8.git
+	% cd fix8
+then
 	% mkdir build
 	% cd build
 	% cmake ..
@@ -229,21 +234,18 @@ If you have built the test cases, you can also run them as follows:
 
 	% ctest
 
-## Building on MacOS
-
-The build system now uses cmake.
-
-	% tar xvzf 1.5.0.tar.gz
-	% cd fix8-1.5.0
-	% mkdir build
-	% cd build
-	% cmake ..
-	% make -j4 -l4
-	% cmake --install . --prefix <target install directory>
-
 ## Building on Windows
 
 Please see [this document](https://fix8engine.atlassian.net/wiki/x/EICW) for detailed instructions for building on Windows.
+
+---
+## Compiler support
+| Compiler | Version(s) |
+| :--- | :--- |
+| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `11`, `12`, `13`, `14`|
+| [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
+| [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
 
 ## Support
 
