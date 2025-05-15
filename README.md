@@ -296,6 +296,7 @@ These options can be passed on the cmake command line
 | [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
 | [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
 | [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
+
 Other compilers (older versions as well) may also work.
 
 ## Support
