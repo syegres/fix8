@@ -128,11 +128,7 @@ and framework; and a set of complete client/server test applications.
              <td>manpages for Fix8 utilities</td>
           </tr>
           <tr>
-             <td><code>doc/html</code></td>
-             <td>doxygen documentation (optionally generated when built)</td>
-          </tr>
-          <tr>
-             <td><code>include/</code></td>
+             <td><code>include/fix8</code></td>
              <td>header files for the runtime library and compiler</td>
           </tr>
           <tr>
@@ -150,10 +146,6 @@ and framework; and a set of complete client/server test applications.
           <tr>
              <td><code>msvc/</code></td>
              <td>Microsoft Visual Studio project files</td>
-          </tr>
-          <tr>
-             <td><code>pro/</code></td>
-             <td>Fix8Pro extensions (commercial version only)</td>
           </tr>
           <tr>
              <td><code>schema/</code></td>
