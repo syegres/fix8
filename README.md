@@ -188,7 +188,8 @@ flag on your compiler command line. Most compilers since 2020 default to at leas
 Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
-**This release now uses cmake. The build will download and build the default dependencies - poco, tbb and gtest.**
+> [!IMPORTANT]
+> This release now uses cmake. The build will download and build the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 
