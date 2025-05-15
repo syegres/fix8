@@ -36,7 +36,6 @@
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 # -------------------------------------------------------------------------------------------
 # cmake build utils
-# min cmake version 3.20 (Mar 24, 2021)
 # -------------------------------------------------------------------------------------------
 function(fix8_setbuildtype define_prefix default_type)
 	if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "")
