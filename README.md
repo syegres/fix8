@@ -22,8 +22,9 @@ and framework; and a set of complete client/server test applications.
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
-1. [Building on Linux/UNIX and MacOS](#building-on-linuxunix)
+1. [Building on Linux/UNIX and MacOS](#building-on-linuxunix-and-macos)
 1. [Building on Windows](#building-on-windows)
+1. [Compiler Support](#compiler-support)
 1. [Support](#support)
 1. [Downloads](#downloads)
 1. [Getting help or reporting problems](#getting-help-or-reporting-problems)
@@ -218,21 +219,29 @@ Either clone from the project on github or download the tarball.
 
 The build system now uses cmake.
 
+```bash
 	% tar xvzf 1.5.0.tar.gz
 	% cd fix8-1.5.0
+```
 or
+```bash
 	% git clone git@github.com:fix8/fix8.git
 	% cd fix8
+```
 then
+```bash
 	% mkdir build
 	% cd build
 	% cmake ..
 	% make -j4 -l4
 	% cmake --install . --prefix <target install directory>
+```
 
 If you have built the test cases, you can also run them as follows:
 
+```bash
 	% ctest
+```
 
 ## Building on Windows
 
