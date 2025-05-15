@@ -81,10 +81,12 @@ cpp_opts()
 # -------------------------------------------------------------------------------------------
 # runtime
 # -------------------------------------------------------------------------------------------
+set(fix8_libs Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML ${ziplib} TBB::tbb)
 macro(build_lib name type)
 	add_library(${name} ${type} ${rsrc})
-	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML ${ziplib} TBB::tbb)
+	target_link_libraries(${name} PUBLIC ${fix8_libs})
 	target_include_directories(${name} PRIVATE include)
+	add_dependencies(${name} ${fix8_libs})
 	comp_opts(${name})
 	install(TARGETS ${name})
 endmacro()

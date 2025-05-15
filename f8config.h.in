@@ -131,7 +131,7 @@ HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #endif
 
 /* Define if you have clock_nanosleep() */
-#ifndef _MSC_VER
+#if !defined _MSC_VER && !defined __APPLE__
 #ifndef FIX8_HAVE_CLOCK_NANOSLEEP
 #define FIX8_HAVE_CLOCK_NANOSLEEP 1
 #endif
