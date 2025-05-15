@@ -189,7 +189,7 @@ Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
 > [!IMPORTANT]
-> This release now uses cmake. The build will download and build the default dependencies - poco, tbb and gtest.
+> This release now uses [CMake](https://cmake.org). The build will download and build the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 
@@ -217,16 +217,14 @@ If you wish to use BerkeleyDB for message persistence:
 
 Either clone from the project on github or download the tarball.
 
-The build system now uses cmake.
-
-```bash
-% tar xvzf 1.5.0.tar.gz
-% cd fix8-1.5.0
-```
-or
 ```bash
 % git clone git@github.com:fix8/fix8.git
 % cd fix8
+```
+or
+```bash
+% tar xvzf 1.5.0.tar.gz
+% cd fix8-1.5.0
 ```
 then
 ```bash
@@ -246,6 +244,14 @@ If you have built the test cases, you can also run them as follows:
 ## Building on Windows
 
 Please see [this document](https://fix8engine.atlassian.net/wiki/x/EICW) for detailed instructions for building on Windows.
+
+### CMake project options
+These options can be passed on the cmake command line
+| Option | Description| Default | Example|
+| :--- | :--- | :--- | :--- |
+|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=true`|
+|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=true`|
+|BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS=true`|
 
 ---
 ## Compiler support
