@@ -271,7 +271,7 @@ then
 % cmake --install . --prefix <target install directory>
 ```
 
-If you have built the test cases, you can also run them as follows:
+If you have built the test cases (built by default), you can also run them as follows:
 
 ```bash
 % ctest
@@ -296,6 +296,7 @@ These options can be passed on the cmake command line
 | [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
 | [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
 | [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
+Other compilers (older versions as well) may also work.
 
 ## Support
 
@@ -351,7 +352,7 @@ If you want to submit a change to the repository, it needs to be *made on the de
 1. Login to Jira, create a ticket for your changes, describing in detail the bug fix or improvement
 1. Login to github
 1. Create a fork of fix8
-1. If you are using the command line git, clone your fork and choose the dev branch<br><code>% git clone https://github.com/[your_repo_name]/fix8.git -b dev</code>
+1. If you are using the command line git, clone your fork and choose the dev branch<br><code>% git clone https://github.com/[`your_repo_name`]/fix8.git -b dev</code>
 1. Make your changes to this branch
 1. Submit changes to your branch and push the branch to your fork
 1. Create a pull request at fix8:dev
