@@ -220,27 +220,27 @@ Either clone from the project on github or download the tarball.
 The build system now uses cmake.
 
 ```bash
-	% tar xvzf 1.5.0.tar.gz
-	% cd fix8-1.5.0
+% tar xvzf 1.5.0.tar.gz
+% cd fix8-1.5.0
 ```
 or
 ```bash
-	% git clone git@github.com:fix8/fix8.git
-	% cd fix8
+% git clone git@github.com:fix8/fix8.git
+% cd fix8
 ```
 then
 ```bash
-	% mkdir build
-	% cd build
-	% cmake ..
-	% make -j4 -l4
-	% cmake --install . --prefix <target install directory>
+% mkdir build
+% cd build
+% cmake ..
+% make -j4 -l4
+% cmake --install . --prefix <target install directory>
 ```
 
 If you have built the test cases, you can also run them as follows:
 
 ```bash
-	% ctest
+% ctest
 ```
 
 ## Building on Windows
