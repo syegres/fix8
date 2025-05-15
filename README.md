@@ -241,8 +241,6 @@ The build system now uses cmake.
 	% make -j4 -l4
 	% cmake --install . --prefix <target install directory>
 
-Please see [this document](https://fix8engine.atlassian.net/wiki/x/B4AtAQ) for more instructions for building on OSX.
-
 ## Building on Windows
 
 Please see [this document](https://fix8engine.atlassian.net/wiki/x/EICW) for detailed instructions for building on Windows.
