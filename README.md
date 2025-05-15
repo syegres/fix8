@@ -73,11 +73,7 @@ and framework; and a set of complete client/server test applications.
     <tbody>
           <tr>
              <td><code>./</code></td>
-             <td>root directory with configure</td>
-          </tr>
-          <tr>
-             <td><code>m4/</code></td>
-             <td>additional m4 macros needed by configure</td>
+             <td>root directory with CMakeLists.txt</td>
           </tr>
           <tr>
              <td><code>compiler/</code></td>
@@ -102,10 +98,6 @@ and framework; and a set of complete client/server test applications.
           <tr>
              <td><code>include/</code></td>
              <td>header files for the runtime library and compiler</td>
-          </tr>
-          <tr>
-             <td><code>include/ff/</code></td>
-             <td>header files for FastFlow</td>
           </tr>
           <tr>
              <td><code>runtime/</code></td>
@@ -196,25 +188,13 @@ flag on your compiler command line. Most compilers since 2020 default to at leas
 Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
-This release now uses cmake. The build will download and build the default dependencies - poco, tcmalloc and gtest.
+**This release now uses cmake. The build will download and build the default dependencies - poco, tbb and gtest.**
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 
 Additional libraries are needed for building on Windows, [see here](https://fix8engine.atlassian.net/wiki/x/EICW).
 
 ## Optional Dependencies
-
-You can either choose the internally supplied [Fastflow](http://calvados.di.unipi.it/dokuwiki/doku.php?id=ffnamespace:about) or use...
-
-- Intel Threading Building Blocks [OSS edition](http://threadingbuildingblocks.org/download)
-
-If you wish to use the built-in unit tests (recommended):
-
-- [googletest](https://code.google.com/p/googletest/downloads/list)
-
-If you wish to use tcmalloc (recommended):
-
-- [gperftools](https://code.google.com/p/gperftools/downloads/list)
 
 If you wish to build the html documentation, you will need:
 
@@ -248,7 +228,7 @@ If you have built the test cases, you can also run them as follows:
 
 	% ctest
 
-## Building on OSX
+## Building on MacOS
 
 The build system now uses cmake.
 
@@ -274,7 +254,6 @@ Please refer to the following pages for help:
 - [Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-developer)
 - [API Documentation](http://fix8.org/fix8/html)
 - [Jira Issues Page](https://fix8engine.atlassian.net/)
-- [Fix8 News](http://blog.fix8.org/)
 - [Wiki](https://fix8engine.atlassian.net/wiki)
 - [Twitter](https://twitter.com/fix8engine)
 
