@@ -44,10 +44,10 @@ The system is comprised of a compiler for generating C++ message and field encod
 decoders and instantiation tables; a runtime library to support the generated code
 and framework; and a set of complete client/server test applications.
 
-[Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com), the commercially supported version of Fix8.
+[Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com).
 
 > [!TIP]
-> For enterprise use we recommend Fix8Pro. For an example of how to use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example).
+> For enterprise use we recommend the commercially supported version of Fix8 - Fix8Pro. For an example of how to use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example).
 
 ## Contents
 
