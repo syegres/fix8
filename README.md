@@ -1,6 +1,6 @@
 <!-----------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
-g/ SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
+// SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
 // SPDX-FileType: SOURCE
 //
 // Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
