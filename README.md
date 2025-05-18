@@ -58,7 +58,7 @@ and framework; and a set of complete client/server test applications.
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
-1. [Building on Linux/UNIX and MacOS](#building-on-linuxunixmacosandwindows)
+1. [Building on Linux/UNIX, MacOS and Windows](#building-on-linuxunix-macos-and-windows)
 1. [Compiler Support](#compiler-support)
 1. [Support](#support)
 1. [Downloads](#downloads)
@@ -200,7 +200,10 @@ a login. For our complete API Documentation see [here](http://fix8.org/fix8/html
 
 ## C++17
 
-Fix8 now **requires C++17 compiler support**. Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
+> [!IMPORTANT]
+> Fix8 now **requires C++17 compiler support**.
+
+Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
 
 	-std=c++17
 
@@ -211,7 +214,7 @@ flag on your compiler command line. Most compilers since 2020 default to at leas
 Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
-> [!IMPORTANT]
+> [!NOTE]
 > This release now uses [CMake](https://cmake.org). The build will download and build the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
