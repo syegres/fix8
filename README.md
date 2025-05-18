@@ -1,6 +1,6 @@
 <!-----------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
+g/ SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
 // SPDX-FileType: SOURCE
 //
 // Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
@@ -58,8 +58,7 @@ and framework; and a set of complete client/server test applications.
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
-1. [Building on Linux/UNIX and MacOS](#building-on-linuxunix-and-macos)
-1. [Building on Windows](#building-on-windows)
+1. [Building on Linux/UNIX and MacOS](#building-on-linuxunixmacosandwindows)
 1. [Compiler Support](#compiler-support)
 1. [Support](#support)
 1. [Downloads](#downloads)
@@ -134,10 +133,6 @@ and framework; and a set of complete client/server test applications.
           <tr>
              <td><code>runtime/</code></td>
              <td>runtime library source</td>
-          </tr>
-          <tr>
-             <td><code>stocklib/</code></td>
-             <td>stock FIX library builds</td>
           </tr>
           <tr>
              <td><code>util/</code></td>
@@ -220,8 +215,8 @@ libraries) being installed to build properly:
 > This release now uses [CMake](https://cmake.org). The build will download and build the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
-
-Additional libraries are needed for building on Windows, [see here](https://fix8engine.atlassian.net/wiki/x/EICW).
+- oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
+- GoogleTest [gtest](https://github.com/google/googletest)
 
 ## Optional Dependencies
 
@@ -241,9 +236,10 @@ If you wish to use BerkeleyDB for message persistence:
 
 - [Berkeley DB C++](http://www.oracle.com/technetwork/products/berkeleydb/downloads/index.html)
 
-## Building on Linux/UNIX and MacOS
+## Building on Linux/UNIX, MacOS and Windows
 
 Either clone from the project on github or download the tarball.
+The Windows build now also uses cmake. Please follow the directions above (either msvc or vscode).
 
 ```bash
 % git clone git@github.com:fix8/fix8.git
@@ -268,10 +264,6 @@ If you have built the test cases (built by default), you can also run them as fo
 ```bash
 % ctest
 ```
-
-## Building on Windows
-
-Please see [this document](https://fix8engine.atlassian.net/wiki/x/EICW) for detailed instructions for building on Windows.
 
 ### CMake project options
 These options can be passed on the cmake command line
