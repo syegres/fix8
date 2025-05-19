@@ -1,7 +1,7 @@
 <!-----------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
-// SPDX-FileType: SOURCE
+// SPDX-FileType: DOCUMENTATION
 //
 // Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 //
@@ -48,8 +48,8 @@ and framework; and a set of complete client/server test applications.
 
 > [!TIP]
 > For enterprise use we recommend the commercially supported version of Fix8 - Fix8Pro.
-> Fix8Pro has a similar API to Fix8. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example).
-> (You'll need a license from Fix8MT).
+> Fix8Pro has a similar API to Fix8. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example)
+> (To run the example you'll need a license from Fix8MT).
 
 ## Contents
 
@@ -218,7 +218,7 @@ Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
 > [!NOTE]
-> This release now uses [CMake](https://cmake.org). The build will download and build the default dependencies - poco, tbb and gtest.
+> This release now uses [CMake](https://cmake.org). The build _will download and build_ the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 - oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
@@ -327,11 +327,7 @@ stack traces, sample configuruation files, config.log, etc.
 1. If you have already implemented a fix, and wish to make a pull request on Github, *create an issue in Jira first*.
 This will help us track the problem and ensure that the solution is properly tested.
 
-Also, consider the following:
-
-- We also provide commercial support and help. See [below](#fix8pro-and-fix8-market-technologies).
-
-- We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
+We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
 
 - If you are on [LinkedIn](http://linkedin.com) join the LinkedIn group **Fix8 Users and Developers**
 for more help and information about the Fix8 project.
