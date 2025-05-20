@@ -1,7 +1,7 @@
 <!-----------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
-// SPDX-FileType: SOURCE
+// SPDX-FileType: DOCUMENTATION
 //
 // Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 //
@@ -47,9 +47,9 @@ and framework; and a set of complete client/server test applications.
 [Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com).
 
 > [!TIP]
-> For enterprise use we recommend the commercially supported version of Fix8 - Fix8Pro.
-> Fix8Pro has a similar API to Fix8. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example).
-> (You'll need a license from Fix8MT).
+> For enterprise use we recommend the commercially supported version of Fix8: Fix8Pro.
+> Fix8Pro has a similar API to Fix8 and an easy upgrade path. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example)
+> (to run the example you'll need a license from Fix8MT).
 
 ## Contents
 
@@ -69,6 +69,7 @@ and framework; and a set of complete client/server test applications.
 1. [Making a Pull Request](#making-a-pull-request)
 1. [License](#license)
 1. [Fix8Pro and Fix8 Market Technologies](#fix8pro-and-fix8-market-technologies)
+1. [Authors and Contributors](#authors-and-contributors)
 1. [More Information](#more-information)
 
 ## Features
@@ -143,7 +144,7 @@ and framework; and a set of complete client/server test applications.
           </tr>
           <tr>
              <td><code>msvc/</code></td>
-             <td>Microsoft Visual Studio project files</td>
+             <td>Microsoft Visual Studio support files</td>
           </tr>
           <tr>
              <td><code>schema/</code></td>
@@ -218,7 +219,7 @@ Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
 > [!NOTE]
-> This release now uses [CMake](https://cmake.org). The build will download and build the default dependencies - poco, tbb and gtest.
+> This release now uses [CMake](https://cmake.org). The build _will download and build_ the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
 - oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
@@ -248,7 +249,7 @@ Either clone from the project on github or download the tarball.
 The Windows build now also uses cmake. Please follow the directions above (either msvc or vscode).
 
 ```bash
-% git clone git@github.com:fix8/fix8.git
+% git clone https://github.com/fix8/fix8.git
 % cd fix8
 ```
 or
@@ -327,11 +328,7 @@ stack traces, sample configuruation files, config.log, etc.
 1. If you have already implemented a fix, and wish to make a pull request on Github, *create an issue in Jira first*.
 This will help us track the problem and ensure that the solution is properly tested.
 
-Also, consider the following:
-
-- We also provide commercial support and help. See [below](#fix8pro-and-fix8-market-technologies).
-
-- We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
+We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
 
 - If you are on [LinkedIn](http://linkedin.com) join the LinkedIn group **Fix8 Users and Developers**
 for more help and information about the Fix8 project.
@@ -364,6 +361,27 @@ Fix8MT is responsible for providing and managing additional support and consulta
 Fix8 open source community and partners to grow commercial support services through 3rd party ISVs.
 
 For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.com)
+
+## Authors and Contributors
+|David Dight| `fix at fix8 dot org`|
+| :--- | :--- |
+|Sergey Sedreev| `sergeys at fix8 dot org`|
+|Kristian Peacocke| `krpeacocke at gmail dot com`|
+|Milan Mitic| `milsanore at gmail dot com`|
+|Jianzong Su| `sujianzong at foxmail dot com`|
+|Alex Nizev| `alexnizev at gmail dot com`|
+|Evan Wies| `evan at neomantra dot net`|
+|Venkat Bhamidipati| `venkat70 at gmail dot com`|
+|Derrick Johnson| `derrick dot johnson at mac dot com`|
+|Richard Bourne| `richbourne at gmail dot com`|
+|David Keller| `david dot keller at litchis dot fr`|
+|Markus Elfring| `elfring at users dot sourceforge dot net`|
+|David Boosalis| `david dot boosalis at gmail dot com`|
+|Chris Fischer| `cgfischerum at gmail dot com`|
+|Ido Rosen| `code at idorosen dot com`|
+|Andrew Stern| `ndrew dot stern at itg dot com`|
+|AntonM| `antonam000 at gmail dot com`|
+|Konstantin Ivanov| `korst1k at gmail dot com`|
 
 ## More Information
 
