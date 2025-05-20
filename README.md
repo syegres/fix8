@@ -47,8 +47,8 @@ and framework; and a set of complete client/server test applications.
 [Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com).
 
 > [!TIP]
-> For enterprise use we recommend the commercially supported version of Fix8 - Fix8Pro.
-> Fix8Pro has a similar API to Fix8. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example)
+> For enterprise use we recommend the commercially supported version of Fix8: Fix8Pro.
+> Fix8Pro has a similar API to Fix8 and an easy upgrade path. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example)
 > (to run the example you'll need a license from Fix8MT).
 
 ## Contents
@@ -248,7 +248,7 @@ Either clone from the project on github or download the tarball.
 The Windows build now also uses cmake. Please follow the directions above (either msvc or vscode).
 
 ```bash
-% git clone git@github.com:fix8/fix8.git
+% git clone https://github.com/fix8/fix8.git
 % cd fix8
 ```
 or
