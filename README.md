@@ -69,6 +69,7 @@ and framework; and a set of complete client/server test applications.
 1. [Making a Pull Request](#making-a-pull-request)
 1. [License](#license)
 1. [Fix8Pro and Fix8 Market Technologies](#fix8pro-and-fix8-market-technologies)
+1. [Contributors](#contributors)
 1. [More Information](#more-information)
 
 ## Features
@@ -360,6 +361,26 @@ Fix8MT is responsible for providing and managing additional support and consulta
 Fix8 open source community and partners to grow commercial support services through 3rd party ISVs.
 
 For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.com)
+
+## Contributors
+| Name | Email |
+| :--- | :--- |
+|Kristian Peacocke| <krpeacocke@gmail.com>|
+|Milan Mitic| <milsanore@gmail.com>|
+|Jianzong Su| <sujianzong@foxmail.com>|
+|Alex Nizev| <alexnizev@gmail.com>|
+|Evan Wies| <evan@neomantra.net>|
+|Venkat Bhamidipati| <venkat70@gmail.com>|
+|Derrick Johnson| <derrick.johnson@mac.com>|
+|Richard Bourne| <richbourne@gmail.com>|
+|David Keller| <david.keller@litchis.fr>|
+|Markus Elfring| <elfring@users.sourceforge.net>|
+|David Boosalis| <david.boosalis@gmail.com>|
+|Chris Fischer| <cgfischerum@gmail.com>|
+|Ido Rosen| <code@idorosen.com>|
+|Andrew Stern| <ndrew.stern@itg.com>|
+|AntonM| <antonam000@gmail.com>|
+|Konstantin Ivanov| <korst1k@gmail.com>|
 
 ## More Information
 
