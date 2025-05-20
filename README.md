@@ -364,8 +364,8 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 
 ## Authors and Contributors
 |David Dight| `davidd at fix8 dot org`|
-|Sergey Sedreev| `davidd at sergeys dot org`|
 | :--- | :--- |
+|Sergey Sedreev| `davidd at sergeys dot org`|
 |Kristian Peacocke| `krpeacocke at gmail dot com`|
 |Milan Mitic| `milsanore at gmail dot com`|
 |Jianzong Su| `sujianzong at foxmail dot com`|
