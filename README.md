@@ -143,7 +143,7 @@ and framework; and a set of complete client/server test applications.
           </tr>
           <tr>
              <td><code>msvc/</code></td>
-             <td>Microsoft Visual Studio project files</td>
+             <td>Microsoft Visual Studio support files</td>
           </tr>
           <tr>
              <td><code>schema/</code></td>
