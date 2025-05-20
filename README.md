@@ -363,8 +363,8 @@ Fix8 open source community and partners to grow commercial support services thro
 For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.com)
 
 ## Contributors
-| :--- | :--- |
 |Kristian Peacocke| `krpeacocke at gmail.com`|
+| :--- | :--- |
 |Milan Mitic| `milsanore at gmail.com`|
 |Jianzong Su| `sujianzong at foxmail.com`|
 |Alex Nizev| `alexnizev at gmail.com`|
