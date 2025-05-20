@@ -363,24 +363,23 @@ Fix8 open source community and partners to grow commercial support services thro
 For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.com)
 
 ## Contributors
-| Name | Email |
 | :--- | :--- |
-|Kristian Peacocke| krpeacocke at gmail.com|
-|Milan Mitic| milsanore at gmail.com|
-|Jianzong Su| sujianzong at foxmail.com|
-|Alex Nizev| alexnizev at gmail.com|
-|Evan Wies| evan at neomantra.net|
-|Venkat Bhamidipati| venkat70 at gmail.com|
-|Derrick Johnson| derrick.johnson at mac.com|
-|Richard Bourne| richbourne at gmail.com|
-|David Keller| david.keller at litchis.fr|
-|Markus Elfring| elfring at users.sourceforge.net|
-|David Boosalis| david.boosalis at gmail.com|
-|Chris Fischer| cgfischerum at gmail.com|
-|Ido Rosen| code at idorosen.com|
-|Andrew Stern| ndrew.stern at itg.com|
-|AntonM| antonam000 at gmail.com|
-Konstantin Ivanov| korst1k at gmail.com|
+|Kristian Peacocke| `krpeacocke at gmail.com`|
+|Milan Mitic| `milsanore at gmail.com`|
+|Jianzong Su| `sujianzong at foxmail.com`|
+|Alex Nizev| `alexnizev at gmail.com`|
+|Evan Wies| `evan at neomantra.net`|
+|Venkat Bhamidipati| venkat70 at gmail.com`|
+|Derrick Johnson| `derrick.johnson at mac.com`|
+|Richard Bourne| `richbourne at gmail.com`|
+|David Keller| `david.keller at litchis.fr`|
+|Markus Elfring| `elfring at users.sourceforge.net`|
+|David Boosalis| `david.boosalis at gmail.com`|
+|Chris Fischer| `cgfischerum at gmail.com`|
+|Ido Rosen| `code at idorosen.com`|
+|Andrew Stern| `ndrew.stern at itg.com`|
+|AntonM| `antonam000 at gmail.com`|
+Konstantin Ivanov| `korst1k at gmail.com`|
 
 ## More Information
 
