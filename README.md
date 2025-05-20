@@ -369,7 +369,7 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 |Jianzong Su| `sujianzong at foxmail.com`|
 |Alex Nizev| `alexnizev at gmail.com`|
 |Evan Wies| `evan at neomantra.net`|
-|Venkat Bhamidipati| venkat70 at gmail.com`|
+|Venkat Bhamidipati| `venkat70 at gmail.com`|
 |Derrick Johnson| `derrick.johnson at mac.com`|
 |Richard Bourne| `richbourne at gmail.com`|
 |David Keller| `david.keller at litchis.fr`|
