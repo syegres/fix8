@@ -69,7 +69,7 @@ and framework; and a set of complete client/server test applications.
 1. [Making a Pull Request](#making-a-pull-request)
 1. [License](#license)
 1. [Fix8Pro and Fix8 Market Technologies](#fix8pro-and-fix8-market-technologies)
-1. [Contributors](#contributors)
+1. [Authors and Contributors](#authors-and-contributors)
 1. [More Information](#more-information)
 
 ## Features
@@ -362,9 +362,11 @@ Fix8 open source community and partners to grow commercial support services thro
 
 For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.com)
 
-## Contributors
-|Kristian Peacocke| `krpeacocke at gmail dot com`|
+## Authors and Contributors
+|David Dight| `davidd at fix8 dot org`|
+|Sergey Sedreev| `davidd at sergeys dot org`|
 | :--- | :--- |
+|Kristian Peacocke| `krpeacocke at gmail dot com`|
 |Milan Mitic| `milsanore at gmail dot com`|
 |Jianzong Su| `sujianzong at foxmail dot com`|
 |Alex Nizev| `alexnizev at gmail dot com`|
@@ -379,7 +381,7 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 |Ido Rosen| `code at idorosen dot com`|
 |Andrew Stern| `ndrew dot stern at itg dot com`|
 |AntonM| `antonam000 at gmail dot com`|
-Konstantin Ivanov| `korst1k at gmail dot com`|
+|Konstantin Ivanov| `korst1k at gmail dot com`|
 
 ## More Information
 
