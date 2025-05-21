@@ -79,7 +79,7 @@ cpp_opts()
 # -------------------------------------------------------------------------------------------
 # runtime
 # -------------------------------------------------------------------------------------------
-set(fix8_libs Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML ${ziplib} TBB::tbb TBB::tbbmalloc_proxy)
+set(fix8_libs Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML ${ziplib} TBB::tbb)
 macro(build_lib name type)
 	add_library(${name} ${type} ${rsrc})
 	target_link_libraries(${name} PUBLIC ${fix8_libs})
