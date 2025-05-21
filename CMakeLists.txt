@@ -14,7 +14,7 @@
 #   even the  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 #
 #   You should  have received a copy of the GNU Lesser General Public  License along with Fix8.
-#   If not, see <http://www.gnu.org/licenses/>.
+#   If not, see <https://www.gnu.org/licenses/>.
 #
 #   BECAUSE THE PROGRAM IS  LICENSED FREE OF  CHARGE, THERE IS NO  WARRANTY FOR THE PROGRAM, TO
 #   THE EXTENT  PERMITTED  BY  APPLICABLE  LAW.  EXCEPT WHEN  OTHERWISE  STATED IN  WRITING THE
@@ -44,7 +44,9 @@ set(fix8_CMAKE_CXX_FLAGS_STR "${CMAKE_CXX_FLAGS}")
 # -------------------------------------------------------------------------------------------
 # options
 # -------------------------------------------------------------------------------------------
-fix8_setbuildtype(FIX8 Release)
+if (NOT MSVC)
+	fix8_setbuildtype(FIX8 Release)
+endif()
 fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 fix8_addoption("BUILD_DOXYGEN_DOCS|enable building of self documentation|false")

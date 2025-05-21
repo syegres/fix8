@@ -14,7 +14,7 @@
 //  even the  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 //
 //  You should  have received a copy of the GNU Lesser General Public  License along with Fix8.
-//  If not, see <http://www.gnu.org/licenses/>.
+//  If not, see <https://www.gnu.org/licenses/>.
 //
 //  BECAUSE THE PROGRAM IS  LICENSED FREE OF  CHARGE, THERE IS NO  WARRANTY FOR THE PROGRAM, TO
 //  THE EXTENT  PERMITTED  BY  APPLICABLE  LAW.  EXCEPT WHEN  OTHERWISE  STATED IN  WRITING THE
@@ -211,7 +211,7 @@ int main(int argc, char **argv)
 		{
 		case 'v':
 			cout << argv[0] << " for " FIX8_PACKAGE " version " FIX8_VERSION << endl;
-			cout << "Released under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3. See <http://fsf.org/> for details." << endl;
+			cout << "Released under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3. See <https://www.gnu.org/licenses/> for details." << endl;
 			return 0;
 		case ':': case '?': return 1;
 		case 'h': print_usage(); return 0;
