@@ -1,42 +1,40 @@
 <!-----------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
-// SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight
+// SPDX-PackageName: Fix8 Open Source FIX Engine
+// SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
 // SPDX-FileType: DOCUMENTATION
+// SPDX-Notice: >
+//  Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
 //
-// Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
+//  Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
+//  GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
+//  version 3 of the License, or (at your option) any later version.
 //
-// Fix8 Open Source FIX Engine.
-// Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
+//  Fix8 is distributed in the hope  that it will be useful, but WITHOUT ANY WARRANTY;  without
+//  even the  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 //
-// Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
-// GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
-// version 3 of the License, or (at your option) any later version.
+//  You should  have received a copy of the GNU Lesser General Public  License along with Fix8.
+//  If not, see <https://www.gnu.org/licenses/>.
 //
-// Fix8 is distributed in the hope  that it will be useful, but WITHOUT ANY WARRANTY;  without
-// even the  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//  BECAUSE THE PROGRAM IS  LICENSED FREE OF  CHARGE, THERE IS NO  WARRANTY FOR THE PROGRAM, TO
+//  THE EXTENT  PERMITTED  BY  APPLICABLE  LAW.  EXCEPT WHEN  OTHERWISE  STATED IN  WRITING THE
+//  COPYRIGHT HOLDERS AND/OR OTHER PARTIES  PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY
+//  KIND,  EITHER EXPRESSED   OR   IMPLIED,  INCLUDING,  BUT   NOT  LIMITED   TO,  THE  IMPLIED
+//  WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO
+//  THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE,
+//  YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 //
-// You should  have received a copy of the GNU Lesser General Public  License along with Fix8.
-// If not, see <http://www.gnu.org/licenses/>.
-//
-// BECAUSE THE PROGRAM IS  LICENSED FREE OF  CHARGE, THERE IS NO  WARRANTY FOR THE PROGRAM, TO
-// THE EXTENT  PERMITTED  BY  APPLICABLE  LAW.  EXCEPT WHEN  OTHERWISE  STATED IN  WRITING THE
-// COPYRIGHT HOLDERS AND/OR OTHER PARTIES  PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY
-// KIND,  EITHER EXPRESSED   OR   IMPLIED,  INCLUDING,  BUT   NOT  LIMITED   TO,  THE  IMPLIED
-// WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO
-// THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE,
-// YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
-//
-// IN NO EVENT UNLESS REQUIRED  BY APPLICABLE LAW  OR AGREED TO IN  WRITING WILL ANY COPYRIGHT
-// HOLDER, OR  ANY OTHER PARTY  WHO MAY MODIFY  AND/OR REDISTRIBUTE  THE PROGRAM AS  PERMITTED
-// ABOVE,  BE  LIABLE  TO  YOU  FOR  DAMAGES,  INCLUDING  ANY  GENERAL, SPECIAL, INCIDENTAL OR
-// CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT
-// NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
-// THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
-// HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+//  IN NO EVENT UNLESS REQUIRED  BY APPLICABLE LAW  OR AGREED TO IN  WRITING WILL ANY COPYRIGHT
+//  HOLDER, OR  ANY OTHER PARTY  WHO MAY MODIFY  AND/OR REDISTRIBUTE  THE PROGRAM AS  PERMITTED
+//  ABOVE,  BE  LIABLE  TO  YOU  FOR  DAMAGES,  INCLUDING  ANY  GENERAL, SPECIAL, INCIDENTAL OR
+//  CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT
+//  NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
+//  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
+//  HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 //---------------------------------------------------------------------------------------->
-<p align="center"><a href="http://www.fix8.org"><img src="http://fix8.org/fix8/fix8_Logo_RGB.png"></a></p>
+<p align="center"><a href="https://www.fix8.org"><img src="https://fix8.org/fix8/fix8_Logo_RGB.png"></a></p>
 
-# [Fix8](http://www.fix8.org) Open Source C++ FIX Engine
+# [Fix8](https://www.fix8.org) Open Source C++ FIX Engine
 
 A modern open source C++ FIX framework featuring complete schema driven customisation, high performance and fast application development.
 
@@ -74,11 +72,11 @@ and framework; and a set of complete client/server test applications.
 
 ## Features
 
-* [Fix8](http://www.fix8.org) helps you get your [FIX protocol](http://www.fixprotocol.org/) client or server up and running quickly. Using one of the standard FIX schemas you can have a FIX client or server up and running in next to no time.
+* [Fix8](https://www.fix8.org) helps you get your [FIX protocol](https://www.fixprotocol.org/) client or server up and running quickly. Using one of the standard FIX schemas you can have a FIX client or server up and running in next to no time.
 
 * Statically compile your FIX xml schema and quickly build your FIX application on top. If you need to add customised messages or fields, simply update the schema and recompile.
 
-* Fix8 is the fastest C++ Open Source FIX framework. Our testing shows that Fix8 is on average 68% faster encoding/decoding the same message than Quickfix. See [Performance](http://fix8.org/performance.html) to see how we substantiate this shameless bragging.
+* Fix8 is the fastest C++ Open Source FIX framework. Our testing shows that Fix8 is on average 68% faster encoding/decoding the same message than Quickfix. See [Performance](https://fix8.org/performance.html) to see how we substantiate this shameless bragging.
 
 * Fix8 supports standard `FIX4.X` to `FIX5.X` and `FIXT1.X`. If you have a custom FIX variant Fix8 can use that too. New FIX versions will be supported.
 
@@ -165,7 +163,7 @@ and framework; and a set of complete client/server test applications.
 ## Documentation
 
 See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
-a login. For our complete API Documentation see [here](http://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
+a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
 
 ## Branch Layout
 
@@ -221,7 +219,7 @@ libraries) being installed to build properly:
 > [!NOTE]
 > This release now uses [CMake](https://cmake.org). The build _will download and build_ the default dependencies - poco, tbb and gtest.
 
-- Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
+- Poco C++ Libraries [basic edition](https://pocoproject.org/download/index.html)
 - oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
 - GoogleTest [gtest](https://github.com/google/googletest)
 
@@ -229,7 +227,7 @@ libraries) being installed to build properly:
 
 If you wish to build the html documentation, you will need:
 
-- [Doxygen](http://www.doxygen.org)
+- [Doxygen](https://www.doxygen.org)
 
 If you wish to use Redis for message persistence:
 
@@ -237,11 +235,11 @@ If you wish to use Redis for message persistence:
 
 If you wish to use libmemcached for message persistence:
 
-- [libmemcached](http://libmemcached.org/libMemcached.html)
+- [libmemcached](https://libmemcached.org/libMemcached.html)
 
 If you wish to use BerkeleyDB for message persistence:
 
-- [Berkeley DB C++](http://www.oracle.com/technetwork/products/berkeleydb/downloads/index.html)
+- [Berkeley DB C++](https://www.oracle.com/technetwork/products/berkeleydb/downloads/index.html)
 
 ## Building on Linux/UNIX, MacOS and Windows
 
@@ -293,17 +291,17 @@ Other compilers (older versions as well) may also work.
 ## Support
 
 Please refer to the following pages for help:
-- [FAQ](http://fix8.org/faq.html)
+- [FAQ](https://fix8.org/faq.html)
 - [Fix8 Support Group](https://groups.google.com/forum/#!forum/fix8-support)
 - [Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-developer)
-- [API Documentation](http://fix8.org/fix8/html)
+- [API Documentation](https://fix8.org/fix8/html)
 - [Jira Issues Page](https://fix8engine.atlassian.net/)
 - [Wiki](https://fix8engine.atlassian.net/wiki)
 
 ## Downloads
 
 Please refer to the following page:
-- [Downloads](http://fix8.org/downloads.html)
+- [Downloads](https://fix8.org/downloads.html)
 
 ## Getting help or reporting problems
 
@@ -323,14 +321,14 @@ the [Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-develope
 
 1. If you believe you have found a problem that needs fixing, **go to the [Jira Issues Page](https://fix8engine.atlassian.net/),
 register and create an issue.** Select 'fix8' as the project and provide *as much detail as possible*. Attach supporting files and extracts, like logfiles,
-stack traces, sample configuruation files, config.log, etc.
+sgack traces, sample configuruation files, config.log, etc.
 
 1. If you have already implemented a fix, and wish to make a pull request on Github, *create an issue in Jira first*.
 This will help us track the problem and ensure that the solution is properly tested.
 
 We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
 
-- If you are on [LinkedIn](http://linkedin.com) join the LinkedIn group **Fix8 Users and Developers**
+- If you are on [LinkedIn](https://linkedin.com) join the LinkedIn group **Fix8 Users and Developers**
 for more help and information about the Fix8 project.
 
 ## Making a Pull Request
@@ -349,8 +347,8 @@ If you want to submit a change to the repository, it needs to be *made on the de
 
 ## License
 
-Fix8 is released under the [GNU LESSER GENERAL PUBLIC LICENSE Version 3](http://www.gnu.org/licenses/lgpl.html).
-See [License](http://fix8.org/faq.html#license) for more information.
+Fix8 is released under the [GNU LESSER GENERAL PUBLIC LICENSE Version 3](https://www.gnu.org/licenses/lgpl.html).
+See [License](https://fix8.org/faq.html#license) for more information.
 
 ## Fix8Pro and Fix8 Market Technologies
 
@@ -385,4 +383,4 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 
 ## More Information
 
-For more information, see the [Fix8 website.](http://www.fix8.org)
+For more information, see the [Fix8 website.](https://www.fix8.org)
