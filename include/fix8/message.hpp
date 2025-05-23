@@ -1047,9 +1047,9 @@ constexpr unsigned long COLLAPSE_INT64(unsigned long x)
 #endif
 #endif
 
-constexpr std::uint64_t fix8pro_collapse_int64(std::uint64_t x) noexcept
+constexpr std::uint64_t fix8_collapse_int64(std::uint64_t x) noexcept
    { return x + (x >> 8) + (x >> 16) + (x >> 24) + (x >> 32) + (x >> 40) + (x >> 48) + (x >> 56); }
-constexpr std::uint32_t fix8pro_collapse_int32(std::uint32_t x) noexcept
+constexpr std::uint32_t fix8_collapse_int32(std::uint32_t x) noexcept
    { return x + (x >> 8) + (x >> 16) + (x >> 24); }
 //-------------------------------------------------------------------------------------------------
 /// A complete Fix message with header, body and trailer
@@ -1204,12 +1204,12 @@ public:
          if (ii && ii % 256 == 0)
          {
             /// @see FX-821, need to reset overflow bit sum to avoid of overflow in high byte each 256th cycle
-            overflow += fix8pro_collapse_int32(overflowtmp);
+            overflow += fix8_collapse_int32(overflowtmp);
             overflowtmp = 0;
          }
       }
-      ret = fix8pro_collapse_int32(ret);
-      overflow += fix8pro_collapse_int32(overflowtmp);
+      ret = fix8_collapse_int32(ret);
+      overflow += fix8_collapse_int32(overflowtmp);
       for (; ii < elen; ret += from[ii++]); // add up rest one by one
       return (ret - overflow) & 0xff;
    }
