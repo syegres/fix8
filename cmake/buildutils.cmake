@@ -129,9 +129,7 @@ function(build_test name files)
 	target_link_libraries(${name} PUBLIC Poco::Foundation Poco::Net Poco::Util ${poco_ssl_libs} Poco::XML fix8 utest GTest::gtest GTest::gtest_main)
 	target_include_directories(${name} PRIVATE include utests ${CMAKE_BINARY_DIR}/generated/utest)
 	target_compile_definitions(${name} PRIVATE F8_UTEST_API_SHARED)
-	if (NOT MSVC) # TODO:[ss] fix me - need to pass the path to dlls
-		gtest_discover_tests(${name}) # PROPERTIES ENVIRONMENT "[==[${FIX8_LD_LIBRARY_PATH}]==]") # https://stackoverflow.com/questions/57541741/with-cmake-how-can-i-set-environment-properties-on-the-gtest-discover-tests-g
-	endif()
+	gtest_discover_tests(${name})
 	comp_opts(${name})
 endfunction()
 
@@ -198,4 +196,19 @@ endmacro()
 # -------------------------------------------------------------------------------------------
 macro(add_gen_static_library name xml)
 	fix8_gen_library(static ${name} ${xml} "_" ${ARGV2} ${ARGV3} ${ARGV4} ${ARGV5} ${ARGV6} ${ARGV7} ${ARGV8} ${ARGV9} ${ARGV10})
+endmacro()
+
+# -------------------------------------------------------------------------------------------
+macro(copy_tbb)
+	if (MSVC)
+		set(tbb_target_dir bin)
+	else()
+		set(tbb_target_dir lib)
+	endif()
+	add_custom_target(tbb_copy ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/bin/.tbb_copied)
+	add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/.tbb_copied
+		COMMAND ${CMAKE_COMMAND} -E copy_directory $<TARGET_FILE_DIR:TBB::tbb> ${CMAKE_CURRENT_BINARY_DIR}/${tbb_target_dir}
+		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/bin/.tbb_copied
+		DEPENDS TBB::tbb TBB::tbbmalloc_proxy TBB::tbbmalloc
+		)
 endmacro()
