@@ -70,7 +70,7 @@ endif()
 fix8_fetch(poco pocoproject/poco poco-1.14.2-release)
 set(TBB_TEST OFF)
 fix8_fetch(tbb uxlfoundation/oneTBB v2022.1.0)
-copy_tbb()
+copy_libs()
 
 # -------------------------------------------------------------------------------------------
 # compiler settings
@@ -86,6 +86,9 @@ macro(build_lib name type)
 	target_link_libraries(${name} PUBLIC ${fix8_libs})
 	target_include_directories(${name} PRIVATE include)
 	add_dependencies(${name} tbb_copy ${fix8_libs})
+	if (MSVC)
+		add_dependencies(${name} zlib_copy ${fix8_libs})
+	endif()
 	comp_opts(${name})
 	install(TARGETS ${name})
 endmacro()

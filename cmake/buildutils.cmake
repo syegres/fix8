@@ -199,16 +199,22 @@ macro(add_gen_static_library name xml)
 endmacro()
 
 # -------------------------------------------------------------------------------------------
-macro(copy_tbb)
+macro(copy_libs)
 	if (MSVC)
-		set(tbb_target_dir bin)
+		set(libs_target_dir bin)
 	else()
-		set(tbb_target_dir lib)
+		set(libs_target_dir lib)
 	endif()
-	add_custom_target(tbb_copy ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/bin/.tbb_copied)
-	add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/.tbb_copied
-		COMMAND ${CMAKE_COMMAND} -E copy_directory $<TARGET_FILE_DIR:TBB::tbb> ${CMAKE_CURRENT_BINARY_DIR}/${tbb_target_dir}
-		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/bin/.tbb_copied
-		DEPENDS TBB::tbb TBB::tbbmalloc_proxy TBB::tbbmalloc
-		)
+	add_custom_target(tbb_copy ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/bin/.libs_copied)
+	add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/.libs_copied
+		COMMAND ${CMAKE_COMMAND} -E copy_directory $<TARGET_FILE_DIR:TBB::tbb> ${CMAKE_CURRENT_BINARY_DIR}/${libs_target_dir}
+		COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/bin/.libs_copied
+		DEPENDS TBB::tbb TBB::tbbmalloc_proxy TBB::tbbmalloc)
+	if (MSVC)
+		add_custom_target(zlib_copy ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/bin/.zlibs_copied)
+		add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/.zlib_copied
+			COMMAND ${CMAKE_COMMAND} -E copy_directory $<TARGET_FILE_DIR:${ziplib}> ${CMAKE_CURRENT_BINARY_DIR}/${libs_target_dir}
+			COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/bin/.zlibs_copied
+			DEPENDS ${ziplib})
+	endif()
 endmacro()
