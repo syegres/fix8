@@ -214,6 +214,7 @@ macro(copy_libs)
 		add_custom_target(zlib_copy ALL DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/bin/.zlibs_copied)
 		add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/bin/.zlib_copied
 			COMMAND ${CMAKE_COMMAND} -E copy_directory $<TARGET_FILE_DIR:${ziplib}> ${CMAKE_CURRENT_BINARY_DIR}/${libs_target_dir}
+			COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_CURRENT_BINARY_DIR}/bin/.zlibs_copied
 			DEPENDS ${ziplib})
 	endif()
 endmacro()
