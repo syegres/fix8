@@ -192,7 +192,7 @@ int main(int argc, char **argv)
       switch (val)
 		{
 		case 'v':
-			cout << "f8c for " << Session::copyright_string() << endl;
+			cout << "f8c schema compiler " << Session::copyright_string() << endl;
 			return 0;
 		case 'I':
          for (const auto& pp : package_info())
@@ -1522,6 +1522,8 @@ void binary_report()
 #if defined __GXX_ABI_VERSION
 	cout << "GXX ABI version is " <<  __GXX_ABI_VERSION << endl;
 #endif
+#elif defined _MSC_VER
+	cout << _MSC_FULL_VER << endl;
 #else
 	cout << "GCC not used. No information available." << endl;
 #endif
