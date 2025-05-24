@@ -70,7 +70,7 @@ endif()
 fix8_fetch(poco pocoproject/poco poco-1.14.2-release)
 set(TBB_TEST OFF)
 fix8_fetch(tbb uxlfoundation/oneTBB v2022.1.0)
-copy_tbb()
+copy_libs()
 
 # -------------------------------------------------------------------------------------------
 # compiler settings
