@@ -1523,7 +1523,7 @@ void binary_report()
 	cout << "GXX ABI version is " <<  __GXX_ABI_VERSION << endl;
 #endif
 #elif defined _MSC_VER
-	cout << _MSC_FULL_VER << endl;
+	cout << "MSVC Compiler Version: " << _MSC_VER << "(" << _MSC_FULL_VER << ')' << endl;
 #else
 	cout << "GCC not used. No information available." << endl;
 #endif
