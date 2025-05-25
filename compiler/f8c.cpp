@@ -1508,7 +1508,7 @@ void binary_report()
 #elif defined __GNUG__
    cout << "Compiled with gcc version " << __GNUG__ << '.' << __GNUC_MINOR__ << '.' <<__GNUC_PATCHLEVEL__ << endl;
 #endif
-#ifndef __APPLE__
+#ifndef _MSC_VER
 	const size_t confbufsz(256);
 	char confbuf[confbufsz];
 	if (confstr(_CS_GNU_LIBC_VERSION, confbuf, confbufsz))
