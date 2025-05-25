@@ -94,9 +94,9 @@ const string Ctxt::_exts[count] { "_types.c", "_types.h", "_traits.c", "_classes
                   Ctxt::_exts_ver[2] { "pp", "xx" };
 string precompFile, spacer, inputFile, precompHdr, shortName, fixt, shortNameFixt, odir("./"),
        prefix("Myfix"), gen_classes, extra_fields;
-bool verbose(false), error_ignore(false), gen_fields(false), norealm(false), nocheck(false), nowarn(false),
-     incpath(true), nconst_router(false), no_shared_groups(false), no_default_routers(false), report_unused(false);
-unsigned glob_errors(0), glob_warnings(0), tabsize(3), ext_ver(0);
+bool verbose{}, error_ignore{}, gen_fields{}, norealm{}, nocheck{}, nowarn{},
+     incpath{true}, nconst_router{}, no_shared_groups{}, no_default_routers{}, report_unused{};
+unsigned glob_errors{}, glob_warnings{}, tabsize(3), ext_ver{};
 extern unsigned glob_errors;
 extern const string GETARGLIST("hvVo:p:dikn:rst:x:NRc:fbCIWPF:UeH:SDu");
 extern string spacer, shortName, precompHdr;
@@ -146,7 +146,7 @@ void generate_export( ostream& to, const string& ns );
 int main(int argc, char **argv)
 {
 	int val;
-	bool dump(false), keep_failed(false), retain_precomp(false), second_only(false), nounique(false);
+	bool dump{}, keep_failed{}, retain_precomp{}, second_only{}, nounique{};
 	Ctxt ctxt;
 
 #ifdef FIX8_HAVE_GETOPT_LONG
@@ -192,7 +192,7 @@ int main(int argc, char **argv)
       switch (val)
 		{
 		case 'v':
-			cout << "f8c for " << Session::copyright_string() << endl;
+			cout << "f8c schema compiler " << Session::copyright_string() << endl;
 			return 0;
 		case 'I':
          for (const auto& pp : package_info())
@@ -287,7 +287,7 @@ int main(int argc, char **argv)
 			cerr << endl;
 			return 1;
 		}
-		unsigned xmlsz(pcmp->GetLineCnt()), fixtsz(0);
+		unsigned xmlsz(pcmp->GetLineCnt()), fixtsz{};
 		if (!fixt.empty())
 		{
 			pcmpfixt.reset(XmlElement::Factory(fixt));
@@ -335,7 +335,7 @@ int main(int argc, char **argv)
       return 1;
    }
 
-	for (unsigned ii(0); ii < Ctxt::count; ++ii)
+	for (unsigned ii{}; ii < Ctxt::count; ++ii)
 	{
 		ctxt._out[ii].first.second = prefix + ctxt._exts[ii] + ctxt._exts_ver[ext_ver];
 		ctxt._out[ii].first.first = ctxt._out[ii].first.second + ".p2";
@@ -359,7 +359,7 @@ int main(int argc, char **argv)
          {
             const RegExp rMS("([^:]+):(Y|N)");
             istringstream istr(extra_fields);
-            size_t added(0);
+            size_t added{};
             while (istr.good())
             {
                unique_ptr<XmlElement> nel(new XmlElement(istr, 0, flds));
@@ -406,7 +406,7 @@ int main(int argc, char **argv)
 
 		result = process(*cfr, ctxt);
 
-		for (unsigned ii(0); ii < Ctxt::count; ++ii)
+		for (unsigned ii{}; ii < Ctxt::count; ++ii)
 		{
 			delete ctxt._out[ii].second;
 			if (glob_errors && !error_ignore)
@@ -458,7 +458,7 @@ int load_fields(XmlElement& xf, FieldSpecMap& fspec)
 		return 0;
 	}
 
-	int fieldsLoaded(0);
+	int fieldsLoaded{};
 
 	for(const auto *pp : flist)
 	{
@@ -540,7 +540,7 @@ int load_fields(XmlElement& xf, FieldSpecMap& fspec)
 int load_messages(XmlElement& xf, MessageSpecMap& mspec, const FieldToNumMap& ftonSpec,
 	FieldSpecMap& fspec, Components& compon, CommonGroupMap& globmap)
 {
-	int msgssLoaded(0), grpsparsed(0);
+	int msgssLoaded{}, grpsparsed{};
 
 	XmlElement::XmlSet mlist;
 	if (!xf.find("fix/messages/message", mlist))
@@ -633,7 +633,7 @@ unsigned parse_groups(MessageSpec& ritr, const string& name,
 	const FieldToNumMap& ftonSpec, FieldSpecMap& fspec, XmlElement::XmlSet& grplist,
    const Components& compon, CommonGroupMap& globmap)
 {
-	unsigned result(0);
+	unsigned result{};
 
 	for(const auto *pp : grplist)
 	{
@@ -752,7 +752,7 @@ void generate_group_bodies(const MessageSpec& ms, const FieldSpecMap& fspec, int
 		FieldSpecMap::const_iterator gsitr(fspec.find(pp.first));
 		outp << _csMap.find(cs_divider)->second << endl;
 
-      int vers(0);
+      int vers{};
       const MessageSpec *tgroup (find_group(globmap, vers, pp.first, pp.second._hash));
       if (!tgroup)
       {
@@ -856,11 +856,11 @@ void generate_group_traits(const FieldSpecMap& fspec, const MessageSpec& ms, con
          << " // refs:" << ms._group_refcnt << endl << '{' << endl;
    else
       outp << "const FieldTrait " << prefix << gname << "::_traits[]" << endl << '{' << endl;
-   int felpos(0);
+   int felpos{};
    for (Presence::const_iterator flitr(ms._fields.get_presence().begin());
       flitr != ms._fields.get_presence().end(); ++flitr, ++felpos)
    {
-      bool spaceme(true);
+      bool spaceme{true};
       if (flitr != ms._fields.get_presence().begin())
       {
          outp << ',';
@@ -933,7 +933,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 	ostream& osc_cpp(*ctxt._out[Ctxt::classes_cpp].second);
 	ostream& osu_hpp(*ctxt._out[Ctxt::router_hpp].second);
 	ostream& oss_hpp(*ctxt._out[Ctxt::session_hpp].second);
-	int result(0);
+	int result{};
 
 // ================================= Field loading  =======================================
 	FieldSpecMap fspec;
@@ -967,7 +967,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 			cout << components.size() << " components defined" << endl;
 		if (globmap.size())
       {
-         unsigned cgs(0), ugs(0), vars(0);
+         unsigned cgs{}, ugs{}, vars{};
          for (const auto& pp : globmap)
          {
             vars += static_cast<unsigned>(pp.second.size());
@@ -1076,11 +1076,11 @@ int process(XmlElement& xf, Ctxt& ctxt)
 			osr_cpp << _csMap.find(cs_divider)->second << endl;
 			osr_cpp << "const FieldTrait " << pp.second._name << "::_traits[]"
 				<< endl << '{' << endl;
-         int felpos(0);
+         int felpos{};
 			for (Presence::const_iterator flitr(pp.second._fields.get_presence().begin());
 				flitr != pp.second._fields.get_presence().end(); ++flitr, ++felpos)
 			{
-				bool spaceme(true);
+				bool spaceme{true};
 				if (flitr != pp.second._fields.get_presence().begin())
 				{
 					osr_cpp << ',';
@@ -1226,7 +1226,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 	}
 	osc_cpp << endl << "}; // " << mspec.size() << endl;
 
-   size_t fields_generated(0);
+   size_t fields_generated{};
 	for (const auto& pp : fspec)
 		if (gen_fields || pp.second._used)
          ++fields_generated;
@@ -1404,7 +1404,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 	// generate realmbase objs
 	ost_cpp << endl << _csMap.find(cs_divider)->second << endl;
 	ost_cpp << "const RealmBase realmbases[] " << endl << '{' << endl;
-	unsigned dcnt(0);
+	unsigned dcnt{};
 	for (auto& pp : fspec)
 	{
 		if ((!pp.second._used && !gen_fields) || !pp.second._dvals)
@@ -1478,7 +1478,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 
 	if (verbose)
 	{
-		unsigned cnt(0), ucnt(0);
+		unsigned cnt{}, ucnt{};
 		for (const auto& pp : fspec)
       {
 			if (pp.second._used)
@@ -1503,11 +1503,12 @@ int process(XmlElement& xf, Ctxt& ctxt)
 //-------------------------------------------------------------------------------------------------
 void binary_report()
 {
-#if defined __GNUG__
-#if defined __GNUC_MINOR__ && __GNUC_PATCHLEVEL__
-	cout << "Compiled with gcc version " << __GNUG__ << '.' << __GNUC_MINOR__ << '.' <<__GNUC_PATCHLEVEL__ << endl;
-#endif
-#ifndef __APPLE__
+#if defined _MSC_VER
+	cout << "MSVC Compiler Version: " << _MSC_VER << " (" << _MSC_FULL_VER << ')' << endl;
+#elif defined __clang__
+   cout << "Compiled with clang version " << __clang_major__ << '.' << __clang_minor__ << '.' << __clang_patchlevel__ << endl;
+#elif defined __GNUG__
+   cout << "Compiled with gcc version " << __GNUG__ << '.' << __GNUC_MINOR__ << '.' <<__GNUC_PATCHLEVEL__ << endl;
 	const size_t confbufsz(256);
 	char confbuf[confbufsz];
 	if (confstr(_CS_GNU_LIBC_VERSION, confbuf, confbufsz))
@@ -1518,12 +1519,16 @@ void binary_report()
 	{
 		cout << "GNU libpthread version is " << confbuf << endl;
 	}
+#else
+	cout << "No information available." << endl;
 #endif
 #if defined __GXX_ABI_VERSION
 	cout << "GXX ABI version is " <<  __GXX_ABI_VERSION << endl;
 #endif
-#else
-	cout << "GCC not used. No information available." << endl;
+#if defined _LIBCPP_VERSION
+   std::cout << "libc++ version: " << _LIBCPP_VERSION << endl;
+#elif defined __GLIBCXX__
+   std::cout << "libstdc++ version: " << __GLIBCXX__ << endl;
 #endif
 }
 
@@ -1539,11 +1544,11 @@ uint32_t group_hash(const MessageSpec& p1)
 {
    if (no_shared_groups)   // hack so every group hash is unique
    {
-      static uint32_t result(0);
+      static uint32_t result{};
       return ++result;
    }
 
-   uint32_t result(0);
+   uint32_t result{};
 
    for (const auto& pp : p1._fields.get_presence())
       result = rothash(result, pp._fnum);
@@ -1602,15 +1607,15 @@ void generate_preamble(ostream& to, const string& fname, bool isheader, bool don
 void generate_export(ostream& to, const string& ns)
 {
     to <<
-        "#if defined(_MSC_VER) && defined(F8_" << ns << "_API_SHARED)\n"
-        "    #if defined(BUILD_F8_" << ns << "_API)\n"
-        "        #define F8_" << ns << "_API __declspec(dllexport)\n"
-        "    #else\n"
-        "        #define F8_" << ns << "_API __declspec(dllimport)\n"
-        "    #endif\n"
-        "#else\n"
-        "    #define F8_" << ns << "_API\n"
-        "#endif\n";
+      "#if defined(_MSC_VER) && defined(F8_" << ns << "_API_SHARED)\n"
+      "    #if defined(BUILD_F8_" << ns << "_API)\n"
+      "        #define F8_" << ns << "_API __declspec(dllexport)\n"
+      "    #else\n"
+      "        #define F8_" << ns << "_API __declspec(dllimport)\n"
+      "    #endif\n"
+      "#else\n"
+      "    #define F8_" << ns << "_API\n"
+      "#endif\n";
 }
 
 /* vim: set ts=3 sw=3 tw=0 et :*/

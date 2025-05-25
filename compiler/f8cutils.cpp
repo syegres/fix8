@@ -182,7 +182,7 @@ void process_value_enums(FieldSpecMap::const_iterator itr, ostream& ost_hpp, ost
 	typestr += ' ';
 
 	ost_cpp << typestr << itr->second._name << "_realm[]  " << endl << spacer << "{ ";
-	unsigned cnt(0);
+	unsigned cnt{};
 	for (RealmMap::const_iterator ditr(itr->second._dvals->begin()); ditr != itr->second._dvals->end(); ++ditr)
 	{
 		if (cnt)
@@ -220,7 +220,7 @@ void process_value_enums(FieldSpecMap::const_iterator itr, ostream& ost_hpp, ost
 int process_message_fields(const std::string& where, const XmlElement *xt, FieldTraits& fts, const FieldToNumMap& ftonSpec,
 	FieldSpecMap& fspec, const Components& compon)
 {
-	unsigned processed(0);
+	unsigned processed{};
 	XmlElement::XmlSet flist;
 	if (xt->find(where, flist))
 	{
@@ -284,7 +284,7 @@ void process_ordering(MessageSpecMap& mspec)
 		for (const auto& ii : pp.second._fields.get_presence())
 			mo.insert({&ii});
 
-		unsigned cnt(0);
+		unsigned cnt{};
 		for (auto *ii : mo)
 			ii->_pos = ++cnt;
 	}
@@ -299,7 +299,7 @@ void process_message_group_ordering(const GroupMap& gm)
 		for (const auto& ii : pp.second._fields.get_presence())
 			go.insert({&ii});
 
-		unsigned gcnt(0);
+		unsigned gcnt{};
 		for (auto *ii : go)
 			ii->_pos = ++gcnt;
 
@@ -321,35 +321,35 @@ void print_usage()
 {
 	UsageMan um("f8c", GETARGLIST, "<input xml schema>");
 	um.setdesc("f8c -- compile FIX xml schema");
-	um.add('o', "odir <dir>", "output target directory (default ./)");
-	um.add('p', "prefix <prefix>", "output filename prefix (default Myfix)");
-	um.add('H', "pch <filename>", "use specified precompiled header name for Windows (default none)");
+	um.add('b', "binary", "print binary/ABI details, exit");
+	um.add('c', "classes <server|client>", "generate user session classes (default neither)");
+	um.add('C', "nocheck", "do not embed version checking in generated code (default false)");
 	um.add('d', "dump", "dump 1st pass parsed source xml file, exit");
+	um.add('D', "defaulted", "do not generate default router bodies. Application must provide all router definitions (default false)");
 	um.add('e', "extension", "Generate with .cxx/.hxx extensions (default .cpp/.hpp)");
 	um.add('f', "fields", "generate code for all defined fields even if they are not used in any message (default no)");
 	um.add('F', "xfields", "specify additional fields with associated messages (see documentation for details)");
 	um.add('h', "help", "help, this screen");
+	um.add('H', "pch <filename>", "use specified precompiled header name for Windows (default none)");
 	um.add('i', "ignore", "ignore errors, attempt to generate code anyhow (default no)");
-	um.add('k', "keep", "retain generated temporaries even if there are errors (.*.tmp)");
-	um.add('v', "version", "print version, exit");
 	um.add('I', "info", "print package info, exit");
+	um.add('k', "keep", "retain generated temporaries even if there are errors (.*.tmp)");
+	um.add('n', "namespace <ns>", "namespace to place generated code in (default FIXMmvv e.g. FIX4400)");
+	um.add('N', "nounique", "do not enforce unique field parsing (default false)");
+	um.add('o', "odir <dir>", "output target directory (default ./)");
+	um.add('p', "prefix <prefix>", "output filename prefix (default Myfix)");
+	um.add('P', "incpath", "prefix system include path with \"fix8\" in generated compilation units (default yes)");
+	um.add('r', "retain", "retain 1st pass code (default delete)");
+	um.add('R', "norealm", "do not generate realm constructed field instantiators (default false)");
 	um.add('s', "second", "2nd pass only, no precompile (default both)");
 	um.add('S', "noshared", "Treat every group as unique and expose all static traits. Do not share metadata in message classes (default shared)");
-	um.add('N', "nounique", "do not enforce unique field parsing (default false)");
-	um.add('R', "norealm", "do not generate realm constructed field instantiators (default false)");
-	um.add('W', "nowarn", "suppress warning messages (default false)");
-	um.add('C', "nocheck", "do not embed version checking in generated code (default false)");
-	um.add('D', "defaulted", "do not generate default router bodies. Application must provide all router definitions (default false)");
+	um.add('t', "tabwidth", "tabwidth for generated code (default 3 spaces)");
 	um.add('U', "noconst", "Generate non-const Router method declarations (default false, const)");
 	um.add('u', "unused", "Report unused fields, requires verbose option (default false)");
-	um.add('r', "retain", "retain 1st pass code (default delete)");
-	um.add('b', "binary", "print binary/ABI details, exit");
-	um.add('P', "incpath", "prefix system include path with \"fix8\" in generated compilation units (default yes)");
-	um.add('c', "classes <server|client>", "generate user session classes (default neither)");
-	um.add('t', "tabwidth", "tabwidth for generated code (default 3 spaces)");
-	um.add('x', "fixt <file>", "For FIXT hosted transports or for FIX5.0 and above, the input FIXT schema file");
+	um.add('v', "version", "print version, exit");
 	um.add('V', "verbose", "be more verbose when processing");
-	um.add('n', "namespace <ns>", "namespace to place generated code in (default FIXMmvv e.g. FIX4400)");
+	um.add('W', "nowarn", "suppress warning messages (default false)");
+	um.add('x', "fixt <file>", "For FIXT hosted transports or for FIX5.0 and above, the input FIXT schema file");
 	um.add("e.g.");
 	um.add("@f8c -p Texfix -n TEX myfix.xml");
 	um.add("@f8c -rp Texfix -n TEX -x ../schema/FIXT11.xml myfix.xml");
