@@ -1,3 +1,17 @@
+* Wed May 05 2025 David L. Dight <fix@fix8.org> 1.5.0
+- cmake build system replaces GNU autotools
+- Minimum C++17 required
+- Fixed multiple runtime library compiler warnings
+- Removed tcmalloc, replaced with tbbmalloc
+- Removed FastFlow, replaced with tbb
+- Removed extern "C" linkage warnings
+- cmake downloads and builds required deps
+- Fixed session_test errors
+- Fixed build for Windows and MacOS
+- Added Intel compiler support
+- Upgrade poco, removed deprecated calls
+- Updated and merged bug fixes
+
 * Wed May 10 2023 David L. Dight <fix@fix8.org> 1.4.3
 - Fixed build issues hftest, utests, some compiler warnings
 - Updated checksum algorithm
@@ -7,7 +21,7 @@
 - Fixed Jira tickets FX-729,FX-744,FX-821,FX-884
 - Fixed deadlock condition in heartbeat
 - Fixed memory leaks
-- Fixed f8c incorrectly removeing unused fields from the top of fields list
+- Fixed f8c incorrectly removing unused fields from the top of fields list
 - Fixed steroid chksum algorithm giving incorrect values for large messages
 
 * Fri Sep 16 2016 David L. Dight <fix@fix8.org> 1.4.0
@@ -434,7 +448,8 @@
 - Added configurable max message length(maxmsglen); xml xpath permits absolute xpaths; fixed issue with compiler and msgtype;
 
 * Sat Jul 21 2012 David L. Dight <fix@fix8.org> 0.6.0
-- Added buffered logging; redesigned and improved field and message encoding and decoding performance, field lookups and static jump tables; added simple console based metadata driven test harness; compiler optimisations including pruning of unused fields;
+- Added buffered logging; redesigned and improved field and message encoding and decoding performance, field lookups and static jump tables;
+- Added simple console based metadata driven test harness; compiler optimisations including pruning of unused fields;
 
 * Fri May 25 2012 David L. Dight <fix@fix8.org> 0.5.7
 - Added HF test client demonstrating preload and bulk transmit capabilities; encode/decode performance improvements with cached lookups;
