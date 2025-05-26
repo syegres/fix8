@@ -1,11 +1,14 @@
 * Wed May 05 2025 David L. Dight <fix@fix8.org> 1.5.0
 - cmake build system replaces GNU autotools
 - Minimum C++17 required
-- Fixed multiple compiler warnings
+- Fixed multiple runtime library compiler warnings
 - Removed tcmalloc, replaced with tbbmalloc
 - Removed FastFlow, replaced with tbb
+- Removed extern "C" linkage warnings
 - cmake downloads and builds required deps
+- Fixed session_test errors
 - Fixed build for Windows and MacOS
+- Added Intel compiler support
 - Upgrade poco, removed deprecated calls
 - Updated and merged bug fixes
 

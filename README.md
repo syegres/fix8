@@ -1,4 +1,4 @@
-<!-----------------------------------------------------------------------------------------
+<!---------------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // SPDX-PackageName: Fix8 Open Source FIX Engine
 // SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
@@ -31,7 +31,18 @@
 //  NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
 //  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 //  HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-//---------------------------------------------------------------------------------------->
+//---------------------------------------------------------------------------------------------
+// For Production-Grade FIX Requirements:
+//  If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+//  latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+//  same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+//	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+//  deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+//  compatibility with  the Community Edition while providing  enhanced stability, scalability,
+//  and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+//  Community  Edition's capabilities, you  can find out learn  more about  the  Pro version at
+//  www.fix8mt.com
+//-------------------------------------------------------------------------------------------->
 <p align="center"><a href="https://www.fix8.org"><img src="https://fix8.org/fix8/fix8_Logo_RGB.png"></a></p>
 
 # [Fix8](https://www.fix8.org) Open Source C++ FIX Engine
@@ -274,10 +285,10 @@ If you have built the test cases (built by default), you can also run them as fo
 The following table summarises the cmake build command for each platform:
 | Platform | Example cmake command|
 | :--- | :--- |
-| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake ..`|
-| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=clang++ CC=clang cmake ..`|
-| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake ..`|
-| [xcode](https://developer.apple.com/support/xcode/) | `cmake ..`|
+| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake [options] ..`|
+| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=clang++ CC=clang cmake [options] ..`|
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake [options] ..`|
+| [xcode](https://developer.apple.com/support/xcode/) | `cmake [options]g..`|
 | [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
 
 ### CMake project options
