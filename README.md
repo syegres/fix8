@@ -288,7 +288,7 @@ The following table summarises the cmake build command for each platform:
 | [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake [options] ..`|
 | [clang](https://clang.llvm.org/cxx_status.html) | `CXX=clang++ CC=clang cmake [options] ..`|
 | [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake [options] ..`|
-| [xcode](https://developer.apple.com/support/xcode/) | `cmake [options]g..`|
+| [xcode](https://developer.apple.com/support/xcode/) | `cmake [options] ..`|
 | [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
 
 ### CMake project options
