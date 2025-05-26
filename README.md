@@ -96,6 +96,8 @@ and framework; and a set of complete client/server test applications.
 
 * Fix8 supports field and value domain validation, mandatory/optional field assertion, field ordering, well-formedness testing, retransmission and standard session semantics.
 
+* Fix8 will build with gcc, clang, xcode, intel and msvc compilers
+
 * Fix8 runs under industry standard Linux on IA32, x86-64, Itanium, PowerPC, ARMv7 and aarm64. It also runs on *Windows* and *MacOS*. Other \*NIX variants may work too.
 
 ## Directory Layout
@@ -284,6 +286,7 @@ These options can be passed on the cmake command line
 | [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `11`, `12`, `13`, `14`|
 | [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
 | [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `250101` |
 | [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
 
 Other compilers (older versions as well) may also work.

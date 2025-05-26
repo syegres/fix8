@@ -1503,8 +1503,12 @@ int process(XmlElement& xf, Ctxt& ctxt)
 //-------------------------------------------------------------------------------------------------
 void binary_report()
 {
-#if defined _MSC_VER
-	cout << "MSVC Compiler Version: " << _MSC_VER << " (" << _MSC_FULL_VER << ')' << endl;
+#if defined __INTEL_COMPILER
+   cout << "Intel Compiler version is " << __INTEL_COMPILER << endl;
+#elif defined __INTEL_LLVM_COMPILER
+   cout << "Intel Compiler version is " << __INTEL_LLVM_COMPILER << endl;
+#elif defined _MSC_VER
+	cout << "MSVC Compiler version is " << _MSC_VER << " (" << _MSC_FULL_VER << ')' << endl;
 #elif defined __clang__
    cout << "Compiled with clang version " << __clang_major__ << '.' << __clang_minor__ << '.' << __clang_patchlevel__ << endl;
 #elif defined __GNUG__
@@ -1520,15 +1524,15 @@ void binary_report()
 		cout << "GNU libpthread version is " << confbuf << endl;
 	}
 #else
-	cout << "No information available." << endl;
+	cout << "No information available" << endl;
 #endif
 #if defined __GXX_ABI_VERSION
 	cout << "GXX ABI version is " <<  __GXX_ABI_VERSION << endl;
 #endif
 #if defined _LIBCPP_VERSION
-   std::cout << "libc++ version: " << _LIBCPP_VERSION << endl;
+   cout << "libc++ version is " << _LIBCPP_VERSION << endl;
 #elif defined __GLIBCXX__
-   std::cout << "libstdc++ version: " << __GLIBCXX__ << endl;
+   cout << "libstdc++ version is " << __GLIBCXX__ << endl;
 #endif
 }
 
