@@ -275,10 +275,10 @@ The following table summarises the cmake build command for each platform:
 | Platform | Example cmake command|
 | :--- | :--- |
 | [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake ..`|
-| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=g++ CC=gcc cmake ..`|
-| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
+| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=clang++ CC=clang cmake ..`|
 | [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake ..`|
 | [xcode](https://developer.apple.com/support/xcode/) | `cmake ..`|
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
 
 ### CMake project options
 These options can be passed on the cmake command line
@@ -293,9 +293,9 @@ These options can be passed on the cmake command line
 | :--- | :--- |
 | [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `11`, `12`, `13`, `14`|
 | [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
-| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
 | [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `250101` |
 | [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
 
 Other compilers (older versions as well) may also work.
 
