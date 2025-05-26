@@ -55,12 +55,12 @@ and framework; and a set of complete client/server test applications.
 
 [Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com).
 
-> [!TIP]
+> [!IMPORTANT]
 > For enterprise use we recommend the commercially supported version of Fix8: Fix8Pro.
 > Fix8Pro has a similar API to Fix8 and an easy upgrade path. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example)
 > (to run the example you'll need a license from Fix8MT).
 
-> [!INFORMATION]
+> [!TIP]
 > For the latest cutting edge changes, see the [dev branch](https://github.com/fix8/fix8/tree/dev).
 > You can view the changes (if any) [here](https://github.com/fix8/fix8/compare/master..dev).
 
