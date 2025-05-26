@@ -271,6 +271,14 @@ If you have built the test cases (built by default), you can also run them as fo
 ```bash
 % ctest
 ```
+The following table summarises the cmake build command for each platform:
+| Platform | Example cmake command|
+| :--- | :--- |
+| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake ..`|
+| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=g++ CC=gcc cmake ..`|
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake ..`|
+| [xcode](https://developer.apple.com/support/xcode/) | `cmake ..`|
 
 ### CMake project options
 These options can be passed on the cmake command line
