@@ -5,12 +5,15 @@
 - Removed tcmalloc, replaced with tbbmalloc
 - Removed FastFlow, replaced with tbb
 - Removed extern "C" linkage warnings
-- cmake downloads and builds required deps
+- cmake downloads and builds all default required deps
 - Fixed session_test errors
 - Fixed build for Windows and MacOS
+- Shared and static runtime libs built by default
+- Static lib contains all external deps
 - Added Intel compiler support
 - Upgrade poco, removed deprecated calls
 - Updated and merged bug fixes
+- Removed cruft
 
 * Wed May 10 2023 David L. Dight <fix@fix8.org> 1.4.3
 - Fixed build issues hftest, utests, some compiler warnings
