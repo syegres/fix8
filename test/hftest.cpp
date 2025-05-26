@@ -40,7 +40,7 @@
 //  deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
 //  compatibility with  the Community Edition while providing  enhanced stability, scalability,
 //  and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
-//  Community  Edition's capabilities, you  can find out learn  more about  the  Pro version at
+//  Community  Edition's capabilities, you can find out and learn more about the Pro version at
 //  www.fix8mt.com
 //---------------------------------------------------------------------------------------------
 /** \file hftest.cpp
