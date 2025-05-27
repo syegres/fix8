@@ -1,6 +1,51 @@
-<p align="center"><a href="http://www.fix8.org"><img src="http://fix8.org/fix8/fix8_Logo_RGB.png"></a></p>
+<!---------------------------------------------------------------------------------------------
+// SPDX-License-Identifier: LGPL-3.0-or-later
+// SPDX-PackageName: Fix8 Open Source FIX Engine
+// SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
+// SPDX-FileType: DOCUMENTATION
+// SPDX-Notice: >
+//  Fix8 is released under the GNU LESSER GENERAL PUBLIC LICENSE Version 3.
+//
+//  Fix8 is free software: you can  redistribute it and / or modify  it under the  terms of the
+//  GNU Lesser General  Public License as  published  by the Free  Software Foundation,  either
+//  version 3 of the License, or (at your option) any later version.
+//
+//  Fix8 is distributed in the hope  that it will be useful, but WITHOUT ANY WARRANTY;  without
+//  even the  implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//  You should  have received a copy of the GNU Lesser General Public  License along with Fix8.
+//  If not, see <https://www.gnu.org/licenses/>.
+//
+//  BECAUSE THE PROGRAM IS  LICENSED FREE OF  CHARGE, THERE IS NO  WARRANTY FOR THE PROGRAM, TO
+//  THE EXTENT  PERMITTED  BY  APPLICABLE  LAW.  EXCEPT WHEN  OTHERWISE  STATED IN  WRITING THE
+//  COPYRIGHT HOLDERS AND/OR OTHER PARTIES  PROVIDE THE PROGRAM "AS IS" WITHOUT WARRANTY OF ANY
+//  KIND,  EITHER EXPRESSED   OR   IMPLIED,  INCLUDING,  BUT   NOT  LIMITED   TO,  THE  IMPLIED
+//  WARRANTIES  OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  THE ENTIRE RISK AS TO
+//  THE QUALITY AND PERFORMANCE OF THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE,
+//  YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+//
+//  IN NO EVENT UNLESS REQUIRED  BY APPLICABLE LAW  OR AGREED TO IN  WRITING WILL ANY COPYRIGHT
+//  HOLDER, OR  ANY OTHER PARTY  WHO MAY MODIFY  AND/OR REDISTRIBUTE  THE PROGRAM AS  PERMITTED
+//  ABOVE,  BE  LIABLE  TO  YOU  FOR  DAMAGES,  INCLUDING  ANY  GENERAL, SPECIAL, INCIDENTAL OR
+//  CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OR INABILITY TO USE THE PROGRAM (INCLUDING BUT
+//  NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
+//  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
+//  HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+//---------------------------------------------------------------------------------------------
+// For Production-Grade FIX Requirements:
+//  If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+//  latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+//  same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+//	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+//  deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+//  compatibility with  the Community Edition while providing  enhanced stability, scalability,
+//  and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+//  Community  Edition's capabilities, you can find out and learn more about the Pro version at
+//  www.fix8mt.com
+//-------------------------------------------------------------------------------------------->
+<p align="center"><a href="https://www.fix8.org"><img src="https://fix8.org/fix8/fix8_Logo_RGB.png"></a></p>
 
-# [Fix8](http://www.fix8.org) Open Source C++ FIX Engine
+# [Fix8](https://www.fix8.org) Open Source C++ FIX Engine
 
 A modern open source C++ FIX framework featuring complete schema driven customisation, high performance and fast application development.
 
@@ -8,11 +53,16 @@ The system is comprised of a compiler for generating C++ message and field encod
 decoders and instantiation tables; a runtime library to support the generated code
 and framework; and a set of complete client/server test applications.
 
-[Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com), the commercially supported version of Fix8.
+[Fix8 Market Tech](https://www.fix8mt.com/) develops and maintains Fix8, [Fix8Pro and UFE](https://www.fix8mt.com).
 
-**For enterprise use we recommend Fix8Pro.**
+> [!IMPORTANT]
+> For enterprise use we recommend the commercially supported version of Fix8: Fix8Pro.
+> Fix8Pro has a similar API to Fix8 and an easy upgrade path. For an example of how you could use Fix8Pro see [here](https://github.com/fix8mt/fix8pro_example)
+> (to run the example you'll need a license from Fix8MT).
 
-**For enterprise use we recommend Fix8Pro.**
+> [!TIP]
+> For the latest cutting edge changes, see the [dev branch](https://github.com/fix8/fix8/tree/dev).
+> You can view the changes (if any) [here](https://github.com/fix8/fix8/compare/master..dev).
 
 ## Contents
 
@@ -21,27 +71,27 @@ and framework; and a set of complete client/server test applications.
 1. [Directory Layout](#directory-layout)
 1. [Documentation](#documentation)
 1. [Branch Layout](#branch-layout)
-1. [C++11](#c11)
+1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
-1. [Building on Linux/UNIX](#building-on-linuxunix)
-1. [Building on OSX](#building-on-osx)
-1. [Building on Windows](#building-on-windows)
+1. [Building on Linux/UNIX, MacOS and Windows](#building-on-linuxunix-macos-and-windows)
+1. [Compiler Support](#compiler-support)
 1. [Support](#support)
 1. [Downloads](#downloads)
 1. [Getting help or reporting problems](#getting-help-or-reporting-problems)
 1. [Making a Pull Request](#making-a-pull-request)
 1. [License](#license)
 1. [Fix8Pro and Fix8 Market Technologies](#fix8pro-and-fix8-market-technologies)
+1. [Authors and Contributors](#authors-and-contributors)
 1. [More Information](#more-information)
 
 ## Features
 
-* [Fix8](http://www.fix8.org) helps you get your [FIX protocol](http://www.fixprotocol.org/) client or server up and running quickly. Using one of the standard FIX schemas you can have a FIX client or server up and running in next to no time.
+* [Fix8](https://www.fix8.org) helps you get your [FIX protocol](https://www.fixprotocol.org/) client or server up and running quickly. Using one of the standard FIX schemas you can have a FIX client or server up and running in next to no time.
 
 * Statically compile your FIX xml schema and quickly build your FIX application on top. If you need to add customised messages or fields, simply update the schema and recompile.
 
-* Fix8 is the fastest C++ Open Source FIX framework. Our testing shows that Fix8 is on average 68% faster encoding/decoding the same message than Quickfix. See [Performance](http://fix8.org/performance.html) to see how we substantiate this shameless bragging.
+* Fix8 is the fastest C++ Open Source FIX framework. Our testing shows that Fix8 is on average 68% faster encoding/decoding the same message than Quickfix. See [Performance](https://fix8.org/performance.html) to see how we substantiate this shameless bragging.
 
 * Fix8 supports standard `FIX4.X` to `FIX5.X` and `FIXT1.X`. If you have a custom FIX variant Fix8 can use that too. New FIX versions will be supported.
 
@@ -61,7 +111,9 @@ and framework; and a set of complete client/server test applications.
 
 * Fix8 supports field and value domain validation, mandatory/optional field assertion, field ordering, well-formedness testing, retransmission and standard session semantics.
 
-* Fix8 runs under industry standard Linux on IA32, x86-64, Itanium, PowerPC and ARMv7. It also now runs on *Windows* and *OSX*. Other \*NIX variants may work too.
+* Fix8 will build with gcc, clang, xcode, intel and msvc compilers
+
+* Fix8 runs under industry standard Linux on IA32, x86-64, Itanium, PowerPC, ARMv7 and aarm64. It also runs on *Windows* and *MacOS*. Other \*NIX variants may work too.
 
 ## Directory Layout
 
@@ -75,11 +127,7 @@ and framework; and a set of complete client/server test applications.
     <tbody>
           <tr>
              <td><code>./</code></td>
-             <td>root directory with configure</td>
-          </tr>
-          <tr>
-             <td><code>m4/</code></td>
-             <td>additional m4 macros needed by configure</td>
+             <td>root directory with CMakeLists.txt</td>
           </tr>
           <tr>
              <td><code>compiler/</code></td>
@@ -98,24 +146,12 @@ and framework; and a set of complete client/server test applications.
              <td>manpages for Fix8 utilities</td>
           </tr>
           <tr>
-             <td><code>doc/html</code></td>
-             <td>doxygen documentation (optionally generated when built)</td>
-          </tr>
-          <tr>
-             <td><code>include/</code></td>
+             <td><code>include/fix8</code></td>
              <td>header files for the runtime library and compiler</td>
-          </tr>
-          <tr>
-             <td><code>include/ff/</code></td>
-             <td>header files for FastFlow</td>
           </tr>
           <tr>
              <td><code>runtime/</code></td>
              <td>runtime library source</td>
-          </tr>
-          <tr>
-             <td><code>stocklib/</code></td>
-             <td>stock FIX library builds</td>
           </tr>
           <tr>
              <td><code>util/</code></td>
@@ -123,11 +159,7 @@ and framework; and a set of complete client/server test applications.
           </tr>
           <tr>
              <td><code>msvc/</code></td>
-             <td>Microsoft Visual Studio project files</td>
-          </tr>
-          <tr>
-             <td><code>pro/</code></td>
-             <td>Fix8Pro extensions (commercial version only)</td>
+             <td>Microsoft Visual Studio support files</td>
           </tr>
           <tr>
              <td><code>schema/</code></td>
@@ -148,7 +180,7 @@ and framework; and a set of complete client/server test applications.
 ## Documentation
 
 See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
-a login. For our complete API Documentation see [here](http://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
+a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
 
 ## Branch Layout
 
@@ -185,40 +217,34 @@ a login. For our complete API Documentation see [here](http://fix8.org/fix8/html
 </table>
 
 
-## C++11
+## C++17
 
-Fix8 now **requires C++11 compiler support**. Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
+> [!IMPORTANT]
+> Fix8 now **requires C++17 compiler support**.
 
-	-std=c++11
+Fix8 will refuse to build without it. If you are using clang or gcc make sure you have the
 
-flag on your compiler command line. Some older compiler versions may no longer be supported. Sorry.
+	-std=c++17
+
+flag on your compiler command line. Most compilers since 2020 default to at least C++17. Some older compiler versions may no longer be supported. Sorry.
 
 ## External Dependencies (required)
 
 Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
-- Poco C++ Libraries [basic edition](http://pocoproject.org/download/index.html)
+> [!NOTE]
+> This release now uses [CMake](https://cmake.org). The build _will download and build_ the default dependencies - poco, tbb and gtest.
 
-Additional libraries are needed for building on Windows, [see here](https://fix8engine.atlassian.net/wiki/x/EICW).
+- Poco C++ Libraries [basic edition](https://pocoproject.org/download/index.html)
+- oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
+- GoogleTest [gtest](https://github.com/google/googletest)
 
 ## Optional Dependencies
 
-You can either choose the internally supplied [Fastflow](http://calvados.di.unipi.it/dokuwiki/doku.php?id=ffnamespace:about) or use...
-
-- Intel Threading Building Blocks [OSS edition](http://threadingbuildingblocks.org/download)
-
-If you wish to use the built-in unit tests (recommended):
-
-- [googletest](https://code.google.com/p/googletest/downloads/list)
-
-If you wish to use tcmalloc (recommended):
-
-- [gperftools](https://code.google.com/p/gperftools/downloads/list)
-
 If you wish to build the html documentation, you will need:
 
-- [Doxygen](http://www.doxygen.org)
+- [Doxygen](https://www.doxygen.org)
 
 If you wish to use Redis for message persistence:
 
@@ -226,62 +252,82 @@ If you wish to use Redis for message persistence:
 
 If you wish to use libmemcached for message persistence:
 
-- [libmemcached](http://libmemcached.org/libMemcached.html)
+- [libmemcached](https://libmemcached.org/libMemcached.html)
 
 If you wish to use BerkeleyDB for message persistence:
 
-- [Berkeley DB C++](http://www.oracle.com/technetwork/products/berkeleydb/downloads/index.html)
+- [Berkeley DB C++](https://www.oracle.com/technetwork/products/berkeleydb/downloads/index.html)
 
-## Building on Linux/UNIX
+## Building on Linux/UNIX, MacOS and Windows
 
-The build system is based on automake/autoconf/libtool.
-You **must** have [libtool](http://www.gnu.org/software/libtool/) installed to build.
+Either clone from the project on github or download the tarball.
+The Windows build now also uses cmake. Please follow the directions above (either msvc or vscode).
 
-	% tar xvzf 1.4.3.tar.gz
-	% cd fix8-1.4.3
-	% ./bootstrap
-	% ./configure
-	% make
-	% make install
+```bash
+% git clone https://github.com/fix8/fix8.git
+% cd fix8
+```
+or
+```bash
+% tar xvzf 1.5.0.tar.gz
+% cd fix8-1.5.0
+```
+then
+```bash
+% mkdir build
+% cd build
+% cmake ..
+% make -j4 -l4
+% cmake --install . --prefix <target install directory>
+```
 
-If you have built the test cases, you can also run them as follows:
+If you have built the test cases (built by default), you can also run them as follows:
 
-	% make check
+```bash
+% ctest
+```
+The following table summarises the cmake build command for each platform:
+| Platform | Example cmake command|
+| :--- | :--- |
+| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake [options] ..`|
+| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=clang++ CC=clang cmake [options] ..`|
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake [options] ..`|
+| [xcode](https://developer.apple.com/support/xcode/) | `cmake [options] ..`|
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
 
-## Building on OSX
+### CMake project options
+These options can be passed on the cmake command line
+| Option | Description| Default | Example|
+| :--- | :--- | :--- | :--- |
+|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=false`|
+|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=false`|
+|BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS=true`|
 
-You **must** have [glibtool, autotools](http://www.jattcode.com/installing-autoconf-automake-libtool-on-mac-osx-mountain-lion/) installed to build.
+## Compiler support
+| Compiler | Version(s) |
+| :--- | :--- |
+| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `11`, `12`, `13`, `14`|
+| [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `250101` |
+| [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
 
-	% tar xvzf 1.4.3.tar.gz
-	% cd fix8-1.4.3
-	% export LIBTOOLIZE=`which glibtoolize`
-	% ./bootstrap
-	% ./configure
-	% make
-	% make install
-
-Please see [this document](https://fix8engine.atlassian.net/wiki/x/B4AtAQ) for more instructions for building on OSX.
-
-## Building on Windows
-
-Please see [this document](https://fix8engine.atlassian.net/wiki/x/EICW) for detailed instructions for building on Windows.
+Other compilers (older versions as well) may also work.
 
 ## Support
 
 Please refer to the following pages for help:
-- [FAQ](http://fix8.org/faq.html)
+- [FAQ](https://fix8.org/faq.html)
 - [Fix8 Support Group](https://groups.google.com/forum/#!forum/fix8-support)
 - [Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-developer)
-- [API Documentation](http://fix8.org/fix8/html)
+- [API Documentation](https://fix8.org/fix8/html)
 - [Jira Issues Page](https://fix8engine.atlassian.net/)
-- [Fix8 News](http://blog.fix8.org/)
 - [Wiki](https://fix8engine.atlassian.net/wiki)
-- [Twitter](https://twitter.com/fix8engine)
 
 ## Downloads
 
 Please refer to the following page:
-- [Downloads](http://fix8.org/downloads.html)
+- [Downloads](https://fix8.org/downloads.html)
 
 ## Getting help or reporting problems
 
@@ -301,18 +347,14 @@ the [Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-develope
 
 1. If you believe you have found a problem that needs fixing, **go to the [Jira Issues Page](https://fix8engine.atlassian.net/),
 register and create an issue.** Select 'fix8' as the project and provide *as much detail as possible*. Attach supporting files and extracts, like logfiles,
-stack traces, sample configuruation files, config.log, etc.
+sgack traces, sample configuruation files, config.log, etc.
 
 1. If you have already implemented a fix, and wish to make a pull request on Github, *create an issue in Jira first*.
 This will help us track the problem and ensure that the solution is properly tested.
 
-Also, consider the following:
+We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
 
-- We also provide commercial support and help. See [below](#fix8pro-and-fix8-market-technologies).
-
-- We welcome genuine problem reports and encourage users to help us improve the product - for you and with your help.
-
-- If you are on [LinkedIn](http://linkedin.com) join the LinkedIn group **Fix8 Users and Developers**
+- If you are on [LinkedIn](https://linkedin.com) join the LinkedIn group **Fix8 Users and Developers**
 for more help and information about the Fix8 project.
 
 ## Making a Pull Request
@@ -322,7 +364,7 @@ If you want to submit a change to the repository, it needs to be *made on the de
 1. Login to Jira, create a ticket for your changes, describing in detail the bug fix or improvement
 1. Login to github
 1. Create a fork of fix8
-1. If you are using the command line git, clone your fork and choose the dev branch<br><code>% git clone https://github.com/[your_repo_name]/fix8.git -b dev</code>
+1. If you are using the command line git, clone your fork and choose the dev branch<br><code>% git clone https://github.com/[`your_repo_name`]/fix8.git -b dev</code>
 1. Make your changes to this branch
 1. Submit changes to your branch and push the branch to your fork
 1. Create a pull request at fix8:dev
@@ -331,8 +373,8 @@ If you want to submit a change to the repository, it needs to be *made on the de
 
 ## License
 
-Fix8 is released under the [GNU LESSER GENERAL PUBLIC LICENSE Version 3](http://www.gnu.org/licenses/lgpl.html).
-See [License](http://fix8.org/faq.html#license) for more information.
+Fix8 is released under the [GNU LESSER GENERAL PUBLIC LICENSE Version 3](https://www.gnu.org/licenses/lgpl.html).
+See [License](https://fix8.org/faq.html#license) for more information.
 
 ## Fix8Pro and Fix8 Market Technologies
 
@@ -344,6 +386,27 @@ Fix8 open source community and partners to grow commercial support services thro
 
 For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.com)
 
+## Authors and Contributors
+|David Dight| `fix at fix8 dot org`|
+| :--- | :--- |
+|Sergey Sedreev| `sergeys at fix8 dot org`|
+|Kristian Peacocke| `krpeacocke at gmail dot com`|
+|Milan Mitic| `milsanore at gmail dot com`|
+|Jianzong Su| `sujianzong at foxmail dot com`|
+|Alex Nizev| `alexnizev at gmail dot com`|
+|Evan Wies| `evan at neomantra dot net`|
+|Venkat Bhamidipati| `venkat70 at gmail dot com`|
+|Derrick Johnson| `derrick dot johnson at mac dot com`|
+|Richard Bourne| `richbourne at gmail dot com`|
+|David Keller| `david dot keller at litchis dot fr`|
+|Markus Elfring| `elfring at users dot sourceforge dot net`|
+|David Boosalis| `david dot boosalis at gmail dot com`|
+|Chris Fischer| `cgfischerum at gmail dot com`|
+|Ido Rosen| `code at idorosen dot com`|
+|Andrew Stern| `ndrew dot stern at itg dot com`|
+|AntonM| `antonam000 at gmail dot com`|
+|Konstantin Ivanov| `korst1k at gmail dot com`|
+
 ## More Information
 
-For more information, see the [Fix8 website.](http://www.fix8.org)
+For more information, see the [Fix8 website.](https://www.fix8.org)
