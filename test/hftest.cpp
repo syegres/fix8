@@ -135,7 +135,7 @@
 #include "perf_classes.hpp"
 
 #include "hftest.hpp"
-#if __GNUC__
+#if defined(__GNUC__) && !defined(__llvm__) && !defined(__INTEL_COMPILER)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough="
 #endif
@@ -788,10 +788,6 @@ bool hf_session_server::handle_application(const unsigned seqnum, const Message 
 {
 	return enforce(seqnum, msg) || msg->process(_router);
 }
-#if __GNUC__
-#pragma GCC diagnostic pop
-#endif
-
-#if __GNUC__
+#if defined(__GNUC__) && !defined(__llvm__) && !defined(__INTEL_COMPILER)
 #pragma GCC diagnostic pop
 #endif

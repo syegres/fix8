@@ -1,4 +1,4 @@
-* Wed May 05 2025 David L. Dight <fix@fix8.org> 1.5.0
+* Wed Jun 02 2025 David L. Dight <fix@fix8.org> 2.0.1
 - cmake build system replaces GNU autotools
 - Minimum C++17 required
 - Fixed multiple runtime library compiler warnings
@@ -10,6 +10,8 @@
 - Fixed build for Windows and MacOS
 - Shared and static runtime libs built by default
 - Static lib contains all external deps
+
+* Wed May 05 2025 David L. Dight <fix@fix8.org> 1.5.0
 - Added Intel compiler support
 - Upgrade poco, removed deprecated calls
 - Updated and merged bug fixes

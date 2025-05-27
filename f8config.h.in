@@ -597,7 +597,7 @@
 
 /* Define to the full name and version of this package. */
 #ifndef FIX8_PACKAGE_STRING
-#define FIX8_PACKAGE_STRING "fix8 @fix8_VERSION@"
+#define FIX8_PACKAGE_STRING "fix8 v@fix8_VERSION@"
 #endif
 
 /* Define to the one symbol short name of this package. */

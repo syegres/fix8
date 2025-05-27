@@ -46,7 +46,7 @@
 #include "precomp.hpp"
 #include <fix8/f8includes.hpp>
 
-#if __GNUC__
+#if defined(__GNUC__) && !defined(__llvm__) && !defined(__INTEL_COMPILER)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wimplicit-fallthrough="
 #endif
@@ -387,6 +387,6 @@ bool ClientConnection::connect()
 	return false;
 }
 
-#if __GNUC__
+#if defined(__GNUC__) && !defined(__llvm__) && !defined(__INTEL_COMPILER)
 #pragma GCC diagnostic pop
 #endif

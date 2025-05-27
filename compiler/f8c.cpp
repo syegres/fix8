@@ -1590,7 +1590,7 @@ void generate_preamble(ostream& to, const string& fname, bool isheader, bool don
 	string result;
 	if (donotedit)
 	{
-		to << _csMap.find(cs_do_not_edit)->second << GetTimeAsStringMS(result, 0, 0) << " ***" << endl;
+		to << _csMap.find(cs_do_not_edit)->second << GetTimeAsStringMS(result, 0, 0) << " by " FIX8_PACKAGE_STRING " ***" << endl;
 		to << _csMap.find(cs_divider)->second << endl;
 	}
 	to << _csMap.find(cs_copyright)->second << insert_year() << _csMap.find(cs_copyright2)->second << endl;

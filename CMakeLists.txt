@@ -49,7 +49,7 @@ project (fix8
    LANGUAGES CXX C
 	HOMEPAGE_URL https://github.com/fix8/fix8
    DESCRIPTION "Open Source C++ FIX Engine"
-   VERSION 1.5.0)
+   VERSION 2.0.1)
 
 set(fix8_CMAKE_CXX_FLAGS_STR "${CMAKE_CXX_FLAGS}")
 # -------------------------------------------------------------------------------------------
