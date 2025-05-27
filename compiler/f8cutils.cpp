@@ -32,6 +32,17 @@
 //  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 //  HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 //---------------------------------------------------------------------------------------------
+// For Production-Grade FIX Requirements:
+//  If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+//  latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+//  same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+//	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+//  deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+//  compatibility with  the Community Edition while providing  enhanced stability, scalability,
+//  and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+//  Community  Edition's capabilities, you can find out and learn more about the Pro version at
+//  www.fix8mt.com
+//---------------------------------------------------------------------------------------------
 #include "precomp.hpp"
 // f8 headers
 #include <fix8/f8includes.hpp>
@@ -178,7 +189,7 @@ void process_value_enums(FieldSpecMap::const_iterator itr, ostream& ost_hpp, ost
 	string typestr;
 	if (FieldTrait::get_type_string(itr->second._ftype, typestr).empty())
 		return;
-	typestr.insert(0, "const ");
+	typestr.insert(0, typestr == "f8String" ? "const " : "constexpr ");
 	typestr += ' ';
 
 	ost_cpp << typestr << itr->second._name << "_realm[]  " << endl << spacer << "{ ";
@@ -201,10 +212,10 @@ void process_value_enums(FieldSpecMap::const_iterator itr, ostream& ost_hpp, ost
 		ost_hpp << '(' << *ditr->first << ");" << endl;
 		++cnt;
 	}
-	ost_hpp << "const size_t " << itr->second._name << "_realm_els(" << itr->second._dvals->size() << ");" << endl;
+	ost_hpp << "constexpr size_t " << itr->second._name << "_realm_els(" << itr->second._dvals->size() << ");" << endl;
 	ost_cpp << " };" << endl;
 
-	ost_cpp << "const char *" << itr->second._name << "_descriptions[]  " << endl << spacer << "{ ";
+	ost_cpp << "constexpr const char *" << itr->second._name << "_descriptions[]  " << endl << spacer << "{ ";
 	cnt = 0;
 	for (RealmMap::const_iterator ditr(itr->second._dvals->begin()); ditr != itr->second._dvals->end(); ++ditr)
 	{

@@ -1,4 +1,4 @@
-<!-----------------------------------------------------------------------------------------
+<!---------------------------------------------------------------------------------------------
 // SPDX-License-Identifier: LGPL-3.0-or-later
 // SPDX-PackageName: Fix8 Open Source FIX Engine
 // SPDX-FileCopyrightText: Copyright (C) 2010-25 David L. Dight <fix@fix8.org>
@@ -31,7 +31,18 @@
 //  NOT LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
 //  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 //  HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
-//---------------------------------------------------------------------------------------->
+//---------------------------------------------------------------------------------------------
+// For Production-Grade FIX Requirements:
+//  If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+//  latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+//  same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+//	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+//  deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+//  compatibility with  the Community Edition while providing  enhanced stability, scalability,
+//  and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+//  Community  Edition's capabilities, you can find out and learn more about the Pro version at
+//  www.fix8mt.com
+//-------------------------------------------------------------------------------------------->
 <p align="center"><a href="https://www.fix8.org"><img src="https://fix8.org/fix8/fix8_Logo_RGB.png"></a></p>
 
 # [Fix8](https://www.fix8.org) Open Source C++ FIX Engine
@@ -95,6 +106,8 @@ and framework; and a set of complete client/server test applications.
 * Fix8 has been designed to be extended, customised or enhanced. If you have special requirements, Fix8 provides a flexible platform to develop your application on.
 
 * Fix8 supports field and value domain validation, mandatory/optional field assertion, field ordering, well-formedness testing, retransmission and standard session semantics.
+
+* Fix8 will build with gcc, clang, xcode, intel and msvc compilers
 
 * Fix8 runs under industry standard Linux on IA32, x86-64, Itanium, PowerPC, ARMv7 and aarm64. It also runs on *Windows* and *MacOS*. Other \*NIX variants may work too.
 
@@ -269,6 +282,14 @@ If you have built the test cases (built by default), you can also run them as fo
 ```bash
 % ctest
 ```
+The following table summarises the cmake build command for each platform:
+| Platform | Example cmake command|
+| :--- | :--- |
+| [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `CXX=g++ CC=gcc cmake [options] ..`|
+| [clang](https://clang.llvm.org/cxx_status.html) | `CXX=clang++ CC=clang cmake [options] ..`|
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `CXX=icpx CC=icx cmake [options] ..`|
+| [xcode](https://developer.apple.com/support/xcode/) | `cmake [options] ..`|
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | build from menu|
 
 ### CMake project options
 These options can be passed on the cmake command line
@@ -283,8 +304,9 @@ These options can be passed on the cmake command line
 | :--- | :--- |
 | [gcc](https://gcc.gnu.org/projects/cxx-status.html) | `11`, `12`, `13`, `14`|
 | [clang](https://clang.llvm.org/cxx_status.html) | `15`, `16`, `17`, `18`, `19`, `20`|
-| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
+| [intel (llvm)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/dpc-compiler.html) | `250101` |
 | [xcode](https://developer.apple.com/support/xcode/) | `15`, `16` |
+| [msvc](https://learn.microsoft.com/en-us/cpp/overview/visual-cpp-language-conformance) | `16`, `17` |
 
 Other compilers (older versions as well) may also work.
 

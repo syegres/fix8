@@ -32,6 +32,17 @@
 #   THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 #   HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # ---------------------------------------------------------------------------------------------
+#  For Production-Grade FIX Requirements:
+#   If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+#   latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+#   same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+# 	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+#   deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+#   compatibility with  the Community Edition while providing  enhanced stability, scalability,
+#   and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+#   Community  Edition's capabilities, you can find out and learn more about the Pro version at
+#   www.fix8mt.com
+# ---------------------------------------------------------------------------------------------
 cmake_minimum_required (VERSION 3.20)
 include(cmake/buildutils.cmake)
 project (fix8
@@ -68,6 +79,18 @@ else()
 	set(poco_ssl_libs Poco::NetSSL Poco::Crypto)
 	set(getopt_lib "")
 endif()
+
+# -------------------------------------------------------------------------------------------
+# workaround for poco's c++17 check that fails for Intel compiler
+if (CMAKE_CXX_COMPILER_ID MATCHES "IntelLLVM|Intel")
+	function(check_for_cxx17_compiler)
+		 message(STATUS "Bypassing POCO's C++17 check for Intel compiler")
+		 set(CXX17_COMPILER TRUE PARENT_SCOPE)
+	endfunction()
+	file(WRITE "${CMAKE_BINARY_DIR}/dummy/CXX1x.cmake"
+	 "# This empty file ensures our function override takes precedence")
+	list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_BINARY_DIR}/dummy")
+endif()
 fix8_fetch(poco pocoproject/poco poco-1.14.2-release)
 set(TBB_TEST OFF)
 fix8_fetch(tbb uxlfoundation/oneTBB v2022.1.0)
@@ -103,7 +126,7 @@ set_target_properties(fix8 PROPERTIES VERSION ${PROJECT_VERSION} SOVERSION ${PRO
 target_compile_definitions(fix8 PRIVATE BUILD_F8API)
 build_lib(fix8stat STATIC)
 target_compile_definitions(fix8stat PRIVATE BUILD_F8API_STATIC)
-if (!MSVC)
+if (NOT MSVC)
 	set_target_properties(fix8stat PROPERTIES OUTPUT_NAME fix8)
 endif()
 install(DIRECTORY include DESTINATION .)

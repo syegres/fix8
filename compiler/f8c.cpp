@@ -32,6 +32,17 @@
 //  THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 //  HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 //---------------------------------------------------------------------------------------------
+// For Production-Grade FIX Requirements:
+//  If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+//  latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+//  same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+//	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+//  deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+//  compatibility with  the Community Edition while providing  enhanced stability, scalability,
+//  and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+//  Community  Edition's capabilities, you can find out and learn more about the Pro version at
+//  www.fix8mt.com
+//---------------------------------------------------------------------------------------------
 /** \file f8c.cpp
 \n
   This is the fix8 compiler.\n
@@ -1000,8 +1011,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 	osc_hpp << "#define " << bintoaschex(ctxt._out[Ctxt::classes_hpp].first.second) << endl << endl;
     generate_export(osc_hpp, ctxt._fixns);
     osc_hpp << _csMap.find(cs_start_namespace)->second << endl;
-	osc_hpp << endl << "extern \"C\"" << endl << '{' << endl
-      << spacer << "F8_" << ctxt._fixns << "_API const F8MetaCntx& " << ctxt._fixns << "_ctx();" << endl << '}' << endl << endl;
+	osc_hpp << endl << "F8_" << ctxt._fixns << "_API const F8MetaCntx& " << ctxt._fixns << "_ctx();" << endl << endl;
 	osc_hpp << "namespace " << ctxt._fixns << " {" << endl;
 
 	osc_hpp << endl << _csMap.find(cs_divider)->second << endl;
@@ -1278,9 +1288,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 	osr_cpp << endl << "} // namespace " << ctxt._fixns << endl;
 	osr_cpp << _csMap.find(cs_end_namespace)->second << endl;
 	osc_cpp << endl << "// Compiler generated metadata object accessible outside namespace through this function." << endl;
-	osc_cpp << "extern \"C\"" << endl << '{' << endl
-      << spacer << "const F8MetaCntx& " << ctxt._fixns << "_ctx() { return " << ctxt._fixns << "::ctx(); }"
-      << endl << '}' << endl << endl;
+	osc_cpp << "const F8MetaCntx& " << ctxt._fixns << "_ctx() { return " << ctxt._fixns << "::ctx(); }" << endl << endl;
 	osc_cpp << _csMap.find(cs_end_namespace)->second << endl;
 	osc_cpp << endl;
 
@@ -1503,8 +1511,12 @@ int process(XmlElement& xf, Ctxt& ctxt)
 //-------------------------------------------------------------------------------------------------
 void binary_report()
 {
-#if defined _MSC_VER
-	cout << "MSVC Compiler Version: " << _MSC_VER << " (" << _MSC_FULL_VER << ')' << endl;
+#if defined __INTEL_COMPILER
+   cout << "Intel Compiler version is " << __INTEL_COMPILER << endl;
+#elif defined __INTEL_LLVM_COMPILER
+   cout << "Intel Compiler version is " << __INTEL_LLVM_COMPILER << endl;
+#elif defined _MSC_VER
+	cout << "MSVC Compiler version is " << _MSC_VER << " (" << _MSC_FULL_VER << ')' << endl;
 #elif defined __clang__
    cout << "Compiled with clang version " << __clang_major__ << '.' << __clang_minor__ << '.' << __clang_patchlevel__ << endl;
 #elif defined __GNUG__
@@ -1520,15 +1532,15 @@ void binary_report()
 		cout << "GNU libpthread version is " << confbuf << endl;
 	}
 #else
-	cout << "No information available." << endl;
+	cout << "No information available" << endl;
 #endif
 #if defined __GXX_ABI_VERSION
 	cout << "GXX ABI version is " <<  __GXX_ABI_VERSION << endl;
 #endif
 #if defined _LIBCPP_VERSION
-   std::cout << "libc++ version: " << _LIBCPP_VERSION << endl;
+   cout << "libc++ version is " << _LIBCPP_VERSION << endl;
 #elif defined __GLIBCXX__
-   std::cout << "libstdc++ version: " << __GLIBCXX__ << endl;
+   cout << "libstdc++ version is " << __GLIBCXX__ << endl;
 #endif
 }
 

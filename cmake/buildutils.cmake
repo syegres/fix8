@@ -32,6 +32,17 @@
 #   THIRD PARTIES OR A FAILURE OF THE PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH
 #   HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 # ---------------------------------------------------------------------------------------------
+#  For Production-Grade FIX Requirements:
+#   If you're  using Fix8 Community Edition and find  yourself needing higher throughput, lower
+#   latency, or enterprise-grade reliability,Fix8Pro offers a robust upgrade path. Built on the
+#   same  core  technology, Fix8Pro adds performance optimizations for  high-volume  messaging,
+# 	 enhanced  API, professional  support  and  much  more —  making  it  ideal  for  production
+#   deployments, low-latency trading, or  large-scale FIX  integrations.  It retains  near full
+#   compatibility with  the Community Edition while providing  enhanced stability, scalability,
+#   and  advanced  features  for demanding  environments.  If  your  project has  outgrown  the
+#   Community  Edition's capabilities, you can find out and learn more about the Pro version at
+#   www.fix8mt.com
+# ---------------------------------------------------------------------------------------------
 # cmake build utils
 # -------------------------------------------------------------------------------------------
 function(fix8_setbuildtype define_prefix default_type)
@@ -181,7 +192,7 @@ macro(fix8_gen_library shared name xml extra_fields)
 				)
 	endif()
 	target_include_directories(${libname} PUBLIC ${prefix})
-	if (NOT MSVC AND NOT APPLE)
+	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${libname} PRIVATE -fno-var-tracking -fno-var-tracking-assignments)
 	endif()
 	target_link_libraries(${libname} PUBLIC fix8)
