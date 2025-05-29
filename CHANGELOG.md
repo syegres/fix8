@@ -56,7 +56,7 @@
 - Removed FastFlow, replaced with tbb
 - Removed extern "C" linkage warnings
 - cmake downloads and builds all default required deps
-- Fixed session_test errors
+- Fixed `session_test` errors
 - Fixed build for MacOS
 - Fixed build for Windows, builds in MSVC, VSCode
 - Added zlib, getopt for Windows
@@ -101,7 +101,7 @@
 - Added ConsoleMenu SelectMsgFrom now displays message sending time and seqnum if available
 - Fixed crash on "Send one message, optionally save before send"
 - Fixed f8c unhandled exception while stoul'ing fields
-- Fixed login_retries="0" not working
+- Fixed `login_retries="0"` not working
 - Fixed Expected Sequence number reaches extreme and unrealistic value
 - Fixed Crashes on heartbeat
 <a id="134"></a>
@@ -116,7 +116,7 @@
 - Fixed Crash on sending cloned message
 - Added Provide optional improved checksum calculation
 - Added Provide Consolemenu method to remove msg from list and return to application
-- Fixed Replace get_value<> with stoi, stoul, stof, etc
+- Fixed Replace `get_value<>` with `stoi`, `stoul`, `stof`, etc
 - Added Provide non-const header and trailer accessors
 - Fixed With f8config installed in system includes, #defines causes namespace pollution
 - Fixed Test harness improvements, testing
@@ -127,9 +127,9 @@
 - Fixed Provide capability to build stock FIX libraries
 - Fixed seqedit Poco linkage prolem
 - Added CMake find_package support
-- Fixed ssout_xxxx() macros can be used outside FIX8 namespace
-- Fixed Schedule::test bug fix for calculating "today" in local time zone
-- Fixed support application framework to manage all purmutations of process_model and mode
+- Fixed `ssout_xxxx()` macros can be used outside FIX8 namespace
+- Fixed `Schedule::test` bug fix for calculating "today" in local time zone
+- Fixed support application framework to manage all permutations of process_model and mode
 - Fixed issue in MessageBase::clear
 - Fixed XML parser does not support CDATA values
 - Fixed ReliableClientSession crash when connection failed
@@ -139,13 +139,13 @@
 *Maintainer: David L. Dight <fix@fix8.org>*
 - Fixed Jira tickets FX-394, FX-385, FX-379, FX-372, FX-371, FX-355, FX-353, FX-350, FX-321,FX-328, FX-326, FX-307, FX-332, FX-333, FX-369, FX-354, FX-323
 - Fixed f8test client and server core dumps on exit when compiled with stdthread
-- Fixed copy_legal causes segfault on windows
-- Fixed schedule is_valid() returns true even schedule is invalid under win
+- Fixed `copy_legal` causes segfault on windows
+- Fixed schedule `is_valid()` returns true even schedule is invalid under win
 - Fixed Fix8 has empty timestamps under windows
 - Fixed client session reconnect failure after previous abnormal session disconnect
 - Fixed unhandled message and reject problems
 - Fixed invalid tag in test log of Win build
-- Fixed Tickval::todouble returning 0
+- Fixed `Tickval::todouble` returning 0
 - Fixed provide capability to build stock FIX libraries
 - Fixed improve VS2013 build wth stock FIX schemas
 - Fixed replace time/date handling (Tickval) with C++11 std::chrono
@@ -168,23 +168,23 @@
 - Overhaul logging system
 - Loggers should support log level
 - Allow shallow message construction
-- Provide Message::move_legal
+- Provide `Message::move_legal`
 - XML parser does not support CDATA values
 - gcc 4.7.2 linux build broken
 - Allow shallow message construction
-- Provide Message::move_legal
+- Provide `Message::move_legal`
 - Facilitate "pass-through" fields which are not mentioned in the Dictionary
 - MAGIC_NUM expression can cause problems
 - Support package and configuration string queries
 - Provide flag settings to control XML parser
 - Remove main Nuget package link dependency to gtest
-- Replace FIX8::dthread with std::thread
+- Replace `FIX8::dthread` with `std::thread`
 - ReliableClientSession crash when socket connection refused
 - Compilation error on clean checkout 14/07/10
 - Protocol Logger Thread is not destroyed after deleting session
 - Wrong Timer implementation
 - RAII std::ostream Singleton log target
-- GlobalLogger::create_instance needs refactoring
+- `globalLogger::create_instance` needs refactoring
 - Precision was altered unintentionally
 - Support flattened field query in messages
 - Allow SingleLogger to accept user defined LogFlags
@@ -196,7 +196,7 @@
 - Create VS2012 build of FIX8
 - Provide programmatic/generic method of loading and using Fix8 metadata
 - Permit lookup of fields and messages by their long name
-- Xml improvements: find_child, GetLocString
+- Xml improvements: `find_child`, `GetLocString`
 - Field equivalence operators missing
 - Option to compiler to generate router stubs without defaults
 - Session state does not changed when connection goes down.
@@ -213,14 +213,14 @@
 - Provide tabsize setting to customise fix printer
 - Update wiki with instruction of building NuGet packages
 - On Mac OS X Maverick, clang generates lots of warnings
-- building with --enable-tbb-malloc=yes on OS X gives error
+- building with `--enable-tbb-malloc=yes` on OS X gives error
 - poco error under OS X Maverics
 - Realm range not working as expected
 - Poco On Windows
 - Add a few helper methods to BaseEntry and BaseMsgEntry
 - Mandatory fields not propagating through compiler with FIXT
 - MarketDataRequest with certain fields throws exception invalid field
-- default_appl_ver_id (1137) applied if configured, regardless of FIX version
+- `default_appl_ver_id` (1137) applied if configured, regardless of FIX version
 - Example of how to subscribe to MarketData
 - Distinguish between invalid and unknown field exceptions in message
 - Replace StaticTable with std::map
@@ -229,28 +229,28 @@
 - Create FIX8 NuGet package
 - Create a .net port of fix8
 - Upgrade bundled FastFlow from 2.0.2 to 2.0.4
-- Replace FIX8::f8_atomic with std::atomic
+- Replace `FIX8::f8_atomic` with `std::atomic`
 - FX-242 Write Fix8 1.1 to 1.2 migration guide
 - Replace all the sizes from unsigned to size_t
-- OSX g++-4.2.1 on mac does not support -fno-var-tracking-assignments.
+- OSX g++-4.2.1 on mac does not support `-fno-var-tracking-assignments`
 - Invalid inbound acceptor SenderCompID ignored
 - Create OSX HOWTO in Confluence
 - Acceptor SenderCompID not configurable
 - Provide test example for multi-session support
 - Provide support for underlying FieldType introspection
 - Support optional CompID enforcement
-- Replace FIX8::scoped_ptr with std::unique_ptr
+- Replace `FIX8::scoped_ptr` with `std::unique_ptr`
 - Client logs should be created with SessionID suffix
 - Restructure Session wrapper classes to support non-templated base classes
-- Allow user to set SO_KEEPALIVE option from config
+- Allow user to set `SO_KEEPALIVE` option from config
 - Complete confluence documentation for 1.1.0 and 1.2.0 features
 - Provide support and management for multiple ServerInstances
 - Server support for predefined set of remote SenderCompIDs
-- Allow user to set SO_REUSEADDR option from config
-- Allow user to set SO_LINGER option from config
+- Allow user to set `SO_REUSEADDR` option from config
+- Allow user to set `SO_LINGER` option from config
 - Support defaults section in Session xml configuration
-- FX-41 Replace FIX8::dthread with std::thread
-- Add option to FIX8::logger to suppress LF on logline
+- FX-41 Replace `FIX8::dthread` with `std::thread`
+- Add option to `FIX8::logger` to suppress LF on logline
 - Windows build fails when configured w/o TBB
 - Linux End-of-Line Charactor not handled by Message::factory
 - hftest server exits when sending preloaded messages under windows
@@ -282,10 +282,10 @@
 - Add support for Session based BusinessMessageReject ('j')
 - Added support for Session login and logout time
 - Added make socket read buffering optional
-- Added expose FIX8::Session scheduler to user session class
+- Added expose `FIX8::Session` scheduler to user session class
 - Added support for Session Start time and End Time
 - Fixed Hang in FIXReader::sockRead
-- Fixed gcc 4.2 and greater supports -fno-var-tracking -fno-var-tracking-assignments
+- Fixed gcc 4.2 and greater supports `-fno-var-tracking -fno-var-tracking-assignments`
 - Fixed Complete build options for Pthread API
 - Added message handling: allow non-const operations
 - Fixed Non-standard XML attribute comment problem
@@ -306,7 +306,7 @@
 - Add repeating group test cases for permissive mode
 - Support a permissive message field mode in decoder
 - Provide override to -fno-var-tracking-assignments
-- Fixed Session::send_process() dumps core in reliable mode if client drops connection before login
+- Fixed `Session::send_process()` dumps core in reliable mode if client drops connection before login
 - Added When working in coro mode there has to be a flag that session is ready to operate
 - Added When working in coro mode reader.execute() calls to base class operator()
 - Merged fix8:dev with fix8:master
@@ -315,19 +315,19 @@
 - Fixed clang 3.2-3.4 compilation warnings
 - Fixed Sending of FIX message takes too long
 - Added Batch message sending
-- Fixed MessageBase::extract_element(..., f8String& tag, f8String& val) is ineffective
+- Fixed `MessageBase::extract_element(..., f8String& tag, f8String& val)` is ineffective
 - Fixed FIXReader calls sockRead too many times
 - Added Make includes relative to project root
 - Added SSL support
-- Fixed XmlElement::find with attribute and value not finding correctly
+- Fixed `XmlElement::find` with attribute and value not finding correctly
 - Fixed Segfault with non-set SessionConfig on heartbeat
 - Added Support custom field addition on f8c command line
 - Fixed Fields of type 'data' are not parsed according to FIX specification
-- Fixed time_to_epoch tm_mon ternary operator does not allow January dates to be converted to an epoch timestamp
+- Fixed `time_to_epoch` tm_mon ternary operator does not allow January dates to be converted to an epoch timestamp
 - Fixed Makefile.am does not reference f8dll.h
 - Fixed Build error on OS X -rdynamic
-- Fixed error: 'uint32_t' does not name a type
-- Fixed CLOCK_REALTIME error on compilation on Windows
+- Fixed error: `'uint32_t'` does not name a type
+- Fixed `CLOCK_REALTIME` error on compilation on Windows
 - Fixed Make include guards standard-compliant
 - Code freeze for GA 1.0.0 final
 <a id="0100"></a>
@@ -347,7 +347,7 @@
 - Added Fix8 include path in generated files are now configurable
 - Added -P switch to f8c to embed fix8 in include paths
 - Added order batch send mode
-- Added allow application to detach messages when received from framework: Session::handle_application API change
+- Added allow application to detach messages when received from framework: `Session::handle_application` API change
 - Added provide way to set default precison for floating point values
 <a id="096"></a>
 ## [0.9.6] - 2013-10-13
@@ -373,14 +373,14 @@
 - Fixed Jira tickets FX-78, FX-79, FX-80, FX-81, FX-82, FX-83, FX-84, FX-85, FX-86, FX-87, FX-88, FX-89, FX-90, FX-91, FX-29, FX-92, FX-89, FX-90, FX-91, FX-29, FX-92
 - Fixed SendingTime and TransactTime not being output by Fix8 printer
 - Added compiler option to suppress realm use during field construction
-- Replaced Poco::DateTime with custom date time parser, reduced decode latency ~ 20%
+- Replaced `Poco::DateTime` with custom date time parser, reduced decode latency ~ 20%
 - Fixed f8c compiler crashing on exit
 - Fixed Incorrect sequence number in GenerateSequenceReset
 - Removed coroutine process mode spinlocks
 - Workaround for f8test not building on low memory platforms or with older compilers
 - Skip formal decode of some header/trailer fields
 - Fixed error checking on logfile creation
-- Fixed F8MetaCntx::_bme.find() not returning end() if not found
+- Fixed `F8MetaCntx::_bme.find()` not returning end() if not found
 - Fixed ignore_logon_sequence_check check core dumping in client
 - Added permit applications to by-pass chksum checking
 - Replace field string parameter with const char *
@@ -388,18 +388,18 @@
 - Fixed replace compiler f8c generated instantiators with compiler generated versions
 - Fixed bug with some linux distros, threaded sessions core dump on exit
 - Replaced #ifdef 0 comment blocks with /* ... */
-- Templated Field::add_field
+- Templated `Field::add_field`
 - Improved fix printer formatting, removed incorrect group metadata
 - Added rdtsc option for codec timing
-- Added set_scheduler and set_affinity support
+- Added `set_scheduler` and `set_affinity` support
 <a id="094"></a>
 ## [0.9.4] - 2013-08-25
 *Maintainer: David L. Dight <fix@fix8.org>*
 - Merged in Richard Bourne's Windows port.
 - Fixed Jira tickets FX-72, FX-73, FX-74, FX-75
-- Merged from evdubs: remove the friend declaration in f8_scoped_lock_impl
+- Merged from evdubs: remove the friend declaration in `f8_scoped_lock_impl`
 - Fixup package spec for pre-release to Fedora (now builds on f20 rawhide)
-- Added ReliableClientSession::has_given_up()
+- Added `ReliableClientSession::has_given_up()`
 - Fixed: Gcc locks up with compiler generated traits file; reduced _traits.cpp file by 40%
 - Fixed: Compile error with gcc 4.8.1
 - Fixed: XML character entity parsing broken; extended entity set;
@@ -463,7 +463,7 @@
 - Permit selection of pipelined or non-pipelined operation, through session config
 - Change performance test application to provide better measure of codec performance
 - Make Intel TBB optional
-- Fixed FileLogger::rotate() not working as expected
+- Fixed `FileLogger::rotate()` not working as expected
 - Use FastFlow queue processing
 - Fixed FIXReader, FIXWriter dropping bytes when buffers full
 - Fixed build hftest issue
