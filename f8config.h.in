@@ -503,25 +503,10 @@
 #define FIX8_HOST_SYSTEM "x86_64-pc-linux-gnu"
 #endif
 
-/* Additional library flags */
-#ifndef FIX8_LDFLAGS
-#define FIX8_LDFLAGS " -L/opt/gtest/lib -L/opt/gtest/lib/.libs -L/home/davidd/poco/install/lib"
-#endif
-
-/* Library spec */
-#ifndef FIX8_LIBS
-#define FIX8_LIBS ""
-#endif
-
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
 #ifndef FIX8_LSTAT_FOLLOWS_SLASHED_SYMLINK
 #define FIX8_LSTAT_FOLLOWS_SLASHED_SYMLINK 1
-#endif
-
-/* Define to the sub-directory where libtool stores uninstalled libraries. */
-#ifndef FIX8_LT_OBJDIR
-#define FIX8_LT_OBJDIR ".libs/"
 #endif
 
 /* Encode version */

@@ -42,8 +42,8 @@
 - [[0.4.10](#0410)] - 2012-02-05
 - [[0.4.4](#044)] - 2012-01-27
 - [[0.4.2](#042)] - 2012-01-23
-- [[0.3.580](#03580)] - 2012-01-07
-
+- [[0.3.58](#0358)] - 2012-01-07
+- [[0.1.2](#012)] - 2010-09-11
 ---
 
 <a id="201"></a>
@@ -573,6 +573,10 @@
 *Maintainer: David L. Dight <fix@fix8.org>*
 - Moved to github; numerous fixes; documentation and wiki;
 <a id="03580"></a>
-## [0.3.580] - 2012-01-07
+## [0.3.58] - 2012-01-07
+*Maintainer: David L. Dight <fix@fix8.org>*
+- compiler and basic metadata
+<a id="012"></a>
+## [0.1.2] - 2010-09-11
 *Maintainer: David L. Dight <fix@fix8.org>*
 - Initial release on sourceforge
