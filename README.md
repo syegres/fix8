@@ -70,6 +70,7 @@ and framework; and a set of complete client/server test applications.
 1. [Features](#features)
 1. [Directory Layout](#directory-layout)
 1. [Documentation](#documentation)
+1. [Changelog](#changelog)
 1. [Branch Layout](#branch-layout)
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
@@ -181,6 +182,9 @@ and framework; and a set of complete client/server test applications.
 
 See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
 a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
+
+## Changelog
+📜 [View full changelog here](CHANGELOG.md)
 
 ## Branch Layout
 
