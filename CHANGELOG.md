@@ -1,54 +1,54 @@
 # Changelog
 
 ## Table of Contents
-- [2.0.1] - 2025-06-02
-- [1.4.3] - 2023-05-10
-- [1.4.1] - 2019-01-01
-- [1.4.0] - 2016-09-16
-- [1.3.4] - 2015-08-23
-- [1.3.3] - 2015-04-24
-- [1.3.2] - 2015-01-02
-- [1.3.1] - 2014-08-24
-- [1.3.0] - 2014-08-17
-- [1.2.0] - 2014-06-04
-- [1.1.0] - 2014-04-06
-- [1.0.0] - 2014-01-16
-- [0.10.0] - 2013-11-10
-- [0.9.6] - 2013-10-13
-- [0.9.5] - 2013-09-22
-- [0.9.4] - 2013-08-25
-- [0.9.3] - 2013-08-04
-- [0.9.2] - 2013-07-21
-- [0.9.0] - 2013-06-29
-- [0.8.0] - 2013-05-10
-- [0.7.2] - 2013-04-07
-- [0.7.0] - 2013-02-23
-- [0.6.7] - 2013-01-28
-- [0.6.6] - 2012-12-16
-- [0.6.5] - 2012-12-09
-- [0.6.4] - 2012-11-22
-- [0.6.3] - 2012-11-18
-- [0.6.2] - 2012-10-23
-- [0.6.1] - 2012-09-07
-- [0.6.0] - 2012-07-21
-- [0.5.7] - 2012-05-25
-- [0.5.5] - 2012-05-12
-- [0.5.1] - 2012-04-29
-- [0.5.0] - 2012-04-22
-- [0.4.17] - 2012-03-20
-- [0.4.16] - 2012-03-08
-- [0.4.15] - 2012-03-01
-- [0.4.12] - 2012-02-19
-- [0.4.10] - 2012-02-05
-- [0.4.4] - 2012-01-27
-- [0.4.2] - 2012-01-23
-- [0.3.580] - 2012-01-07
+- [[2.0.1](#201)] - 2025-06-02
+- [[1.4.3](#143)] - 2023-05-10
+- [[1.4.1](#141)] - 2019-01-01
+- [[1.4.0](#140)] - 2016-09-16
+- [[1.3.4](#134)] - 2015-08-23
+- [[1.3.3](#133)] - 2015-04-24
+- [[1.3.2](#132)] - 2015-01-02
+- [[1.3.1](#131)] - 2014-08-24
+- [[1.3.0](#130)] - 2014-08-17
+- [[1.2.0](#120)] - 2014-06-04
+- [[1.1.0](#110)] - 2014-04-06
+- [[1.0.0](#100)] - 2014-01-16
+- [[0.10.0](#0100)] - 2013-11-10
+- [[0.9.6](#096)] - 2013-10-13
+- [[0.9.5](#095)] - 2013-09-22
+- [[0.9.4](#094)] - 2013-08-25
+- [[0.9.3](#093)] - 2013-08-04
+- [[0.9.2](#092)] - 2013-07-21
+- [[0.9.0](#090)] - 2013-06-29
+- [[0.8.0](#080)] - 2013-05-10
+- [[0.7.2](#072)] - 2013-04-07
+- [[0.7.0](#070)] - 2013-02-23
+- [[0.6.7](#067)] - 2013-01-28
+- [[0.6.6](#066)] - 2012-12-16
+- [[0.6.5](#065)] - 2012-12-09
+- [[0.6.4](#064)] - 2012-11-22
+- [[0.6.3](#063)] - 2012-11-18
+- [[0.6.2](#062)] - 2012-10-23
+- [[0.6.1](#061)] - 2012-09-07
+- [[0.6.0](#060)] - 2012-07-21
+- [[0.5.7](#057)] - 2012-05-25
+- [[0.5.5](#055)] - 2012-05-12
+- [[0.5.1](#051)] - 2012-04-29
+- [[0.5.0](#050)] - 2012-04-22
+- [[0.4.17](#0417)] - 2012-03-20
+- [[0.4.16](#0416)] - 2012-03-08
+- [[0.4.15](#0415)] - 2012-03-01
+- [[0.4.12](#0412)] - 2012-02-19
+- [[0.4.10](#0410)] - 2012-02-05
+- [[0.4.4](#044)] - 2012-01-27
+- [[0.4.2](#042)] - 2012-01-23
+- [[0.3.580](#03580)] - 2012-01-07
 
 ---
 
+<a id="201"></a>
 ## [2.0.1] - 2025-06-02
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - cmake build system replaces GNU autotools
 - Minimum C++17 required
 - Fixed multiple runtime library compiler warnings
@@ -66,26 +66,23 @@
 - Upgrade poco, removed deprecated calls
 - Updated and merged bug fixes
 - Removed cruft
-
+<a id="143"></a>
 ## [1.4.3] - 2023-05-10
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed build issues hftest, utests, some compiler warnings
 - Updated checksum algorithm
 - Merged from dev 1.4.2
-
+<a id="141"></a>
 ## [1.4.1] - 2019-01-01
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-729,FX-744,FX-821,FX-884
 - Fixed deadlock condition in heartbeat
 - Fixed memory leaks
 - Fixed f8c incorrectly removing unused fields from the top of fields list
 - Fixed steroid chksum algorithm giving incorrect values for large messages
-
+<a id="140"></a>
 ## [1.4.0] - 2016-09-16
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-530,FX-533,FX-539,FX-562,FX-563,FX-564,FX-560,FX-588,FX-569,
 - Added verison tag to Nuget packages
 - Fixed Seqedit reports corrupted persister index
@@ -107,10 +104,9 @@
 - Fixed login_retries="0" not working
 - Fixed Expected Sequence number reaches extreme and unrealistic value
 - Fixed Crashes on heartbeat
-
+<a id="134"></a>
 ## [1.3.4] - 2015-08-23
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-508, FX-511, FX-490, FX-491, FX-480, FX-470, FX-336, FX-525, FX-524,
 - Client logout crashes FIX server
 - SessionWrapper needs to be cleaned up in the destructor
@@ -124,10 +120,9 @@
 - Added Provide non-const header and trailer accessors
 - Fixed With f8config installed in system includes, #defines causes namespace pollution
 - Fixed Test harness improvements, testing
-
+<a id="133"></a>
 ## [1.3.3] - 2015-04-24
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-321, FX-319, FX-336, FX-480
 - Fixed Provide capability to build stock FIX libraries
 - Fixed seqedit Poco linkage prolem
@@ -139,10 +134,9 @@
 - Fixed XML parser does not support CDATA values
 - Fixed ReliableClientSession crash when connection failed
 - Fixed Client logout crashes FIX server
-
+<a id="132"></a>
 ## [1.3.2] - 2015-01-02
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-394, FX-385, FX-379, FX-372, FX-371, FX-355, FX-353, FX-350, FX-321,
 - Fixed f8test client and server core dumps on exit when compiled with stdthread
 - Fixed copy_legal causes segfault on windows
@@ -161,16 +155,14 @@
 - Fixed add git revision & fix8 version reporting to log during fix8 start
 - Fixed crashing in hftest of Win build
 - Fixed on exit when using std::thread, logger reports "resource deadlock avoided"
-
+<a id="131"></a>
 ## [1.3.1] - 2014-08-24
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-325
 - 1.3 build bug under Win
-
+<a id="130"></a>
 ## [1.3.0] - 2014-08-17
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-309, FX-308, FX-307, FX-306, FX-305, FX-304, FX-303, FX-302, FX-301,
 - Provide XML logger
 - Overhaul logging system
@@ -211,10 +203,9 @@
 - Allow the option to the getters from a fix message those values that are fixed point values to be stored in float instead of double
 - Make dist, rpmbuild and pro build broken
 - Make nuget package generation files (*.autopkg) to be version independent
-
+<a id="120"></a>
 ## [1.2.0] - 2014-06-04
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-278, FX-276, FX-275, FX-274, FX-273, FX-272, FX-271, FX-270, FX-269,
 - Provide access to raw inbound and outbound FIX message text
 - Make --enable-extended-metadata work in windows
@@ -266,10 +257,9 @@
 - f8print will not decode f8test runs properly
 - Cmd line scripts do not like spaces in path when building fix8 under Windows
 - Move compilation to use precompiled header
-
+<a id="110"></a>
 ## [1.1.0] - 2014-04-06
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-223, FX-222, FX-221, FX-219, FX-216, FX-214, FX-213, FX-212, FX-211, FX-209,
 - Fixed Win64 build failed with seqnum mismatch
 - Fixed f8c compiler crashes if schema file not found
@@ -304,10 +294,9 @@
 - Added generic access to key/value pair put() and get() in Persister
 - Added precompiled header to f8c generated files
 - Fixed f8print will not decode f8test runs properly
-
+<a id="100"></a>
 ## [1.0.0] - 2014-01-16
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Our first official GA release
 - Fixed Jira tickets FX-107, FX-129, FX-130, FX-131, FX-134, FX-139, FX-140, FX-141, FX-142, FX-143,
 - Provide support for basic client failover capability
@@ -341,10 +330,9 @@
 - Fixed CLOCK_REALTIME error on compilation on Windows
 - Fixed Make include guards standard-compliant
 - Code freeze for GA 1.0.0 final
-
+<a id="0100"></a>
 ## [0.10.0] - 2013-11-10
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-102, FX-103, FX-104, FX-105, FX-107, FX-110, FX-113, FX-114, FX-115, FX-116, FX-119, FX-120,
 -                    FX-122, FX-124, FX-127
 - Fixed allow sender to take ownership of messages after send
@@ -362,10 +350,9 @@
 - Added order batch send mode
 - Added allow application to detach messages when received from framework: Session::handle_application API change
 - Added provide way to set default precison for floating point values
-
+<a id="096"></a>
 ## [0.9.6] - 2013-10-13
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-76, FX-93, FX-94, FX-95, FX-96, FX-97, FX-98, FX-99, FX-100, FX-101
 - Decode latency reduced; throughput now 3x quickfix
 - Fixed SIOF - static initialisation inconsistent on different platforms; use ctx() instead of ctx
@@ -381,10 +368,9 @@
 - Added -C switch to f8c to turn off version checking
 - Added -I switch to f8c, providing more info about build config and platform
 - Added -W switch to f8c, to suppress warning messages
-
+<a id="095"></a>
 ## [0.9.5] - 2013-09-22
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-78, FX-79, FX-80, FX-81, FX-82, FX-83, FX-84, FX-85, FX-86, FX-87, FX-88,
 - 							FX-89, FX-90, FX-91, FX-29, FX-92
 - Fixed SendingTime and TransactTime not being output by Fix8 printer
@@ -408,10 +394,9 @@
 - Improved fix printer formatting, removed incorrect group metadata
 - Added rdtsc option for codec timing
 - Added set_scheduler and set_affinity support
-
+<a id="094"></a>
 ## [0.9.4] - 2013-08-25
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Merged in Richard Bourne's Windows port.
 - Fixed Jira tickets FX-72, FX-73, FX-74, FX-75
 - Merged from evdubs: remove the friend declaration in f8_scoped_lock_impl
@@ -421,29 +406,26 @@
 - Fixed: Compile error with gcc 4.8.1
 - Fixed: XML character entity parsing broken; extended entity set;
 - Fixed: XML parser does not provide meaningful indication of errors.
-
+<a id="093"></a>
 ## [0.9.3] - 2013-08-04
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-67, FX-68, FX-69, FX-70, FX-71
 - Fixed race condition in Singleton
 - Added backup the persist file instead of purging after sequence reset
 - Added forced logout message should contain error text
 - Fixed server crashes when reliable client attempts sync reconnect
 - Fixed reset sequence number not truncating BDB persist database
-
+<a id="092"></a>
 ## [0.9.2] - 2013-07-21
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-64, FX-65, FX-66
 - Merged Neomantra changes allows Fix8 to be built using C++11 compiler
 - Fixed sequence reset persist database not purged
 - Fixed reset sequence number on logon not working
 - Fixed persister not writing any data
-
+<a id="090"></a>
 ## [0.9.0] - 2013-06-29
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-57, FX-58, FX-59, FX-60, FX-61, FX-62, FX-63
 - Logflags - support specific inbound and outbound flags for protocol logs
 - Replace cfpopen with non GPL replacement
@@ -452,10 +434,9 @@
 - Remove header/trailer field lookups in encode and decode
 - Fixed unit tests not building properly
 - Add optional coroutine version of FIX reader and writer
-
+<a id="080"></a>
 ## [0.8.0] - 2013-05-10
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed Jira tickets FX-56, FX-55, FX-54, FX-53, FX-52, FX-51, FX-50, FX-49, FX-48, FX-47, FX-46, FX-45, FX-31
 - Integrate a 3rd party unit testing framework
 - Integrate gperf tcmalloc alternate heap allocator
@@ -471,10 +452,9 @@
 - Fix Invalid Session::handle_resend_request not resetting session state
 - Fix In get_last_seqnum(unsigned& to) of MemoryPersister, can't get last seqnum from the argument "to"
 - Fix hftest preload should preload on startup
-
+<a id="072"></a>
 ## [0.7.2] - 2013-04-07
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed jira tickets FX-23, FX-35, FX-36, FX-37, FX-38, FX-39, FX-40, FX-42, FX-43, FX-44, FX-17
 - Partial implemntation of stack based messages.
 - TBB optional; Fastflow now used; pipelining options; codec timings improvements;
@@ -489,10 +469,9 @@
 - Use FastFlow queue processing
 - Fixed FIXReader, FIXWriter dropping bytes when buffers full
 - Fixed build hftest issue
-
+<a id="070"></a>
 ## [0.7.0] - 2013-02-23
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - File based persistence now implemented and default. Dependence on BerekelyDB removed.
 - rpmbuild will now create an rpm from fix8.spec
 - Fixed jira tickets FX-34, FX-33, FX-32, FX-30, FX-29, FX-28
@@ -502,118 +481,98 @@
 - Multiple server sessions write to different logs and persistence files
 - Permit applications to by-pass chksum checking
 - Chksum logic correctly comparing calculated to passed value
-
+<a id="067"></a>
 ## [0.6.7] - 2013-01-28
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed jira issues: FX-17, FX-19, FX-20, FX-21, FX-24, FX-26, FX-27; Reduction in encode/decode latency by around 29%
-
+<a id="066"></a>
 ## [0.6.6] - 2012-12-16
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed jira issues: FX-17, FX-18
-
+<a id="065"></a>
 ## [0.6.5] - 2012-12-09
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Changed to LGPL; added performance script; fixed jira issues: FX-11, FX-12, FX-13, FX-14, FX-15, FX-16
-
+<a id="064"></a>
 ## [0.6.4] - 2012-11-22
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed jira issues: FX-4, FX-10
-
+<a id="063"></a>
 ## [0.6.3] - 2012-11-18
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed jira issues: FX-1, FX-4, FX-5, FX-6, FX-7, FX-8, FX-9
-
+<a id="062"></a>
 ## [0.6.2] - 2012-10-23
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Changed to GPLv2; added shell command pipe variable import to XML; added xi:include to XML;
-
+<a id="061"></a>
 ## [0.6.1] - 2012-09-07
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Added configurable max message length(maxmsglen); xml xpath permits absolute xpaths; fixed issue with compiler and msgtype;
-
+<a id="060"></a>
 ## [0.6.0] - 2012-07-21
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Added buffered logging; redesigned and improved field and message encoding and decoding performance, field lookups and static jump tables;
 - Added simple console based metadata driven test harness; compiler optimisations including pruning of unused fields;
-
+<a id="057"></a>
 ## [0.5.7] - 2012-05-25
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Added HF test client demonstrating preload and bulk transmit capabilities; encode/decode performance improvements with cached lookups;
 - optimised field generation; fast ascii to int/double;
-
+<a id="055"></a>
 ## [0.5.5] - 2012-05-12
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Added support to compiler to generate user session class permitting quicker startup development;
 - added presorted_set which significantly reduces Message contruction time; added codec and profile compilation switches;
-
+<a id="051"></a>
 ## [0.5.1] - 2012-04-29
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Optimsed compiler, enforce unique fields; updated schemas and documentation.
 - Myfix.cpp now uses FIX5.0SP2.
-
+<a id="050"></a>
 ## [0.5.0] - 2012-04-22
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Support for FIX5.X and FIXT1.1; Support for nested components and repeating groups; Numerous bug fixes;
 - Myfix.cpp now uses FIX5.0SP2.
-
+<a id="0417"></a>
 ## [0.4.17] - 2012-03-20
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Postmessage ctor automatically called;
-
+<a id="0416"></a>
 ## [0.4.16] - 2012-03-08
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - reliable nanosleep;pipelogger,bclogger;gzstream append;bug fixes
-
+<a id="0415"></a>
 ## [0.4.15] - 2012-03-01
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed static const in class definition storage linker error; fixed superfluous const level return warnings on functions;
 - sequence reset flag support; log entries timestamped at creation; threadcode purging; seqnum seeding;
 - numerous bugfixes;
-
+<a id="0412"></a>
 ## [0.4.12] - 2012-02-19
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Config updated - separate out log files into their own entity; added addiitonal log flags;
 - retransmission improved; socket conditioning; sequence number enforcement on login; sequence
 - number control at message level; session wrappers; reliable client wrapper; improved multithreading;
 - updated myfix to use session wrapper; myfix supports seqnum cmd line args;
-
+<a id="0410"></a>
 ## [0.4.10] - 2012-02-05
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Added custom seqnum support; Fixed retransmission behaviour; Added SessionWrapper classes
 - to simplify client/server session setup; client connect will retry configurable number of times with interval;
 - fixed message field replace, remove and copy_legal; myfix.cpp uses new session wrappers;
 - added new config extract methods;
-
+<a id="044"></a>
 ## [0.4.4] - 2012-01-27
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Fixed checksum and bodylength calculation bugs on encode and decode;
 - Test server permits reconnects and detects logout;
 - Connection classes shutdown properly, gracefully;
-
+<a id="042"></a>
 ## [0.4.2] - 2012-01-23
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Moved to github; numerous fixes; documentation and wiki;
-
+<a id="03580"></a>
 ## [0.3.580] - 2012-01-07
 *Maintainer: David L. Dight <fix@fix8.org>*
-
 - Initial release on sourceforge
