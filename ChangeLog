@@ -7,11 +7,11 @@
 - Removed extern "C" linkage warnings
 - cmake downloads and builds all default required deps
 - Fixed session_test errors
-- Fixed build for Windows and MacOS
+- Fixed build for MacOS
+- Fixed build for Windows, builds in MSVC, VSCode
+- Added zlib, getopt for Windows
 - Shared and static runtime libs built by default
 - Static lib contains all external deps
-
-* Wed May 05 2025 David L. Dight <fix@fix8.org> 1.5.0
 - Added Intel compiler support
 - Upgrade poco, removed deprecated calls
 - Updated and merged bug fixes
@@ -59,7 +59,7 @@
 - Client logout crashes FIX server
 - SessionWrapper needs to be cleaned up in the destructor
 - Fixed Seqedit reports corrupted persister index
-- Fixed compile errors on OSX
+g Fixed compile errors on OSX
 - Fixed Provide hook in Session to modify header before sending
 - Fixed ReliableClientSession crash when connection failed
 - Fixed Crash on sending cloned message
