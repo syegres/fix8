@@ -83,7 +83,7 @@
 <a id="140"></a>
 ## [1.4.0] - 2016-09-16
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-530,FX-533,FX-539,FX-562,FX-563,FX-564,FX-560,FX-588,FX-569,
+- Fixed Jira tickets FX-530,FX-533,FX-539,FX-562,FX-563,FX-564,FX-560,FX-588,FX-569,FX-596,FX-642,FX-633,FX-615,FX-609,FX-655
 - Added verison tag to Nuget packages
 - Fixed Seqedit reports corrupted persister index
 - Added Provide programmatic way to set reset sequence number flag on logon
@@ -107,7 +107,7 @@
 <a id="134"></a>
 ## [1.3.4] - 2015-08-23
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-508, FX-511, FX-490, FX-491, FX-480, FX-470, FX-336, FX-525, FX-524,
+- Fixed Jira tickets FX-508, FX-511, FX-490, FX-491, FX-480, FX-470, FX-336, FX-525, FX-524, FX-523, FX-520, FX-516, FX-527
 - Client logout crashes FIX server
 - SessionWrapper needs to be cleaned up in the destructor
 - Fixed Seqedit reports corrupted persister index
@@ -137,7 +137,7 @@
 <a id="132"></a>
 ## [1.3.2] - 2015-01-02
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-394, FX-385, FX-379, FX-372, FX-371, FX-355, FX-353, FX-350, FX-321,
+- Fixed Jira tickets FX-394, FX-385, FX-379, FX-372, FX-371, FX-355, FX-353, FX-350, FX-321,FX-328, FX-326, FX-307, FX-332, FX-333, FX-369, FX-354, FX-323
 - Fixed f8test client and server core dumps on exit when compiled with stdthread
 - Fixed copy_legal causes segfault on windows
 - Fixed schedule is_valid() returns true even schedule is invalid under win
@@ -163,7 +163,7 @@
 <a id="130"></a>
 ## [1.3.0] - 2014-08-17
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-309, FX-308, FX-307, FX-306, FX-305, FX-304, FX-303, FX-302, FX-301,
+- Fixed Jira tickets FX-309, FX-308, FX-307, FX-306, FX-305, FX-304, FX-303, FX-302, FX-301,FX-300, FX-299, FX-298, FX-296, FX-295, FX-294, FX-293, FX-292, FX-291, FX-290, FX-289, FX-288, FX-287, FX-286, FX-236, FX-310, FX-312, FX-311 FX-297, FX-281, FX-233, FX-231, FX-313, FX-315, FX-316, FX-317, FX-318
 - Provide XML logger
 - Overhaul logging system
 - Loggers should support log level
@@ -206,7 +206,7 @@
 <a id="120"></a>
 ## [1.2.0] - 2014-06-04
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-278, FX-276, FX-275, FX-274, FX-273, FX-272, FX-271, FX-270, FX-269,
+- Fixed Jira tickets FX-278, FX-276, FX-275, FX-274, FX-273, FX-272, FX-271, FX-270, FX-269,FX-268, FX-267, FX-266, FX-265, FX-264, FX-263, FX-228, FX-261, FX-260, FX-259, FX-258, FX-257, FX-256, FX-253, FX-252, FX-251, FX-250, FX-249, FX-248, FX-247, FX-246, FX-245, FX-244, FX-243, FX-242, FX-241, FX-240, FX-239, FX-238, FX-237, FX-236, FX-235, FX-233, FX-232, FX-231, FX-230, FX-229, FX-282, FX-280, FX-279, FX-283, FX-285, FX-176, FX-220, FX-195, FX-217
 - Provide access to raw inbound and outbound FIX message text
 - Make --enable-extended-metadata work in windows
 - Provide a session configuration option to enable or disable retransmission
@@ -260,7 +260,7 @@
 <a id="110"></a>
 ## [1.1.0] - 2014-04-06
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-223, FX-222, FX-221, FX-219, FX-216, FX-214, FX-213, FX-212, FX-211, FX-209,
+- Fixed Jira tickets FX-223, FX-222, FX-221, FX-219, FX-216, FX-214, FX-213, FX-212, FX-211, FX-209,FX-206, FX-205, FX-204, FX-200, FX-198, FX-193, FX-192, FX-191, FX-189, FX-187, FX-185, FX-183, FX-180, FX-178, FX-177, FX-175, FX-184, FX-224, FX-225, FX-226, FX-227, FX-203, FX-230
 - Fixed Win64 build failed with seqnum mismatch
 - Fixed f8c compiler crashes if schema file not found
 - Fixed Logfile creation should handle new paths
@@ -298,7 +298,7 @@
 ## [1.0.0] - 2014-01-16
 *Maintainer: David L. Dight <fix@fix8.org>*
 - Our first official GA release
-- Fixed Jira tickets FX-107, FX-129, FX-130, FX-131, FX-134, FX-139, FX-140, FX-141, FX-142, FX-143,
+- Fixed Jira tickets FX-107, FX-129, FX-130, FX-131, FX-134, FX-139, FX-140, FX-141, FX-142, FX-143, FX-144, FX-146, FX-147, FX-149, FX-150, FX-151, FX-157, FX-158, FX-159, FX-161, FX-162, FX-163, FX-164, FX-165, FX-166, FX-167, FX-168, FX-169, FX-170, FX-173, FX-174
 - Provide support for basic client failover capability
 - Make connection timeout configurable
 - Add support for non-standard XML attribute comments
@@ -333,8 +333,7 @@
 <a id="0100"></a>
 ## [0.10.0] - 2013-11-10
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-102, FX-103, FX-104, FX-105, FX-107, FX-110, FX-113, FX-114, FX-115, FX-116, FX-119, FX-120,
--                    FX-122, FX-124, FX-127
+- Fixed Jira tickets FX-102, FX-103, FX-104, FX-105, FX-107, FX-110, FX-113, FX-114, FX-115, FX-116, FX-119, FX-120, FX-122, FX-124, FX-127,FX-122, FX-124, FX-127
 - Fixed allow sender to take ownership of messages after send
 - Fixed removed message recycling
 - Fixed session::send not thread safe with multiple senders in threaded mode
@@ -371,8 +370,7 @@
 <a id="095"></a>
 ## [0.9.5] - 2013-09-22
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed Jira tickets FX-78, FX-79, FX-80, FX-81, FX-82, FX-83, FX-84, FX-85, FX-86, FX-87, FX-88,
-- 							FX-89, FX-90, FX-91, FX-29, FX-92
+- Fixed Jira tickets FX-78, FX-79, FX-80, FX-81, FX-82, FX-83, FX-84, FX-85, FX-86, FX-87, FX-88, FX-89, FX-90, FX-91, FX-29, FX-92, FX-89, FX-90, FX-91, FX-29, FX-92
 - Fixed SendingTime and TransactTime not being output by Fix8 printer
 - Added compiler option to suppress realm use during field construction
 - Replaced Poco::DateTime with custom date time parser, reduced decode latency ~ 20%
@@ -472,9 +470,9 @@
 <a id="070"></a>
 ## [0.7.0] - 2013-02-23
 *Maintainer: David L. Dight <fix@fix8.org>*
+- Fixed jira tickets FX-34, FX-33, FX-32, FX-30, FX-29, FX-28
 - File based persistence now implemented and default. Dependence on BerekelyDB removed.
 - rpmbuild will now create an rpm from fix8.spec
-- Fixed jira tickets FX-34, FX-33, FX-32, FX-30, FX-29, FX-28
 - XML parser accepts embedded spaces between attribute, '=' and attribute value
 - Provide mechanism for client or server to set next expected send/receive sequence number
 - Client correctly handling sequence_reset from server
@@ -484,7 +482,8 @@
 <a id="067"></a>
 ## [0.6.7] - 2013-01-28
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Fixed jira issues: FX-17, FX-19, FX-20, FX-21, FX-24, FX-26, FX-27; Reduction in encode/decode latency by around 29%
+- Fixed jira issues: FX-17, FX-19, FX-20, FX-21, FX-24, FX-26, FX-27
+- Reduction in encode/decode latency by around 29%
 <a id="066"></a>
 ## [0.6.6] - 2012-12-16
 *Maintainer: David L. Dight <fix@fix8.org>*
@@ -492,7 +491,8 @@
 <a id="065"></a>
 ## [0.6.5] - 2012-12-09
 *Maintainer: David L. Dight <fix@fix8.org>*
-- Changed to LGPL; added performance script; fixed jira issues: FX-11, FX-12, FX-13, FX-14, FX-15, FX-16
+- Fixed jira issues: FX-11, FX-12, FX-13, FX-14, FX-15, FX-16
+- Changed to LGPL; added performance script
 <a id="064"></a>
 ## [0.6.4] - 2012-11-22
 *Maintainer: David L. Dight <fix@fix8.org>*
