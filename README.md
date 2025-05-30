@@ -69,9 +69,9 @@ and framework; and a set of complete client/server test applications.
 1. [Contents](#contents)
 1. [Features](#features)
 1. [Directory Layout](#directory-layout)
+1. [Branch Layout](#branch-layout)
 1. [Documentation](#documentation)
 1. [Changelog](#changelog)
-1. [Branch Layout](#branch-layout)
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
@@ -178,14 +178,6 @@ and framework; and a set of complete client/server test applications.
 </table>
 
 
-## Documentation
-
-See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
-a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
-
-## Changelog
-📜 [View full changelog here](CHANGELOG.md)
-
 ## Branch Layout
 
 <table>
@@ -212,14 +204,16 @@ a login. For our complete API Documentation see [here](https://fix8.org/fix8/htm
              <td>https://github.com/fix8/fix8/tree/dev-premain</td>
              <td>This branch is used to marshall development changes that are ready for release. When significant changes are made to the dev branch, this branch will be used to keep other changes separate.</td>
           </tr>
-          <tr>
-             <td><pre>gh-pages</pre></td>
-             <td>https://github.com/fix8/fix8/tree/gh-pages</td>
-             <td>This branch contains the static html for the Fix8 website.</td>
-          </tr>
     </tbody>
 </table>
 
+## Documentation
+
+See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
+a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
+
+## Changelog
+📜 [View full changelog here](CHANGELOG.md)
 
 ## C++17
 
@@ -238,7 +232,7 @@ Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
 > [!NOTE]
-> This release now uses [CMake](https://cmake.org). The build _will download and build_ the default dependencies - poco, tbb and gtest.
+> This release now uses [CMake](https://cmake.org). The build _*will download and build*_ the default dependencies - poco, tbb and gtest.
 
 - Poco C++ Libraries [basic edition](https://pocoproject.org/download/index.html)
 - oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
