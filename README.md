@@ -259,7 +259,7 @@ If you wish to use BerkeleyDB for message persistence:
 ## Building on Linux/UNIX, MacOS and Windows
 
 Either clone from the project on github or download the tarball.
-The Windows build now also uses cmake. Please follow the directions above (either msvc or vscode).
+The Windows build now also uses cmake (either msvc or vscode).
 
 ```bash
 % git clone https://github.com/fix8/fix8.git
@@ -267,8 +267,8 @@ The Windows build now also uses cmake. Please follow the directions above (eithe
 ```
 or
 ```bash
-% tar xvzf 1.5.0.tar.gz
-% cd fix8-1.5.0
+% tar xvzf 2.0.1.tar.gz
+% cd fix8-2.0.1
 ```
 then
 ```bash
