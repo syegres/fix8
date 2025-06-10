@@ -334,9 +334,9 @@ Please refer to the following page:
 the **[Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-developer)**.
 If you cannot find any help there **create a new topic and ask the support group for advice.**
 
-1. *Do not* email us directly. **Support questions sent directly to us will be redirected to the support group.**
+1. Please *Do not* email us (or Fix8MT) directly. **Support questions sent directly to us will be redirected to the support group or possibly ignored.**
 
-1. *Do not* post the same question to both fix8-support and fix8-developer groups.
+1. Please *Do not* post the same question to both fix8-support and fix8-developer groups.
 
 1. If you are considering submitting a problem report, make sure you have identified a **potential problem with Fix8 and not a problem with your application**.
 These aren't the same thing. So, for example, if your application is crashing, there are many possible causes and some will relate
@@ -410,5 +410,5 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 
 For more information, see the [Fix8 website.](https://www.fix8.org)
 
-[^1]: This release includes an XML schema of the FIX 5.0 SP2 Extension Pack 264 and the FIXT 1.1 Extension Pack 264 in Quickfix schema format. Building this library is lengthy.
+[^1]: This release includes XML schemas of the FIX 5.0 SP2 Extension Pack 264 and the FIXT 1.1 Extension Pack 264 in Quickfix schema format. Building this library is lengthy.
 
