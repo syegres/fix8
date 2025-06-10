@@ -300,6 +300,7 @@ These options can be passed on the cmake command line
 |BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=false`|
 |BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=false`|
 |BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS=true`|
+|BUILD_EP264|enable building of `FIX50SP2_EP264` schema library[^1]|`false`|`-DBUILD_EP264=true`|
 
 ## Compiler support
 | Compiler | Version(s) |
@@ -408,3 +409,6 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 ## More Information
 
 For more information, see the [Fix8 website.](https://www.fix8.org)
+
+[^1]: This release includes an XML schema of the FIX 5.0 SP2 Extension Pack 264 and the FIXT 1.1 Extension Pack 264 in Quickfix schema format. Building this library is lengthy.
+

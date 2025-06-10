@@ -65,6 +65,8 @@
 - Added Intel compiler support
 - Upgrade poco, removed deprecated calls
 - Updated and merged bug fixes
+- Updated compiler to support later FIX EPs
+- Includes FIX 5.0 SP2 and FIXT 1.1 Extension Packs 264 in Quickfix schema format
 - Removed cruft
 <a id="143"></a>
 ## [1.4.3] - 2023-05-10

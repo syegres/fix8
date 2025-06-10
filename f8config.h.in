@@ -49,15 +49,6 @@
 //  www.fix8mt.com
 //---------------------------------------------------------------------------------------------
 
-/* Define if building universal (internal helper macro) */
-/* #undef AC_APPLE_UNIVERSAL_BUILD */
-
-/* Define to 1 if you wish to enable buffered global logging */
-/* #undef BUFFERED_GLOBAL_LOGGING */
-
-/* Define to 1 if the `closedir' function returns void instead of int. */
-/* #undef CLOSEDIR_VOID */
-
 /* Define to 1 to enable CODEC timing testing code */
 /* #undef CODECTIMING */
 
@@ -86,9 +77,6 @@
 #define FIX8_CPPFLAGS "@fix8_CMAKE_CXX_FLAGS_STR@"
 #endif
 
-/* Define to 1 if using 'alloca.c'. */
-/* #undef C_ALLOCA */
-
 /* Define to 1 for debugging support */
 /* #undef DEBUG */
 
@@ -99,16 +87,6 @@
 
 /* Define to 1 to enable experimental socket read */
 /* #undef EXPERIMENTAL_BUFFERED_SOCKET_READ */
-
-/* Define to 1 if gtest available */
-#ifndef FIX8_HAS_GTEST
-#define FIX8_HAS_GTEST 1
-#endif
-
-/* Define to 1 if Poco available */
-#ifndef FIX8_HAS_POCO
-#define FIX8_HAS_POCO 1
-#endif
 
 /* Define to 1 if you have zeromq */
 /* #undef HAS_ZEROMQ_MBUS */
@@ -127,9 +105,6 @@
 #ifndef FIX8_HAVE_ALLOCA_H
 #define FIX8_HAVE_ALLOCA_H 1
 #endif
-
-/* Define to 1 if you have the <arpa/inet.h> header file. */
-/* #undef HAVE_ARPA_INET_H */
 
 /* Define to 1 if you have berkeley DB */
 /* #undef HAVE_BDB */
@@ -150,19 +125,6 @@
 #ifndef FIX8_HAVE_COMPRESSION
 #define FIX8_HAVE_COMPRESSION 1
 #endif
-
-/* Define to 1 if crypt is present in -lcrypt */
-#ifndef FIX8_HAVE_CRYPT
-#define FIX8_HAVE_CRYPT 1
-#endif
-
-/* Define to 1 if you have the <crypt.h> header file. */
-#ifndef FIX8_HAVE_CRYPT_H
-#define FIX8_HAVE_CRYPT_H 1
-#endif
-
-/* define if the compiler supports basic C++11 syntax */
-/* #undef HAVE_CXX11 */
 
 /* Define to 1 if you have the <db.h> header file. */
 /* #undef HAVE_DB_H */
@@ -236,9 +198,6 @@
 #define FIX8_HAVE_LIBZ 1
 #endif
 
-/* Define to 1 if you have the <limits.h> header file. */
-/* #undef HAVE_LIMITS_H */
-
 /* Define to 1 if you have the `localtime_r' function. */
 #ifndef FIX8_HAVE_LOCALTIME_R
 #define FIX8_HAVE_LOCALTIME_R 1
@@ -260,15 +219,6 @@
 #define FIX8_HAVE_MMAP 1
 #endif
 
-/* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
-/* #undef HAVE_NDIR_H */
-
-/* Define to 1 if you have the <netdb.h> header file. */
-/* #undef HAVE_NETDB_H */
-
-/* Define to 1 if you have the <netinet/in.h> header file. */
-/* #undef HAVE_NETINET_IN_H */
-
 /* Define to 1 if you have openssl */
 /* #undef HAVE_OPENSSL */
 
@@ -285,17 +235,9 @@
 #define FIX8_HAVE_POPEN 1
 #endif
 
-/* Have PTHREAD_PRIO_INHERIT. */
-/* #undef HAVE_PTHREAD_PRIO_INHERIT */
-
 /* Define to 1 if the system has the type `ptrdiff_t'. */
 #ifndef FIX8_HAVE_PTRDIFF_T
 #define FIX8_HAVE_PTRDIFF_T 1
-#endif
-
-/* Define to 1 if you have the `random' function. */
-#ifndef FIX8_HAVE_RANDOM
-#define FIX8_HAVE_RANDOM 1
 #endif
 
 /* Define to 1 if your system has a GNU libc compatible `realloc' function,
@@ -309,58 +251,19 @@
 #define FIX8_HAVE_REGCOMP 1
 #endif
 
-/* Define to 1 if you have the <regex.h> header file. */
-/* #undef HAVE_REGEX_H */
-
-/* Define to 1 if you have the <select.h> header file. */
-/* #undef HAVE_SELECT_H */
-
-/* Define to 1 if you have the <signal.h> header file. */
-/* #undef HAVE_SIGNAL_H */
-
 /* Define to 1 if you have the `socket' function. */
 #ifndef FIX8_HAVE_SOCKET
 #define FIX8_HAVE_SOCKET 1
 #endif
-
-/* Define to 1 if you have the `srandom' function. */
-#ifndef FIX8_HAVE_SRANDOM
-#define FIX8_HAVE_SRANDOM 1
-#endif
-
-/* Define to 1 if `stat' has the bug that it succeeds when given the
-   zero-length file name argument. */
-/* #undef HAVE_STAT_EMPTY_STRING_BUG */
 
 /* Define to 1 if stdbool.h conforms to C99. */
 #ifndef FIX8_HAVE_STDBOOL_H
 #define FIX8_HAVE_STDBOOL_H 1
 #endif
 
-/* Define to 1 if you have the <stdint.h> header file. */
-#ifndef FIX8_HAVE_STDINT_H
-#define FIX8_HAVE_STDINT_H 1
-#endif
-
-/* Define to 1 if you have the <stdio.h> header file. */
-#ifndef FIX8_HAVE_STDIO_H
-#define FIX8_HAVE_STDIO_H 1
-#endif
-
-/* Define to 1 if you have the <stdlib.h> header file. */
-#ifndef FIX8_HAVE_STDLIB_H
-#define FIX8_HAVE_STDLIB_H 1
-#endif
-
 /* Define to 1 if you have the `strcasecmp' function. */
 #ifndef FIX8_HAVE_STRCASECMP
 #define FIX8_HAVE_STRCASECMP 1
-#endif
-
-/* Define to 1 if you have the `strcoll' function and it is properly defined.
-   */
-#ifndef FIX8_HAVE_STRCOLL
-#define FIX8_HAVE_STRCOLL 1
 #endif
 
 /* Define to 1 if you have the `strerror' function. */
@@ -373,26 +276,6 @@
 #define FIX8_HAVE_STRFTIME 1
 #endif
 
-/* Define to 1 if you have the <strings.h> header file. */
-#ifndef FIX8_HAVE_STRINGS_H
-#define FIX8_HAVE_STRINGS_H 1
-#endif
-
-/* Define to 1 if you have the <string.h> header file. */
-#ifndef FIX8_HAVE_STRING_H
-#define FIX8_HAVE_STRING_H 1
-#endif
-
-/* Define to 1 if you have the `strtol' function. */
-#ifndef FIX8_HAVE_STRTOL
-#define FIX8_HAVE_STRTOL 1
-#endif
-
-/* Define to 1 if you have the `strtoul' function. */
-#ifndef FIX8_HAVE_STRTOUL
-#define FIX8_HAVE_STRTOUL 1
-#endif
-
 /* Define to 1 if you have the `sysconf' function. */
 #ifndef FIX8_HAVE_SYSCONF
 #define FIX8_HAVE_SYSCONF 1
@@ -401,24 +284,11 @@
 /* Define to 1 if you have the <syslog.h> header file. */
 /* #undef HAVE_SYSLOG_H */
 
-/* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
-   */
-/* #undef HAVE_SYS_DIR_H */
-
 /* Define to 1 if you have the <sys/gmon.h> header file. */
 /* #undef HAVE_SYS_GMON_H */
 
 /* Define to 1 if you have the <sys/ioctl.h> header file. */
 /* #undef HAVE_SYS_IOCTL_H */
-
-/* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
-   */
-/* #undef HAVE_SYS_NDIR_H */
-
-/* Define to 1 if you have the <sys/param.h> header file. */
-#ifndef FIX8_HAVE_SYS_PARAM_H
-#define FIX8_HAVE_SYS_PARAM_H 1
-#endif
 
 /* Define to 1 if you have the <sys/socket.h> header file. */
 /* #undef HAVE_SYS_SOCKET_H */
@@ -446,14 +316,6 @@
 /* Define to 1 if you have the <termios.h> header file. */
 /* #undef HAVE_TERMIOS_H */
 
-/* Define to 1 if you have the <time.h> header file. */
-/* #undef HAVE_TIME_H */
-
-/* Define to 1 if you have the <unistd.h> header file. */
-#ifndef FIX8_HAVE_UNISTD_H
-#define FIX8_HAVE_UNISTD_H 1
-#endif
-
 /* Define to 1 if the system has the type `unsigned long long int'. */
 #ifndef FIX8_HAVE_UNSIGNED_LONG_LONG_INT
 #define FIX8_HAVE_UNSIGNED_LONG_LONG_INT 1
@@ -470,24 +332,6 @@
 #define FIX8_HAVE_VAR_RUN 1
 #endif
 
-/* Define to 1 if you have the `vfork' function. */
-#ifndef FIX8_HAVE_VFORK
-#define FIX8_HAVE_VFORK 1
-#endif
-
-/* Define to 1 if you have the <vfork.h> header file. */
-/* #undef HAVE_VFORK_H */
-
-/* Define to 1 if `fork' works. */
-#ifndef FIX8_HAVE_WORKING_FORK
-#define FIX8_HAVE_WORKING_FORK 1
-#endif
-
-/* Define to 1 if `vfork' works. */
-#ifndef FIX8_HAVE_WORKING_VFORK
-#define FIX8_HAVE_WORKING_VFORK 1
-#endif
-
 /* Define to 1 if you have the <zlib.h> header file. */
 #ifndef FIX8_HAVE_ZLIB_H
 #define FIX8_HAVE_ZLIB_H 1
@@ -501,12 +345,6 @@
 /* Default system */
 #ifndef FIX8_HOST_SYSTEM
 #define FIX8_HOST_SYSTEM "x86_64-pc-linux-gnu"
-#endif
-
-/* Define to 1 if `lstat' dereferences a symlink specified with a trailing
-   slash. */
-#ifndef FIX8_LSTAT_FOLLOWS_SLASHED_SYMLINK
-#define FIX8_LSTAT_FOLLOWS_SLASHED_SYMLINK 1
 #endif
 
 /* Encode version */
@@ -646,18 +484,6 @@
 #define FIX8_SIZEOF_UNSIGNED_LONG 8
 #endif
 
-/* Define to 1 if when using fastflow, sleep for VAL ns instead of yield when
-   waiting for input */
-/* #undef SLEEP_NO_YIELD */
-
-/* If using the C implementation of alloca, define if you know the
-   direction of stack growth for your system; otherwise it will be
-   automatically deduced at runtime.
-	STACK_DIRECTION > 0 => grows toward higher addresses
-	STACK_DIRECTION < 0 => grows toward lower addresses
-	STACK_DIRECTION = 0 => direction of growth unknown */
-/* #undef STACK_DIRECTION */
-
 /* Define to 1 if all of the C90 standard headers exist (not just the ones
    required in a freestanding environment). This macro is provided for
    backward compatibility; new code need not use it. */
@@ -685,9 +511,6 @@
 #define FIX8_THREAD_SYSTEM FIX8_THREAD_STDTHREAD
 #endif
 
-/* Define to 1 if your <sys/time.h> declares `struct tm'. */
-/* #undef TM_IN_SYS_TIME */
-
 /* Define to 1 to enable rdtsc for interval timer if available */
 /* #undef USE_RDTSC */
 
@@ -699,44 +522,8 @@
 #define FIX8_VERSION "@fix8_VERSION@"
 #endif
 
-/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
-   significant byte first (like Motorola and SPARC, unlike Intel). */
-#if defined AC_APPLE_UNIVERSAL_BUILD
-# if defined __BIG_ENDIAN__
-#  define WORDS_BIGENDIAN 1
-# endif
-#else
-# ifndef WORDS_BIGENDIAN
-/* #  undef WORDS_BIGENDIAN */
-# endif
-#endif
-
 /* Define to 1 if you wish to enforce strict bool */
 /* #undef XMLENTITY_STRICT_BOOL */
-
-/* Define for Solaris 2.5.1 so the uint32_t typedef from <sys/synch.h>,
-   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
-   #define below would cause a syntax error. */
-/* #undef _UINT32_T */
-
-/* Define for Solaris 2.5.1 so the uint64_t typedef from <sys/synch.h>,
-   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
-   #define below would cause a syntax error. */
-/* #undef _UINT64_T */
-
-/* Define for Solaris 2.5.1 so the uint8_t typedef from <sys/synch.h>,
-   <pthread.h>, or <semaphore.h> is not used. If the typedef were allowed, the
-   #define below would cause a syntax error. */
-/* #undef _UINT8_T */
-
-/* Define to empty if `const' does not conform to ANSI C. */
-/* #undef const */
-
-/* Define to `__inline__' or `__inline' if that's what the C compiler
-   calls it, or to nothing if 'inline' is not supported under any name.  */
-#ifndef __cplusplus
-/* #undef inline */
-#endif
 
 /* Define to rpl_malloc if the replacement function should be used. */
 /* #undef malloc */
@@ -752,22 +539,6 @@
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
-
-/* Define to the type of an unsigned integer type of width exactly 16 bits if
-   such a type exists and the standard includes do not define it. */
-/* #undef uint16_t */
-
-/* Define to the type of an unsigned integer type of width exactly 32 bits if
-   such a type exists and the standard includes do not define it. */
-/* #undef uint32_t */
-
-/* Define to the type of an unsigned integer type of width exactly 64 bits if
-   such a type exists and the standard includes do not define it. */
-/* #undef uint64_t */
-
-/* Define to the type of an unsigned integer type of width exactly 8 bits if
-   such a type exists and the standard includes do not define it. */
-/* #undef uint8_t */
 
 /* Define as `fork' if `vfork' does not work. */
 /* #undef vfork */

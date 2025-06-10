@@ -204,6 +204,7 @@ int main(int argc, char **argv)
 		{
 		case 'v':
 			cout << "f8c schema compiler " << Session::copyright_string() << endl;
+			cout << "Released under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3. See <https://www.gnu.org/licenses/> for details." << endl;
 			return 0;
 		case 'I':
          for (const auto& pp : package_info())
@@ -1081,53 +1082,52 @@ int process(XmlElement& xf, Ctxt& ctxt)
 		osc_hpp << "class " << pp.second._name << " : public "
 			<< (isTrailer || isHeader ? "MessageBase" : "Message") << endl << '{' << endl;
 
-		if (pp.second._fields.get_presence().size())
-		{
-			osr_cpp << _csMap.find(cs_divider)->second << endl;
-			osr_cpp << "const FieldTrait " << pp.second._name << "::_traits[]"
-				<< endl << '{' << endl;
-         int felpos{};
-			for (Presence::const_iterator flitr(pp.second._fields.get_presence().begin());
-				flitr != pp.second._fields.get_presence().end(); ++flitr, ++felpos)
-			{
-				bool spaceme{true};
-				if (flitr != pp.second._fields.get_presence().begin())
-				{
-					osr_cpp << ',';
-               if (felpos % 4 == 0)
-						osr_cpp << endl;
-					else
-						spaceme = false;
-				}
-
-				ostringstream tostr;
-				tostr << "0x" << setfill('0') << setw(2) << hex << flitr->_field_traits.get();
-				osr_cpp << (spaceme ? spacer : " ");
-				osr_cpp << '{' << setw(4) << right << flitr->_fnum << ','
-					<< setw(2) << right << flitr->_ftype << ',' << setw(3) << right
-					<< flitr->_pos << ',' << setw(3) << right << flitr->_component << ',' << tostr.str();
-#if defined FIX8_HAVE_EXTENDED_METADATA
-            if (no_shared_groups && flitr->_field_traits.has(FieldTrait::group))
-            {
-               osr_cpp << ", " << endl << spacer << spacer;
-               FieldSpecMap::const_iterator gsitr(fspec.find(flitr->_fnum));
-               osr_cpp << gsitr->second._name << "::get_traits(), " << gsitr->second._name << "::get_fieldcnt()";
-               osr_cpp << endl << spacer << '}';
-               felpos = -1;
-            }
+      osr_cpp << _csMap.find(cs_divider)->second << endl;
+      osr_cpp << "const FieldTrait " << pp.second._name << "::_traits[]"
+         << endl << '{' << endl;
+      int felpos{};
+      for (Presence::const_iterator flitr(pp.second._fields.get_presence().begin());
+         flitr != pp.second._fields.get_presence().end(); ++flitr, ++felpos)
+      {
+         bool spaceme{true};
+         if (flitr != pp.second._fields.get_presence().begin())
+         {
+            osr_cpp << ',';
+            if (felpos % 4 == 0)
+               osr_cpp << endl;
             else
+               spaceme = false;
+         }
+
+         ostringstream tostr;
+         tostr << "0x" << setfill('0') << setw(2) << hex << flitr->_field_traits.get();
+         osr_cpp << (spaceme ? spacer : " ");
+         osr_cpp << '{' << setw(4) << right << flitr->_fnum << ','
+            << setw(2) << right << flitr->_ftype << ',' << setw(3) << right
+            << flitr->_pos << ',' << setw(3) << right << flitr->_component << ',' << tostr.str();
+#if defined FIX8_HAVE_EXTENDED_METADATA
+         if (no_shared_groups && flitr->_field_traits.has(FieldTrait::group))
+         {
+            osr_cpp << ", " << endl << spacer << spacer;
+            FieldSpecMap::const_iterator gsitr(fspec.find(flitr->_fnum));
+            osr_cpp << gsitr->second._name << "::get_traits(), " << gsitr->second._name << "::get_fieldcnt()";
+            osr_cpp << endl << spacer << '}';
+            felpos = -1;
+         }
+         else
 #endif
-               osr_cpp << '}';
-			}
-			osr_cpp << endl << "};" << endl;
-			osr_cpp << "const FieldTrait_Hash_Array " << pp.second._name << "::_ftha(" << pp.second._name << "::_traits, "
-            << pp.second._name << "::_fieldcnt);" << endl;
-			osr_cpp << "const MsgType " << pp.second._name << "::_msgtype(\"" << pp.first << "\");" << endl;
-            osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const FieldTrait _traits[];" << endl;
-            osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const FieldTrait_Hash_Array _ftha; " << endl;
-            osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const MsgType _msgtype;" << endl;
-            osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const unsigned _fieldcnt = " << pp.second._fields.get_presence().size() << ';' << endl;
-		}
+            osr_cpp << '}';
+      }
+      if (!pp.second._fields.get_presence().size())
+         osr_cpp << spacer << "{}";
+      osr_cpp << endl << "};" << endl;
+      osr_cpp << "const FieldTrait_Hash_Array " << pp.second._name << "::_ftha(" << pp.second._name << "::_traits, "
+         << pp.second._name << "::_fieldcnt);" << endl;
+      osr_cpp << "const MsgType " << pp.second._name << "::_msgtype(\"" << pp.first << "\");" << endl;
+         osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const FieldTrait _traits[];" << endl;
+         osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const FieldTrait_Hash_Array _ftha; " << endl;
+         osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const MsgType _msgtype;" << endl;
+         osc_hpp << spacer << "static F8_" << ctxt._fixns << "_API const unsigned _fieldcnt = " << pp.second._fields.get_presence().size() << ';' << endl;
 
 		if (isHeader)
 		{
@@ -1142,7 +1142,7 @@ int process(XmlElement& xf, Ctxt& ctxt)
 
       osc_hpp << "public:" << endl;
 		osc_hpp << spacer << "explicit " << pp.second._name << "(bool deepctor=true)";
-		if (pp.second._fields.get_presence().size())
+		//if (pp.second._fields.get_presence().size())
 			osc_hpp << " : " << (isTrailer || isHeader ? "MessageBase" : "Message")
 				<< "(ctx(), _msgtype(), _traits, _fieldcnt, &_ftha)";
 		if (isHeader || isTrailer)
