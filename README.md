@@ -297,10 +297,10 @@ The following table summarises the cmake build command for each platform:
 These options can be passed on the cmake command line
 | Option | Description| Default | Example|
 | :--- | :--- | :--- | :--- |
-|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=false`|
-|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=false`|
-|BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS=true`|
-|BUILD_EP264|enable building of `FIX50SP2_EP264` schema library[^1]|`false`|`-DBUILD_EP264=true`|
+|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS:bool=false`|
+|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS:bool=false`|
+|BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS:bool=true`|
+|BUILD_EP264|enable building of `FIX50SP2_EP264` schema library[^1]|`false`|`-DBUILD_EP264:bool=true`|
 
 ## Compiler support
 | Compiler | Version(s) |
