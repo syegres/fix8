@@ -118,65 +118,20 @@ and framework; and a set of complete client/server test applications.
 
 ## Directory Layout
 
-<table>
-    <thead>
-         <tr>
-            <th>Directory</th>
-            <th>Description</th>
-          </tr>
-    </thead>
-    <tbody>
-          <tr>
-             <td>[./](https://github.com/fix8mt/fix8/blob/dev/)</td>
-             <td>root directory with CMakeLists.txt</td>
-          </tr>
-          <tr>
-             <td>[compiler/](https://github.com/fix8mt/fix8/blob/dev/compiler)</td>
-             <td>the f8c compiler source</td>
-          </tr>
-          <tr>
-             <td><code>contrib/</code></td>
-             <td>user contributed files</td>
-          </tr>
-          <tr>
-             <td><code>doc/</code></td>
-             <td>Fix8 documentation</td>
-          </tr>
-          <tr>
-             <td><code>doc/man</code></td>
-             <td>manpages for Fix8 utilities</td>
-          </tr>
-          <tr>
-             <td><code>include/fix8</code></td>
-             <td>header files for the runtime library and compiler</td>
-          </tr>
-          <tr>
-             <td><code>runtime/</code></td>
-             <td>runtime library source</td>
-          </tr>
-          <tr>
-             <td><code>util/</code></td>
-             <td>additional utilities source</td>
-          </tr>
-          <tr>
-             <td><code>msvc/</code></td>
-             <td>Microsoft Visual Studio support files</td>
-          </tr>
-          <tr>
-             <td><code>schema/</code></td>
-             <td>quickfix FIX xml schemas</td>
-          </tr>
-          <tr>
-             <td><code>test/</code></td>
-             <td>test applications client/server source</td>
-          </tr>
-          <tr>
-             <td><code>utests/</code></td>
-             <td>unit test applications</td>
-          </tr>
-    </tbody>
-</table>
-
+| Directory | Description|
+| :--- | :--- |
+|[./](https://github.com/fix8mt/fix8/blob/dev/)| root directory with CMakeLists.txt|
+|[compiler/](https://github.com/fix8mt/fix8/blob/dev/compiler)| the f8c compiler source|
+|[contrib/](https://github.com/fix8mt/fix8/blob/dev/contrib)|user contributed files|
+|[doc/](https://github.com/fix8mt/fix8/blob/dev/doc)|Fix8 documentation|
+|[doc/man](https://github.com/fix8mt/fix8/blob/dev/doc/man)|manpages for Fix8 utilities|
+|[include/fix8](https://github.com/fix8mt/fix8/blob/dev/include/fix8)|header files for the runtime library and compiler|
+|[runtime/](https://github.com/fix8mt/fix8/blob/dev/runtime)|runtime library source|
+|[util/](https://github.com/fix8mt/fix8/blob/dev/util)|additional utilities source|
+|[msvc/](https://github.com/fix8mt/fix8/blob/dev/msvc)|Microsoft Visual Studio support files|
+|[schema/](https://github.com/fix8mt/fix8/blob/dev/schema)|quickfix FIX xml schemas|
+|[test/](https://github.com/fix8mt/fix8/blob/dev/test)|applications client/server source|
+|[utests/](https://github.com/fix8mt/fix8/blob/dev/utests)| unit test applications|
 
 ## Branch Layout
 
