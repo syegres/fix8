@@ -120,18 +120,18 @@ and framework; and a set of complete client/server test applications.
 
 | Directory | Description|
 | :--- | :--- |
-|[./](https://github.com/fix8mt/fix8/blob/dev/)| root directory with CMakeLists.txt|
-|[compiler/](https://github.com/fix8mt/fix8/blob/dev/compiler)| the f8c compiler source|
-|[contrib/](https://github.com/fix8mt/fix8/blob/dev/contrib)|user contributed files|
-|[doc/](https://github.com/fix8mt/fix8/blob/dev/doc)|Fix8 documentation|
-|[doc/man](https://github.com/fix8mt/fix8/blob/dev/doc/man)|manpages for Fix8 utilities|
-|[include/fix8](https://github.com/fix8mt/fix8/blob/dev/include/fix8)|header files for the runtime library and compiler|
-|[runtime/](https://github.com/fix8mt/fix8/blob/dev/runtime)|runtime library source|
-|[util/](https://github.com/fix8mt/fix8/blob/dev/util)|additional utilities source|
-|[msvc/](https://github.com/fix8mt/fix8/blob/dev/msvc)|Microsoft Visual Studio support files|
-|[schema/](https://github.com/fix8mt/fix8/blob/dev/schema)|quickfix FIX xml schemas|
-|[test/](https://github.com/fix8mt/fix8/blob/dev/test)|applications client/server source|
-|[utests/](https://github.com/fix8mt/fix8/blob/dev/utests)| unit test applications|
+|[./](https://github.com/fix8/fix8/blob/dev/)| root directory with CMakeLists.txt|
+|[compiler/](https://github.com/fix8/fix8/blob/dev/compiler)| the f8c compiler source|
+|[contrib/](https://github.com/fix8/fix8/blob/dev/contrib)|user contributed files|
+|[doc/](https://github.com/fix8/fix8/blob/dev/doc)|Fix8 documentation|
+|[doc/man](https://github.com/fix8/fix8/blob/dev/doc/man)|manpages for Fix8 utilities|
+|[include/fix8](https://github.com/fix8/fix8/blob/dev/include/fix8)|header files for the runtime library and compiler|
+|[runtime/](https://github.com/fix8/fix8/blob/dev/runtime)|runtime library source|
+|[util/](https://github.com/fix8/fix8/blob/dev/util)|additional utilities source|
+|[msvc/](https://github.com/fix8/fix8/blob/dev/msvc)|Microsoft Visual Studio support files|
+|[schema/](https://github.com/fix8/fix8/blob/dev/schema)|quickfix FIX xml schemas|
+|[test/](https://github.com/fix8/fix8/blob/dev/test)|applications client/server source|
+|[utests/](https://github.com/fix8/fix8/blob/dev/utests)| unit test applications|
 
 ## Branch Layout
 
