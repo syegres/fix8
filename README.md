@@ -127,11 +127,11 @@ and framework; and a set of complete client/server test applications.
     </thead>
     <tbody>
           <tr>
-             <td><code>[./](https://github.com/fix8mt/fix8/blob/dev/)/</code></td>
+             <td>[./](https://github.com/fix8mt/fix8/blob/dev/)</td>
              <td>root directory with CMakeLists.txt</td>
           </tr>
           <tr>
-             <td><code>[compiler/](https://github.com/fix8mt/fix8/blob/dev/compiler)</code></td>
+             <td>[compiler/](https://github.com/fix8mt/fix8/blob/dev/compiler)</td>
              <td>the f8c compiler source</td>
           </tr>
           <tr>
