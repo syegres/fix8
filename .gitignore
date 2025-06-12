@@ -1,6 +1,7 @@
 *.o
 *.lo
 *.la
+*.swp
 client*.*
 server*.*
 tags

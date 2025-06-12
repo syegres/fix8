@@ -127,11 +127,11 @@ and framework; and a set of complete client/server test applications.
     </thead>
     <tbody>
           <tr>
-             <td><code>./</code></td>
+             <td><code>[./](https://github.com/fix8mt/fix8/blob/dev/)/</code></td>
              <td>root directory with CMakeLists.txt</td>
           </tr>
           <tr>
-             <td><code>compiler/</code></td>
+             <td><code>[compiler/](https://github.com/fix8mt/fix8/blob/dev/compiler)</code></td>
              <td>the f8c compiler source</td>
           </tr>
           <tr>
@@ -274,7 +274,7 @@ then
 ```bash
 % mkdir build
 % cd build
-% cmake ..
+% cmake [cmake options] ..
 % make -j4 -l4
 % cmake --install . --prefix <target install directory>
 ```
