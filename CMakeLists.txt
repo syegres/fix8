@@ -61,6 +61,7 @@ endif()
 fix8_addoption("BUILD_UNITTESTS|enable building unit tests|true")
 fix8_addoption("BUILD_ALL_WARNINGS|enable building with all warnings|true")
 fix8_addoption("BUILD_DOXYGEN_DOCS|enable building of self documentation|false")
+fix8_addoption("BUILD_EP264|enable building of FIX50SP2_EP264 schema library|false")
 
 # -------------------------------------------------------------------------------------------
 # deps
@@ -166,6 +167,10 @@ fix8_gen_shared_library(FIX50 schema/FIX50.xml --verbose --namespace FIX50 -p FI
 fix8_gen_shared_library(FIX50SP1 schema/FIX50SP1.xml --verbose --namespace FIX50SP1 -p FIX50SP1 --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 fix8_gen_shared_library(FIX50SP2 schema/FIX50SP2.xml --verbose --namespace FIX50SP2 -p FIX50SP2 --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11.xml)
 install(TARGETS FIX40 FIX41 FIX42 FIX43 FIX44 FIX50 FIX50SP1 FIX50SP2)
+if(BUILD_EP264)
+	fix8_gen_shared_library(FIX50SP2_EP264 schema/FIX50SP2_EP264.xml --verbose --namespace FIX50SP2_EP264 -p FIX50SP2_EP264 --fixt ${CMAKE_SOURCE_DIR}/schema/FIXT11_EP264.xml)
+	install(TARGETS FIX50SP2_EP264)
+endif()
 
 # -------------------------------------------------------------------------------------------
 # unit tests

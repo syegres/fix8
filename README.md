@@ -69,8 +69,9 @@ and framework; and a set of complete client/server test applications.
 1. [Contents](#contents)
 1. [Features](#features)
 1. [Directory Layout](#directory-layout)
-1. [Documentation](#documentation)
 1. [Branch Layout](#branch-layout)
+1. [Documentation](#documentation)
+1. [Changelog](#changelog)
 1. [C++17](#c17)
 1. [External Dependencies (required)](#external-dependencies-required)
 1. [Optional Dependencies](#optional-dependencies)
@@ -117,70 +118,20 @@ and framework; and a set of complete client/server test applications.
 
 ## Directory Layout
 
-<table>
-    <thead>
-         <tr>
-            <th>Directory</th>
-            <th>Description</th>
-          </tr>
-    </thead>
-    <tbody>
-          <tr>
-             <td><code>./</code></td>
-             <td>root directory with CMakeLists.txt</td>
-          </tr>
-          <tr>
-             <td><code>compiler/</code></td>
-             <td>the f8c compiler source</td>
-          </tr>
-          <tr>
-             <td><code>contrib/</code></td>
-             <td>user contributed files</td>
-          </tr>
-          <tr>
-             <td><code>doc/</code></td>
-             <td>Fix8 documentation</td>
-          </tr>
-          <tr>
-             <td><code>doc/man</code></td>
-             <td>manpages for Fix8 utilities</td>
-          </tr>
-          <tr>
-             <td><code>include/fix8</code></td>
-             <td>header files for the runtime library and compiler</td>
-          </tr>
-          <tr>
-             <td><code>runtime/</code></td>
-             <td>runtime library source</td>
-          </tr>
-          <tr>
-             <td><code>util/</code></td>
-             <td>additional utilities source</td>
-          </tr>
-          <tr>
-             <td><code>msvc/</code></td>
-             <td>Microsoft Visual Studio support files</td>
-          </tr>
-          <tr>
-             <td><code>schema/</code></td>
-             <td>quickfix FIX xml schemas</td>
-          </tr>
-          <tr>
-             <td><code>test/</code></td>
-             <td>test applications client/server source</td>
-          </tr>
-          <tr>
-             <td><code>utests/</code></td>
-             <td>unit test applications</td>
-          </tr>
-    </tbody>
-</table>
-
-
-## Documentation
-
-See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
-a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
+| Directory | Description|
+| :--- | :--- |
+|[./](https://github.com/fix8/fix8/blob/dev/)| root directory with CMakeLists.txt|
+|[compiler/](https://github.com/fix8/fix8/blob/dev/compiler)| the f8c compiler source|
+|[contrib/](https://github.com/fix8/fix8/blob/dev/contrib)|user contributed files|
+|[doc/](https://github.com/fix8/fix8/blob/dev/doc)|Fix8 documentation|
+|[doc/man](https://github.com/fix8/fix8/blob/dev/doc/man)|manpages for Fix8 utilities|
+|[include/fix8](https://github.com/fix8/fix8/blob/dev/include/fix8)|header files for the runtime library and compiler|
+|[runtime/](https://github.com/fix8/fix8/blob/dev/runtime)|runtime library source|
+|[util/](https://github.com/fix8/fix8/blob/dev/util)|additional utilities source|
+|[msvc/](https://github.com/fix8/fix8/blob/dev/msvc)|Microsoft Visual Studio support files|
+|[schema/](https://github.com/fix8/fix8/blob/dev/schema)|quickfix FIX xml schemas|
+|[test/](https://github.com/fix8/fix8/blob/dev/test)|applications client/server source|
+|[utests/](https://github.com/fix8/fix8/blob/dev/utests)| unit test applications|
 
 ## Branch Layout
 
@@ -208,14 +159,16 @@ a login. For our complete API Documentation see [here](https://fix8.org/fix8/htm
              <td>https://github.com/fix8/fix8/tree/dev-premain</td>
              <td>This branch is used to marshall development changes that are ready for release. When significant changes are made to the dev branch, this branch will be used to keep other changes separate.</td>
           </tr>
-          <tr>
-             <td><pre>gh-pages</pre></td>
-             <td>https://github.com/fix8/fix8/tree/gh-pages</td>
-             <td>This branch contains the static html for the Fix8 website.</td>
-          </tr>
     </tbody>
 </table>
 
+## Documentation
+
+See our [Wiki](https://fix8engine.atlassian.net/wiki) for detailed help on using Fix8. Access to this documentation is free but will require
+a login. For our complete API Documentation see [here](https://fix8.org/fix8/html/). All the source code is self-documenting using doxygen.
+
+## Changelog
+📜 [View full changelog here](CHANGELOG.md)
 
 ## C++17
 
@@ -234,7 +187,7 @@ Fix8 requires the following third-party software (header files and
 libraries) being installed to build properly:
 
 > [!NOTE]
-> This release now uses [CMake](https://cmake.org). The build _will download and build_ the default dependencies - poco, tbb and gtest.
+> This release now uses [CMake](https://cmake.org). All required dependencies (poco, tbb and gtest) *will be downloaded and built* by default.
 
 - Poco C++ Libraries [basic edition](https://pocoproject.org/download/index.html)
 - oneAPI Threading Building Blocks [oneTBB](https://uxlfoundation.github.io/oneTBB/)
@@ -261,7 +214,7 @@ If you wish to use BerkeleyDB for message persistence:
 ## Building on Linux/UNIX, MacOS and Windows
 
 Either clone from the project on github or download the tarball.
-The Windows build now also uses cmake. Please follow the directions above (either msvc or vscode).
+The Windows build now also uses cmake (either msvc or vscode).
 
 ```bash
 % git clone https://github.com/fix8/fix8.git
@@ -269,14 +222,14 @@ The Windows build now also uses cmake. Please follow the directions above (eithe
 ```
 or
 ```bash
-% tar xvzf 1.5.0.tar.gz
-% cd fix8-1.5.0
+% tar xvzf 2.0.1.tar.gz
+% cd fix8-2.0.1
 ```
 then
 ```bash
 % mkdir build
 % cd build
-% cmake ..
+% cmake [cmake options] ..
 % make -j4 -l4
 % cmake --install . --prefix <target install directory>
 ```
@@ -299,9 +252,10 @@ The following table summarises the cmake build command for each platform:
 These options can be passed on the cmake command line
 | Option | Description| Default | Example|
 | :--- | :--- | :--- | :--- |
-|BUILD_UNITTESTS|enable building unit tests|`true`| `-DBUILD_UNITTESTS=false`|
-|BUILD_ALL_WARNINGS|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS=false`|
-|BUILD_DOXYGEN_DOCS|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS=true`|
+|`BUILD_UNITTESTS`|enable building unit tests|`true`| `-DBUILD_UNITTESTS:bool=false`|
+|`BUILD_ALL_WARNINGS`|enable building with all warnings|`true`| `-DBUILD_ALL_WARNINGS:bool=false`|
+|`BUILD_DOXYGEN_DOCS`|enable building of self documentation|`false`| `-DBUILD_DOXYGEN_DOCS:bool=true`|
+|`BUILD_EP264`|enable building of `FIX50SP2_EP264` schema library[^1]|`false`|`-DBUILD_EP264:bool=true`|
 
 ## Compiler support
 | Compiler | Version(s) |
@@ -335,9 +289,9 @@ Please refer to the following page:
 the **[Fix8 Developer Group](https://groups.google.com/forum/#!forum/fix8-developer)**.
 If you cannot find any help there **create a new topic and ask the support group for advice.**
 
-1. *Do not* email us directly. **Support questions sent directly to us will be redirected to the support group.**
+1. Please *Do not* email us (or Fix8MT) directly. **Support questions sent directly to us will be redirected to the support group or possibly ignored.**
 
-1. *Do not* post the same question to both fix8-support and fix8-developer groups.
+1. Please *Do not* post the same question to both fix8-support and fix8-developer groups.
 
 1. If you are considering submitting a problem report, make sure you have identified a **potential problem with Fix8 and not a problem with your application**.
 These aren't the same thing. So, for example, if your application is crashing, there are many possible causes and some will relate
@@ -367,9 +321,9 @@ If you want to submit a change to the repository, it needs to be *made on the de
 1. If you are using the command line git, clone your fork and choose the dev branch<br><code>% git clone https://github.com/[`your_repo_name`]/fix8.git -b dev</code>
 1. Make your changes to this branch
 1. Submit changes to your branch and push the branch to your fork
-1. Create a pull request at fix8:dev
-1. Wait for your pull request to be accepted to fix8:dev
-1. Update your fork with recent fix8:dev
+1. Create a pull request at `fix8:dev`
+1. Wait for your pull request to be accepted to `fix8:dev`
+1. Update your fork with recent `fix8:dev`
 
 ## License
 
@@ -410,3 +364,6 @@ For more information about Fix8Pro see the [Fix8MT website.](https://www.fix8mt.
 ## More Information
 
 For more information, see the [Fix8 website.](https://www.fix8.org)
+
+[^1]: This release includes XML schemas of the FIX 5.0 SP2 Extension Pack 264 and the FIXT 1.1 Extension Pack 264 in Quickfix schema format. Building this library is lengthy.
+

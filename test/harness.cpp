@@ -224,7 +224,7 @@ int main(int argc, char **argv)
       switch (val)
 		{
 		case 'v':
-			cout << argv[0] << " for " FIX8_PACKAGE " version " FIX8_VERSION << endl;
+			cout << "harness session tester " << Session::copyright_string() << endl;
 			cout << "Released under the GNU LESSER GENERAL PUBLIC LICENSE, Version 3. See <https://www.gnu.org/licenses/> for details." << endl;
 			return 0;
 		case ':': case '?': return 1;

@@ -116,7 +116,6 @@ function(cpp_opts)
 		string(JOIN "\;" dlls_string ${dlls})
 		set(FIX8_LD_LIBRARY_PATH "PATH=${dlls_string}" PARENT_SCOPE)
 	endif()
-
 endfunction()
 
 # -------------------------------------------------------------------------------------------
@@ -126,8 +125,7 @@ function(comp_opts targ)
 			${FIX8_CXX_FLAGS}
 			$<$<CONFIG:Debug>:${FIX8_CXX_FLAGS_DEBUG}>
 			$<$<CONFIG:Release>:${FIX8_CXX_FLAGS_RELEASE}>
-			$<$<CONFIG:RelWithDebInfo>:${FIX8_CXX_FLAGS_RELWITHDEBINFO}>
-		)
+			$<$<CONFIG:RelWithDebInfo>:${FIX8_CXX_FLAGS_RELWITHDEBINFO}>)
 	target_link_libraries(${targ} PRIVATE TBB::tbbmalloc_proxy)
 	if (MSVC)
 		target_link_options(${targ} PRIVATE	/INCLUDE:__TBB_malloc_proxy)
@@ -158,39 +156,39 @@ macro(fix8_gen_library shared name xml extra_fields)
 	if (${has_path_delimiters} EQUAL -1)
 		set(xml ${CMAKE_SOURCE_DIR}/${xml})
 	endif()
-	message("-- Using schema ${xml}")
+	message("-- Using ${xml}")
 	add_custom_command(
-			OUTPUT
+		OUTPUT
 			${prefix}/${name}_classes.cpp
 			${prefix}/${name}_traits.cpp
 			${prefix}/${name}_types.cpp
 			${prefix}/${name}_classes.hpp
 			${prefix}/${name}_types.hpp
-			COMMAND ${CMAKE_COMMAND} -E env ${FIX8_LD_LIBRARY_PATH} $<TARGET_FILE:f8c> ${args}
-			MAIN_DEPENDENCY ${xml}
-			WORKING_DIRECTORY ${prefix}
-			VERBATIM)
+		COMMAND ${CMAKE_COMMAND} -E env ${FIX8_LD_LIBRARY_PATH} $<TARGET_FILE:f8c> ${args}
+		MAIN_DEPENDENCY ${xml}
+		WORKING_DIRECTORY ${prefix}
+		DEPENDS f8c
+		VERBATIM)
 	if ("${shared}" STREQUAL "shared")
 		set(libname ${name})
 		add_library(${libname} SHARED
-				${prefix}/${name}_classes.cpp
-				${prefix}/${name}_traits.cpp
-				${prefix}/${name}_types.cpp
-				${prefix}/${name}_classes.hpp
-				${prefix}/${name}_types.hpp
-				)
+			${prefix}/${name}_classes.cpp
+			${prefix}/${name}_traits.cpp
+			${prefix}/${name}_types.cpp
+			${prefix}/${name}_classes.hpp
+			${prefix}/${name}_types.hpp)
 		string(TOUPPER ${name} name_upper)
-		target_compile_definitions(${libname} PRIVATE  F8_${name_upper}_API_SHARED BUILD_F8_${name_upper}_API)
+		target_compile_definitions(${libname} PRIVATE F8_${name_upper}_API_SHARED BUILD_F8_${name_upper}_API)
 	else()
 		set(libname ${name})
 		add_library(${libname} STATIC
-				${prefix}/${name}_classes.cpp
-				${prefix}/${name}_traits.cpp
-				${prefix}/${name}_types.cpp
-				${prefix}/${name}_classes.hpp
-				${prefix}/${name}_types.hpp
-				)
+			${prefix}/${name}_classes.cpp
+			${prefix}/${name}_traits.cpp
+			${prefix}/${name}_types.cpp
+			${prefix}/${name}_classes.hpp
+			${prefix}/${name}_types.hpp)
 	endif()
+	add_dependencies(${libname} f8c)
 	target_include_directories(${libname} PUBLIC ${prefix})
 	if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 		target_compile_options(${libname} PRIVATE -fno-var-tracking -fno-var-tracking-assignments)
